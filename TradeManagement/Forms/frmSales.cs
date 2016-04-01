@@ -33,7 +33,7 @@ namespace TradeManagement.Forms
                 cmbCustomerName.EditValue = null;
                 txtBarcode.EditValue = null;
                 grdSales.DataSource = null;
-                txtDiscount.EditValue = null;
+                txtFinalDiscount.EditValue = null;
                 txtNetTotal.EditValue = null;
                 txtAmountPaid.EditValue = null;
                 txtDue.EditValue = null;
@@ -117,11 +117,6 @@ namespace TradeManagement.Forms
 
         private void bbtnSave_ItemClick(object sender, ItemClickEventArgs e)
         {
-            //if (_sales.Demo())
-            //{
-            //    XtraMessageBox.Show("This is a demo application. Cannot sale anymore. Please buy the full version.", ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    return;
-            //}
             if (gvwSales.RowCount == 0)
             {
                 XtraMessageBox.Show("Please enter at least one Product.", ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -138,7 +133,7 @@ namespace TradeManagement.Forms
             {
                 _accountReceivableId = _sales.GetNextReceivableId();
                 _sales.BeginTran();
-                if (_sales.InsertSales(txtInvoiceNo.EditValue.ToString(), dtpSalesDate.DateTime, cmbCustomerName.EditValue.ToString(), colTotal.SummaryItem.SummaryValue.ToString(), txtVAT.EditValue.ToString(), (txtDiscount.EditValue ?? 0).ToString(), rgpPaymentType.SelectedIndex.ToString(),(txtAmountPaid.EditValue ?? 0).ToString(), txtDue.EditValue == null ? "1" : Convert.ToDecimal(txtDue.EditValue) > 0 ? "0" : "1", Program.UserName))
+                if (_sales.InsertSales(txtInvoiceNo.EditValue.ToString(), dtpSalesDate.DateTime, cmbCustomerName.EditValue.ToString(), colTotal.SummaryItem.SummaryValue.ToString(), txtVAT.EditValue.ToString(), (txtFinalDiscount.EditValue ?? 0).ToString(), rgpPaymentType.SelectedIndex.ToString(), (txtAmountPaid.EditValue ?? 0).ToString(), txtDue.EditValue == null ? "1" : Convert.ToDecimal(txtDue.EditValue) > 0 ? "0" : "1", Program.UserName))
                 {
                     var success = false;
                     for (var i = 0; i < gvwSales.RowCount; i++)
@@ -151,7 +146,7 @@ namespace TradeManagement.Forms
                     if (success)
                     {
                         if (_sales.InsertAccountsReceivable(_accountReceivableId, dtpSalesDate.DateTime, cmbCustomerName.EditValue.ToString(), txtInvoiceNo.EditValue.ToString(), txtNetTotal.EditValue.ToString(),
-                            txtVAT.EditValue.ToString(), (txtDiscount.EditValue ?? 0).ToString(), (txtDue.EditValue ?? 0).ToString(), (txtAmountPaid.EditValue ?? 0).ToString(), "1", "For invoice no " + txtInvoiceNo.EditValue, Program.UserName))
+                            txtVAT.EditValue.ToString(), (txtFinalDiscount.EditValue ?? 0).ToString(), (txtDue.EditValue ?? 0).ToString(), (txtAmountPaid.EditValue ?? 0).ToString(), "1", "For invoice no " + txtInvoiceNo.EditValue, Program.UserName))
                         {
                             _sales.CommitTran();
                             using (var report = new Report())
@@ -201,7 +196,7 @@ namespace TradeManagement.Forms
             {
                 var dt = _sales.GetSaleDetails(txtInvoiceNo.Text);
                 _sales.BeginTran();
-                if (_sales.UpdateSales(txtInvoiceNo.EditValue.ToString(), dtpSalesDate.DateTime, cmbCustomerName.EditValue.ToString(), colTotal.SummaryItem.SummaryValue.ToString(), txtVAT.EditValue.ToString(), (txtDiscount.EditValue ?? 0).ToString(), rgpPaymentType.SelectedIndex.ToString(), (txtAmountPaid.EditValue ?? 0).ToString(), txtDue.EditValue == null ? "1" : Convert.ToDecimal(txtDue.EditValue) > 0 ? "0" : "1", Program.UserName))
+                if (_sales.UpdateSales(txtInvoiceNo.EditValue.ToString(), dtpSalesDate.DateTime, cmbCustomerName.EditValue.ToString(), colTotal.SummaryItem.SummaryValue.ToString(), txtVAT.EditValue.ToString(), (txtFinalDiscount.EditValue ?? 0).ToString(), rgpPaymentType.SelectedIndex.ToString(), (txtAmountPaid.EditValue ?? 0).ToString(), txtDue.EditValue == null ? "1" : Convert.ToDecimal(txtDue.EditValue) > 0 ? "0" : "1", Program.UserName))
                 {
                     var success = false;
                     foreach (DataRow row in dt.Rows)
@@ -216,7 +211,7 @@ namespace TradeManagement.Forms
                     if (success)
                     {
                         if (_sales.UpdateAccountsReceivable(_accountReceivableId, dtpSalesDate.DateTime, cmbCustomerName.EditValue.ToString(), txtInvoiceNo.EditValue.ToString(), txtNetTotal.EditValue.ToString(),
-                            txtVAT.EditValue.ToString(), (txtDiscount.EditValue ?? 0).ToString(), (txtDue.EditValue ?? 0).ToString(), (txtAmountPaid.EditValue ?? 0).ToString(), "1", "Updated for invoice no " + txtInvoiceNo.EditValue, Program.UserName))
+                            txtVAT.EditValue.ToString(), (txtFinalDiscount.EditValue ?? 0).ToString(), (txtDue.EditValue ?? 0).ToString(), (txtAmountPaid.EditValue ?? 0).ToString(), "1", "Updated for invoice no " + txtInvoiceNo.EditValue, Program.UserName))
                         {
                             _prevProducts.Clear();
                             _sales.CommitTran();
@@ -401,35 +396,36 @@ namespace TradeManagement.Forms
                 {
                     dt.Rows[0]["pdtProductId"], dt.Rows[0]["pdtProductName"], dt.Rows[0]["bndBrandName"],
                     dt.Rows[0]["pdtModel"], dt.Rows[0]["pdtPackageUnit"], dt.Rows[0]["pdtUnitPrice"], dt.Rows[0]["pdtVAT"],
-                    count, Convert.ToDecimal(dt.Rows[0]["pdtUnitPrice"]) * count
+                    count, Convert.ToDecimal(dt.Rows[0]["pdtUnitPrice"]) * count +
+                    Convert.ToDecimal(dt.Rows[0]["pdtUnitPrice"]) * count * Convert.ToDecimal(dt.Rows[0]["pdtVAT"]) / 100
                 };
                 dtSale.Rows.Add(row);
                 grdSales.DataSource = dtSale;
             }
             //txtVAT.EditValue = Convert.ToDecimal(colTotal.SummaryItem.SummaryValue) * _vat / 100;
-            txtNetTotal.EditValue = Convert.ToDecimal(colTotal.SummaryItem.SummaryValue) + Convert.ToDecimal(txtVAT.EditValue) - Convert.ToDecimal(txtDiscount.EditValue ?? "0");
+            txtNetTotal.EditValue = Convert.ToDecimal(colTotal.SummaryItem.SummaryValue) - Convert.ToDecimal(txtFinalDiscount.EditValue ?? "0");
             txtDue.EditValue = Convert.ToDecimal(txtNetTotal.EditValue) - Convert.ToDecimal(txtAmountPaid.EditValue ?? "0");
             MakeEmpty(false);
             txtBarcode.Focus();
         }
 
-        private void txtDiscount_EditValueChanged(object sender, EventArgs e)
+        private void txtFinalDiscount_EditValueChanged(object sender, EventArgs e)
         {
             if (colTotal.SummaryItem.SummaryValue == null) return;
-            txtNetTotal.EditValue = Convert.ToDecimal(colTotal.SummaryItem.SummaryValue) + Convert.ToDecimal(txtVAT.EditValue) - Convert.ToDecimal(txtDiscount.EditValue ?? "0");
+            txtNetTotal.EditValue = Convert.ToDecimal(colTotal.SummaryItem.SummaryValue) - Convert.ToDecimal(txtFinalDiscount.EditValue ?? "0");
             txtDue.EditValue = Convert.ToDecimal(txtNetTotal.EditValue) - Convert.ToDecimal(txtAmountPaid.EditValue ?? "0");
         }
 
         private void txtAmountPaid_EditValueChanged(object sender, EventArgs e)
         {
             if (colTotal.SummaryItem.SummaryValue == null) return;
-            txtNetTotal.EditValue = Convert.ToDecimal(colTotal.SummaryItem.SummaryValue) + Convert.ToDecimal(txtVAT.EditValue) - Convert.ToDecimal(txtDiscount.EditValue ?? "0");
+            txtNetTotal.EditValue = Convert.ToDecimal(colTotal.SummaryItem.SummaryValue) - Convert.ToDecimal(txtFinalDiscount.EditValue ?? "0");
             txtDue.EditValue = Convert.ToDecimal(txtNetTotal.EditValue) - Convert.ToDecimal(txtAmountPaid.EditValue ?? "0");
         }
 
         private void gvwSales_CellValueChanged(object sender, CellValueChangedEventArgs e)
         {
-            if (e.Column != colUnitPrice & e.Column != colQuantity) return;
+            if (e.Column != colUnitPrice & e.Column != colQuantity & e.Column != colDiscount) return;
             if (e.Value == DBNull.Value || Convert.ToDecimal(e.Value) == 0)gvwSales.DeleteRow(e.RowHandle);
             else
             {
@@ -443,10 +439,18 @@ namespace TradeManagement.Forms
                         return;
                     }
                 }
-                gvwSales.SetRowCellValue(e.RowHandle, "sldTotal", Convert.ToDecimal(gvwSales.GetRowCellValue(e.RowHandle, "sldSalesPrice")) * Convert.ToDecimal(gvwSales.GetRowCellValue(e.RowHandle, "sldQuantity")));
+                if (e.Column == colDiscount)
+                {
+                    if (gvwSales.ActiveEditor.EditValue.ToString().Trim().EndsWith("%"))
+                    {
+                        
+                    }
+                }
+                gvwSales.SetRowCellValue(e.RowHandle, "sldTotal", Convert.ToDecimal(gvwSales.GetRowCellValue(e.RowHandle, "sldSalesPrice")) * Convert.ToDecimal(gvwSales.GetRowCellValue(e.RowHandle, "sldQuantity")) +
+                    Convert.ToDecimal(gvwSales.GetRowCellValue(e.RowHandle, "sldSalesPrice")) * Convert.ToDecimal(gvwSales.GetRowCellValue(e.RowHandle, "sldQuantity")) * Convert.ToDecimal(gvwSales.GetRowCellValue(e.RowHandle, "sldVAT")) / 100);
             }
             grdSales.RefreshDataSource();
-            txtNetTotal.EditValue = Convert.ToDecimal(colTotal.SummaryItem.SummaryValue) + Convert.ToDecimal(txtVAT.EditValue) - Convert.ToDecimal(txtDiscount.EditValue ?? "0");
+            txtNetTotal.EditValue = Convert.ToDecimal(colTotal.SummaryItem.SummaryValue) - Convert.ToDecimal(txtFinalDiscount.EditValue ?? "0");
             txtDue.EditValue = Convert.ToDecimal(txtNetTotal.EditValue) - Convert.ToDecimal(txtAmountPaid.EditValue ?? "0");
             txtBarcode.Focus();
         }
@@ -517,8 +521,8 @@ namespace TradeManagement.Forms
             txtInvoiceNo.EditValue = gvwSearch.GetRowCellValue(gvwSearch.FocusedRowHandle, "slsInvoiceNo");
             dtpSalesDate.EditValue = gvwSearch.GetRowCellValue(gvwSearch.FocusedRowHandle, "slsSalesDate");
             cmbCustomerName.EditValue = gvwSearch.GetRowCellValue(gvwSearch.FocusedRowHandle, "slsCustomerId");
-            txtVAT.EditValue = gvwSearch.GetRowCellValue(gvwSearch.FocusedRowHandle, "slsVAT");
-            txtDiscount.EditValue = gvwSearch.GetRowCellValue(gvwSearch.FocusedRowHandle, "slsDiscount");
+            //txtVAT.EditValue = gvwSearch.GetRowCellValue(gvwSearch.FocusedRowHandle, "slsVAT");
+            txtFinalDiscount.EditValue = gvwSearch.GetRowCellValue(gvwSearch.FocusedRowHandle, "slsDiscount");
             txtNetTotal.EditValue = gvwSearch.GetRowCellValue(gvwSearch.FocusedRowHandle, "slsNetTotal");
             rgpPaymentType.SelectedIndex = Convert.ToInt16(gvwSearch.GetRowCellValue(gvwSearch.FocusedRowHandle, "slsPaymentType"));
             txtAmountPaid.EditValue = gvwSearch.GetRowCellValue(gvwSearch.FocusedRowHandle, "slsAmountPaid");
@@ -594,7 +598,6 @@ namespace TradeManagement.Forms
                 if (grdSales.DataSource != null)
                 {
                     dtSale = (DataTable)grdSales.DataSource;
-                    //dtSale.Columns.RemoveAt(0);
                 }
                 else
                 {
@@ -605,6 +608,7 @@ namespace TradeManagement.Forms
                     dtSale.Columns.Add("pdtModel");
                     dtSale.Columns.Add("pdtPackageUnit");
                     dtSale.Columns.Add("sldSalesPrice");
+                    dtSale.Columns.Add("sldVAT");
                     dtSale.Columns.Add("sldQuantity");
                     dtSale.Columns.Add("sldTotal");
                 }
@@ -616,13 +620,15 @@ namespace TradeManagement.Forms
                     gvwProducts.GetRowCellValue(gvwProducts.FocusedRowHandle, "pdtModel"),
                     gvwProducts.GetRowCellValue(gvwProducts.FocusedRowHandle, "pdtPackageUnit"),
                     gvwProducts.GetRowCellValue(gvwProducts.FocusedRowHandle, "pdtUnitPrice"),
-                    count, Convert.ToDecimal(gvwProducts.GetRowCellValue(gvwProducts.FocusedRowHandle, "pdtUnitPrice"))*count
+                    gvwProducts.GetRowCellValue(gvwProducts.FocusedRowHandle, "pdtVAT"),
+                    count, Convert.ToDecimal(gvwProducts.GetRowCellValue(gvwProducts.FocusedRowHandle, "pdtUnitPrice")) * count +
+                    Convert.ToDecimal(gvwProducts.GetRowCellValue(gvwProducts.FocusedRowHandle, "pdtUnitPrice")) * count * 
+                    Convert.ToDecimal(gvwProducts.GetRowCellValue(gvwProducts.FocusedRowHandle, "pdtVAT")) / 100
                 };
                 dtSale.Rows.Add(row);
                 grdSales.DataSource = dtSale;
             }
-            txtVAT.EditValue = (Convert.ToDecimal(colTotal.SummaryItem.SummaryValue) * _vat / 100).ToString();
-            txtNetTotal.EditValue = (Convert.ToDecimal(colTotal.SummaryItem.SummaryValue) + Convert.ToDecimal(txtVAT.EditValue) - Convert.ToDecimal(txtDiscount.EditValue ?? "0")).ToString();
+            txtNetTotal.EditValue = (Convert.ToDecimal(colTotal.SummaryItem.SummaryValue) - Convert.ToDecimal(txtFinalDiscount.EditValue ?? "0")).ToString();
             txtDue.EditValue = (Convert.ToDecimal(txtNetTotal.EditValue) - Convert.ToDecimal(txtAmountPaid.EditValue ?? "0")).ToString();
             grdSales.Visible = true;
             pnlSales.Visible = true;

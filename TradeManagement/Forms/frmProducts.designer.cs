@@ -42,10 +42,13 @@
             this.colModel = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPackageUnit = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colUnitPrice = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colVAT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colReorderLevel = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colStockQuantity = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colActive = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grpMain = new DevExpress.XtraEditors.GroupControl();
+            this.txtVAT = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
             this.cmbPackageUnit = new DevExpress.XtraEditors.ComboBoxEdit();
             this.barManager = new DevExpress.XtraBars.BarManager(this.components);
             this.barOptions = new DevExpress.XtraBars.Bar();
@@ -82,15 +85,13 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.txtProductID = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.txtVAT = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
-            this.colVAT = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grcCaption)).BeginInit();
             this.grcCaption.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdProducts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvwProducts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpMain)).BeginInit();
             this.grpMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtVAT.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbPackageUnit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbModel.Properties)).BeginInit();
@@ -102,7 +103,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.cmbCategory.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtProductName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtProductID.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtVAT.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // grcCaption
@@ -237,6 +237,19 @@
             this.colUnitPrice.VisibleIndex = 3;
             this.colUnitPrice.Width = 65;
             // 
+            // colVAT
+            // 
+            this.colVAT.AppearanceHeader.Options.UseTextOptions = true;
+            this.colVAT.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.colVAT.Caption = "VAT (%)";
+            this.colVAT.DisplayFormat.FormatString = "n2";
+            this.colVAT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colVAT.FieldName = "pdtVAT";
+            this.colVAT.Name = "colVAT";
+            this.colVAT.Visible = true;
+            this.colVAT.VisibleIndex = 4;
+            this.colVAT.Width = 59;
+            // 
             // colReorderLevel
             // 
             this.colReorderLevel.AppearanceHeader.Options.UseTextOptions = true;
@@ -304,6 +317,25 @@
             this.grpMain.ShowCaption = false;
             this.grpMain.Size = new System.Drawing.Size(997, 56);
             this.grpMain.TabIndex = 1;
+            // 
+            // txtVAT
+            // 
+            this.txtVAT.EnterMoveNextControl = true;
+            this.txtVAT.Location = new System.Drawing.Point(896, 31);
+            this.txtVAT.Name = "txtVAT";
+            this.txtVAT.Properties.Mask.EditMask = "f";
+            this.txtVAT.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtVAT.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.txtVAT.Size = new System.Drawing.Size(40, 20);
+            this.txtVAT.TabIndex = 21;
+            // 
+            // labelControl11
+            // 
+            this.labelControl11.Location = new System.Drawing.Point(852, 34);
+            this.labelControl11.Name = "labelControl11";
+            this.labelControl11.Size = new System.Drawing.Size(38, 13);
+            this.labelControl11.TabIndex = 20;
+            this.labelControl11.Text = "VAT(%)";
             // 
             // cmbPackageUnit
             // 
@@ -466,33 +498,34 @@
             this.sitmStatus.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.sitmStatus.Size = new System.Drawing.Size(32, 0);
             this.sitmStatus.TextAlignment = System.Drawing.StringAlignment.Near;
+            this.sitmStatus.Width = 32;
             // 
             // barDockControlTop
             // 
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(1021, 45);
+            this.barDockControlTop.Size = new System.Drawing.Size(1021, 47);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 558);
-            this.barDockControlBottom.Size = new System.Drawing.Size(1021, 27);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 560);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1021, 25);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 45);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 47);
             this.barDockControlLeft.Size = new System.Drawing.Size(0, 513);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1021, 45);
+            this.barDockControlRight.Location = new System.Drawing.Point(1021, 47);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 513);
             // 
             // cmbModel
@@ -682,38 +715,6 @@
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "Product Id";
             // 
-            // txtVAT
-            // 
-            this.txtVAT.EnterMoveNextControl = true;
-            this.txtVAT.Location = new System.Drawing.Point(896, 31);
-            this.txtVAT.Name = "txtVAT";
-            this.txtVAT.Properties.Mask.EditMask = "f";
-            this.txtVAT.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtVAT.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.txtVAT.Size = new System.Drawing.Size(40, 20);
-            this.txtVAT.TabIndex = 21;
-            // 
-            // labelControl11
-            // 
-            this.labelControl11.Location = new System.Drawing.Point(852, 34);
-            this.labelControl11.Name = "labelControl11";
-            this.labelControl11.Size = new System.Drawing.Size(38, 13);
-            this.labelControl11.TabIndex = 20;
-            this.labelControl11.Text = "VAT(%)";
-            // 
-            // colVAT
-            // 
-            this.colVAT.AppearanceHeader.Options.UseTextOptions = true;
-            this.colVAT.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.colVAT.Caption = "VAT";
-            this.colVAT.DisplayFormat.FormatString = "n2";
-            this.colVAT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.colVAT.FieldName = "pdtVAT";
-            this.colVAT.Name = "colVAT";
-            this.colVAT.Visible = true;
-            this.colVAT.VisibleIndex = 4;
-            this.colVAT.Width = 59;
-            // 
             // frmProducts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -741,6 +742,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grpMain)).EndInit();
             this.grpMain.ResumeLayout(false);
             this.grpMain.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtVAT.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbPackageUnit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbModel.Properties)).EndInit();
@@ -752,7 +754,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.cmbCategory.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtProductName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtProductID.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtVAT.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

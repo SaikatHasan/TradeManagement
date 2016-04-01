@@ -424,6 +424,7 @@
     <Reference Include="VistaDB.5.NET40, Version=5.1.0.0, Culture=neutral, PublicKeyToken=dfc935afe2125461, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="bin\Debug\Data\Database.data" />
     <None Include="bin\Debug\Reports\rptAccountsPayable.frx" />
     <None Include="bin\Debug\Reports\rptAccountsReceivable.frx" />
     <None Include="bin\Debug\Reports\rptAllCustomerDues.frx" />
@@ -498,6 +499,7 @@
     <None Include="Resources\AccountsReceivableReport.png" />
     <None Include="Resources\Chart.png" />
     <None Include="Resources\Withdraw.png" />
+    <Content Include="bin\Debug\SKGL.dll" />
     <Content Include="trade_icon.ico" />
     <None Include="Resources\Shopping Cart 24.png" />
     <None Include="Resources\purchase.png" />

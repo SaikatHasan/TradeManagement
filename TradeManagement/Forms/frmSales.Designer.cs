@@ -76,7 +76,7 @@
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.txtNetTotal = new DevExpress.XtraEditors.TextEdit();
             this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
-            this.txtDiscount = new DevExpress.XtraEditors.TextEdit();
+            this.txtFinalDiscount = new DevExpress.XtraEditors.TextEdit();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
             this.grdProducts = new DevExpress.XtraGrid.GridControl();
             this.gvwProducts = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -95,6 +95,7 @@
             this.colPackageUnit = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colUnitPrice = new DevExpress.XtraGrid.Columns.GridColumn();
             this.txtUnitPrice = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.colVAT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colQuantity = new DevExpress.XtraGrid.Columns.GridColumn();
             this.txtQuantity = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.colTotal = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -122,10 +123,11 @@
             this.colCustomerName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTotalAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colVATSearch = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDiscount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSDiscount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNetTotal = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemHyperLinkEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit();
-            this.colVAT = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDiscount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.txtDiscount = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpMaster)).BeginInit();
             this.grpMaster.SuspendLayout();
@@ -145,7 +147,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtDue.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmountPaid.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNetTotal.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDiscount.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFinalDiscount.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdProducts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvwProducts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdSales)).BeginInit();
@@ -169,6 +171,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvwSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDiscount)).BeginInit();
             this.SuspendLayout();
             // 
             // barManager
@@ -343,33 +346,34 @@
             this.sitmStatus.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.sitmStatus.Size = new System.Drawing.Size(32, 0);
             this.sitmStatus.TextAlignment = System.Drawing.StringAlignment.Near;
+            this.sitmStatus.Width = 32;
             // 
             // barDockControlTop
             // 
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(886, 45);
+            this.barDockControlTop.Size = new System.Drawing.Size(1025, 47);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 599);
-            this.barDockControlBottom.Size = new System.Drawing.Size(886, 27);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 601);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1025, 25);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 45);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 47);
             this.barDockControlLeft.Size = new System.Drawing.Size(0, 554);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(886, 45);
+            this.barDockControlRight.Location = new System.Drawing.Point(1025, 47);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 554);
             // 
             // barStaticItem1
@@ -404,7 +408,7 @@
             this.grpMaster.Location = new System.Drawing.Point(12, 109);
             this.grpMaster.Name = "grpMaster";
             this.grpMaster.ShowCaption = false;
-            this.grpMaster.Size = new System.Drawing.Size(862, 30);
+            this.grpMaster.Size = new System.Drawing.Size(1001, 30);
             this.grpMaster.TabIndex = 1;
             // 
             // dtpSalesDate
@@ -412,7 +416,7 @@
             this.dtpSalesDate.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dtpSalesDate.EditValue = null;
             this.dtpSalesDate.EnterMoveNextControl = true;
-            this.dtpSalesDate.Location = new System.Drawing.Point(322, 5);
+            this.dtpSalesDate.Location = new System.Drawing.Point(391, 5);
             this.dtpSalesDate.Name = "dtpSalesDate";
             this.dtpSalesDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -427,7 +431,7 @@
             // cmbCustomerName
             // 
             this.cmbCustomerName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cmbCustomerName.Location = new System.Drawing.Point(522, 5);
+            this.cmbCustomerName.Location = new System.Drawing.Point(591, 5);
             this.cmbCustomerName.Name = "cmbCustomerName";
             this.cmbCustomerName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -443,7 +447,7 @@
             // labelControl3
             // 
             this.labelControl3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.labelControl3.Location = new System.Drawing.Point(440, 8);
+            this.labelControl3.Location = new System.Drawing.Point(509, 8);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(76, 13);
             this.labelControl3.TabIndex = 4;
@@ -452,7 +456,7 @@
             // labelControl2
             // 
             this.labelControl2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.labelControl2.Location = new System.Drawing.Point(265, 8);
+            this.labelControl2.Location = new System.Drawing.Point(334, 8);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(51, 13);
             this.labelControl2.TabIndex = 2;
@@ -462,7 +466,7 @@
             // 
             this.txtInvoiceNo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtInvoiceNo.EnterMoveNextControl = true;
-            this.txtInvoiceNo.Location = new System.Drawing.Point(161, 5);
+            this.txtInvoiceNo.Location = new System.Drawing.Point(230, 5);
             this.txtInvoiceNo.Name = "txtInvoiceNo";
             this.txtInvoiceNo.Properties.ReadOnly = true;
             this.txtInvoiceNo.Size = new System.Drawing.Size(98, 20);
@@ -471,7 +475,7 @@
             // labelControl1
             // 
             this.labelControl1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.labelControl1.Location = new System.Drawing.Point(104, 8);
+            this.labelControl1.Location = new System.Drawing.Point(173, 8);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(51, 13);
             this.labelControl1.TabIndex = 0;
@@ -485,7 +489,7 @@
             this.grcCaption.Location = new System.Drawing.Point(12, 53);
             this.grcCaption.Name = "grcCaption";
             this.grcCaption.ShowCaption = false;
-            this.grcCaption.Size = new System.Drawing.Size(862, 50);
+            this.grcCaption.Size = new System.Drawing.Size(1001, 50);
             this.grcCaption.TabIndex = 0;
             // 
             // lblCaption
@@ -496,7 +500,7 @@
             this.lblCaption.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblCaption.Location = new System.Drawing.Point(2, 2);
             this.lblCaption.Name = "lblCaption";
-            this.lblCaption.Size = new System.Drawing.Size(858, 46);
+            this.lblCaption.Size = new System.Drawing.Size(997, 46);
             this.lblCaption.TabIndex = 0;
             this.lblCaption.Text = "Sales";
             // 
@@ -518,7 +522,7 @@
             this.grpDetails.Location = new System.Drawing.Point(12, 145);
             this.grpDetails.Name = "grpDetails";
             this.grpDetails.ShowCaption = false;
-            this.grpDetails.Size = new System.Drawing.Size(862, 450);
+            this.grpDetails.Size = new System.Drawing.Size(1001, 450);
             this.grpDetails.TabIndex = 2;
             // 
             // gclStatus
@@ -581,9 +585,9 @@
             this.pnlSales.Controls.Add(this.labelControl6);
             this.pnlSales.Controls.Add(this.txtNetTotal);
             this.pnlSales.Controls.Add(this.labelControl12);
-            this.pnlSales.Controls.Add(this.txtDiscount);
+            this.pnlSales.Controls.Add(this.txtFinalDiscount);
             this.pnlSales.Controls.Add(this.labelControl11);
-            this.pnlSales.Location = new System.Drawing.Point(579, 320);
+            this.pnlSales.Location = new System.Drawing.Point(718, 320);
             this.pnlSales.Name = "pnlSales";
             this.pnlSales.Size = new System.Drawing.Size(278, 124);
             this.pnlSales.TabIndex = 5;
@@ -684,20 +688,20 @@
             this.labelControl12.TabIndex = 4;
             this.labelControl12.Text = "Net Total";
             // 
-            // txtDiscount
+            // txtFinalDiscount
             // 
-            this.txtDiscount.EditValue = "";
-            this.txtDiscount.EnterMoveNextControl = true;
-            this.txtDiscount.Location = new System.Drawing.Point(197, 26);
-            this.txtDiscount.Name = "txtDiscount";
-            this.txtDiscount.Properties.Appearance.Options.UseTextOptions = true;
-            this.txtDiscount.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txtDiscount.Properties.Mask.EditMask = "f";
-            this.txtDiscount.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtDiscount.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.txtDiscount.Size = new System.Drawing.Size(81, 20);
-            this.txtDiscount.TabIndex = 3;
-            this.txtDiscount.EditValueChanged += new System.EventHandler(this.txtDiscount_EditValueChanged);
+            this.txtFinalDiscount.EditValue = "";
+            this.txtFinalDiscount.EnterMoveNextControl = true;
+            this.txtFinalDiscount.Location = new System.Drawing.Point(197, 26);
+            this.txtFinalDiscount.Name = "txtFinalDiscount";
+            this.txtFinalDiscount.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtFinalDiscount.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txtFinalDiscount.Properties.Mask.EditMask = "f";
+            this.txtFinalDiscount.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtFinalDiscount.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.txtFinalDiscount.Size = new System.Drawing.Size(81, 20);
+            this.txtFinalDiscount.TabIndex = 3;
+            this.txtFinalDiscount.EditValueChanged += new System.EventHandler(this.txtFinalDiscount_EditValueChanged);
             // 
             // labelControl11
             // 
@@ -717,7 +721,7 @@
             this.grdProducts.Location = new System.Drawing.Point(97, 100);
             this.grdProducts.MainView = this.gvwProducts;
             this.grdProducts.Name = "grdProducts";
-            this.grdProducts.Size = new System.Drawing.Size(669, 321);
+            this.grdProducts.Size = new System.Drawing.Size(808, 321);
             this.grdProducts.TabIndex = 4;
             this.grdProducts.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvwProducts});
@@ -812,7 +816,7 @@
             // btnProductList
             // 
             this.btnProductList.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnProductList.Location = new System.Drawing.Point(473, 5);
+            this.btnProductList.Location = new System.Drawing.Point(542, 5);
             this.btnProductList.Name = "btnProductList";
             this.btnProductList.Size = new System.Drawing.Size(124, 20);
             this.btnProductList.TabIndex = 2;
@@ -831,8 +835,9 @@
             this.grdSales.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.hlBarcode,
             this.txtQuantity,
-            this.txtUnitPrice});
-            this.grdSales.Size = new System.Drawing.Size(852, 284);
+            this.txtUnitPrice,
+            this.txtDiscount});
+            this.grdSales.Size = new System.Drawing.Size(991, 284);
             this.grdSales.TabIndex = 3;
             this.grdSales.TabStop = false;
             this.grdSales.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -855,6 +860,7 @@
             this.colUnitPrice,
             this.colVAT,
             this.colQuantity,
+            this.colDiscount,
             this.colTotal});
             this.gvwSales.GridControl = this.grdSales;
             this.gvwSales.Name = "gvwSales";
@@ -948,6 +954,21 @@
             this.txtUnitPrice.Mask.UseMaskAsDisplayFormat = true;
             this.txtUnitPrice.Name = "txtUnitPrice";
             // 
+            // colVAT
+            // 
+            this.colVAT.AppearanceCell.Options.UseTextOptions = true;
+            this.colVAT.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.colVAT.AppearanceHeader.Options.UseTextOptions = true;
+            this.colVAT.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.colVAT.Caption = "VAT(%)";
+            this.colVAT.DisplayFormat.FormatString = "n2";
+            this.colVAT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colVAT.FieldName = "sldVAT";
+            this.colVAT.Name = "colVAT";
+            this.colVAT.Visible = true;
+            this.colVAT.VisibleIndex = 5;
+            this.colVAT.Width = 55;
+            // 
             // colQuantity
             // 
             this.colQuantity.AppearanceCell.Options.UseTextOptions = true;
@@ -960,7 +981,7 @@
             this.colQuantity.Name = "colQuantity";
             this.colQuantity.Visible = true;
             this.colQuantity.VisibleIndex = 6;
-            this.colQuantity.Width = 66;
+            this.colQuantity.Width = 61;
             // 
             // txtQuantity
             // 
@@ -984,8 +1005,8 @@
             this.colTotal.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sldTotal", "{0:f}")});
             this.colTotal.Visible = true;
-            this.colTotal.VisibleIndex = 7;
-            this.colTotal.Width = 107;
+            this.colTotal.VisibleIndex = 8;
+            this.colTotal.Width = 103;
             // 
             // hlBarcode
             // 
@@ -995,7 +1016,7 @@
             // txtBarcode
             // 
             this.txtBarcode.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtBarcode.Location = new System.Drawing.Point(310, 5);
+            this.txtBarcode.Location = new System.Drawing.Point(379, 5);
             this.txtBarcode.Name = "txtBarcode";
             this.txtBarcode.Size = new System.Drawing.Size(157, 20);
             this.txtBarcode.TabIndex = 1;
@@ -1004,7 +1025,7 @@
             // labelControl7
             // 
             this.labelControl7.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.labelControl7.Location = new System.Drawing.Point(265, 8);
+            this.labelControl7.Location = new System.Drawing.Point(334, 8);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(39, 13);
             this.labelControl7.TabIndex = 0;
@@ -1019,7 +1040,7 @@
             this.txtUserName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.txtUserName.Properties.Appearance.Options.UseFont = true;
             this.txtUserName.Properties.ReadOnly = true;
-            this.txtUserName.Size = new System.Drawing.Size(257, 20);
+            this.txtUserName.Size = new System.Drawing.Size(396, 20);
             this.txtUserName.TabIndex = 8;
             // 
             // labelControl8
@@ -1043,7 +1064,7 @@
             this.grpSearch.Location = new System.Drawing.Point(12, 109);
             this.grpSearch.Name = "grpSearch";
             this.grpSearch.ShowCaption = false;
-            this.grpSearch.Size = new System.Drawing.Size(862, 486);
+            this.grpSearch.Size = new System.Drawing.Size(1001, 486);
             this.grpSearch.TabIndex = 3;
             this.grpSearch.Visible = false;
             // 
@@ -1053,7 +1074,7 @@
             this.grpSearchByCustomer.Controls.Add(this.cmbSearchCustomer);
             this.grpSearchByCustomer.Controls.Add(this.btnSearchByCustomer);
             this.grpSearchByCustomer.Controls.Add(this.labelControl14);
-            this.grpSearchByCustomer.Location = new System.Drawing.Point(224, 5);
+            this.grpSearchByCustomer.Location = new System.Drawing.Point(293, 5);
             this.grpSearchByCustomer.Name = "grpSearchByCustomer";
             this.grpSearchByCustomer.ShowCaption = false;
             this.grpSearchByCustomer.Size = new System.Drawing.Size(414, 35);
@@ -1099,7 +1120,7 @@
             this.grpSearchByDate.Controls.Add(this.labelControl13);
             this.grpSearchByDate.Controls.Add(this.dtpStartDate);
             this.grpSearchByDate.Controls.Add(this.labelControl15);
-            this.grpSearchByDate.Location = new System.Drawing.Point(216, 5);
+            this.grpSearchByDate.Location = new System.Drawing.Point(285, 5);
             this.grpSearchByDate.Name = "grpSearchByDate";
             this.grpSearchByDate.ShowCaption = false;
             this.grpSearchByDate.Size = new System.Drawing.Size(430, 35);
@@ -1171,7 +1192,7 @@
             this.grdSearch.Name = "grdSearch";
             this.grdSearch.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemHyperLinkEdit1});
-            this.grdSearch.Size = new System.Drawing.Size(852, 435);
+            this.grdSearch.Size = new System.Drawing.Size(991, 435);
             this.grdSearch.TabIndex = 2;
             this.grdSearch.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvwSearch});
@@ -1191,7 +1212,7 @@
             this.colCustomerName,
             this.colTotalAmount,
             this.colVATSearch,
-            this.colDiscount,
+            this.colSDiscount,
             this.colNetTotal});
             this.gvwSearch.GridControl = this.grdSearch;
             this.gvwSearch.Name = "gvwSearch";
@@ -1281,20 +1302,20 @@
             this.colVATSearch.VisibleIndex = 4;
             this.colVATSearch.Width = 49;
             // 
-            // colDiscount
+            // colSDiscount
             // 
-            this.colDiscount.AppearanceCell.Options.UseTextOptions = true;
-            this.colDiscount.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.colDiscount.AppearanceHeader.Options.UseTextOptions = true;
-            this.colDiscount.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colDiscount.Caption = "Discount";
-            this.colDiscount.DisplayFormat.FormatString = "f";
-            this.colDiscount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.colDiscount.FieldName = "slsDiscount";
-            this.colDiscount.Name = "colDiscount";
-            this.colDiscount.Visible = true;
-            this.colDiscount.VisibleIndex = 5;
-            this.colDiscount.Width = 56;
+            this.colSDiscount.AppearanceCell.Options.UseTextOptions = true;
+            this.colSDiscount.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.colSDiscount.AppearanceHeader.Options.UseTextOptions = true;
+            this.colSDiscount.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colSDiscount.Caption = "Discount";
+            this.colSDiscount.DisplayFormat.FormatString = "f";
+            this.colSDiscount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colSDiscount.FieldName = "slsDiscount";
+            this.colSDiscount.Name = "colSDiscount";
+            this.colSDiscount.Visible = true;
+            this.colSDiscount.VisibleIndex = 5;
+            this.colSDiscount.Width = 56;
             // 
             // colNetTotal
             // 
@@ -1318,26 +1339,31 @@
             this.repositoryItemHyperLinkEdit1.AutoHeight = false;
             this.repositoryItemHyperLinkEdit1.Name = "repositoryItemHyperLinkEdit1";
             // 
-            // colVAT
+            // colDiscount
             // 
-            this.colVAT.AppearanceCell.Options.UseTextOptions = true;
-            this.colVAT.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.colVAT.AppearanceHeader.Options.UseTextOptions = true;
-            this.colVAT.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.colVAT.Caption = "VAT";
-            this.colVAT.DisplayFormat.FormatString = "n2";
-            this.colVAT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.colVAT.FieldName = "sldVAT";
-            this.colVAT.Name = "colVAT";
-            this.colVAT.Visible = true;
-            this.colVAT.VisibleIndex = 5;
-            this.colVAT.Width = 46;
+            this.colDiscount.AppearanceCell.Options.UseTextOptions = true;
+            this.colDiscount.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.colDiscount.AppearanceHeader.Options.UseTextOptions = true;
+            this.colDiscount.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colDiscount.Caption = "Discount";
+            this.colDiscount.ColumnEdit = this.txtDiscount;
+            this.colDiscount.DisplayFormat.FormatString = "f";
+            this.colDiscount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colDiscount.FieldName = "sldDiscount";
+            this.colDiscount.Name = "colDiscount";
+            this.colDiscount.Visible = true;
+            this.colDiscount.VisibleIndex = 7;
+            // 
+            // txtDiscount
+            // 
+            this.txtDiscount.AutoHeight = false;
+            this.txtDiscount.Name = "txtDiscount";
             // 
             // frmSales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(886, 626);
+            this.ClientSize = new System.Drawing.Size(1025, 626);
             this.Controls.Add(this.grcCaption);
             this.Controls.Add(this.grpDetails);
             this.Controls.Add(this.grpMaster);
@@ -1374,7 +1400,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtDue.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmountPaid.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNetTotal.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDiscount.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFinalDiscount.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdProducts)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvwProducts)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdSales)).EndInit();
@@ -1400,6 +1426,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdSearch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvwSearch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDiscount)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1459,7 +1486,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colCustomerName;
         private DevExpress.XtraGrid.Columns.GridColumn colVATSearch;
         private DevExpress.XtraGrid.Columns.GridColumn colTotalAmount;
-        private DevExpress.XtraGrid.Columns.GridColumn colDiscount;
+        private DevExpress.XtraGrid.Columns.GridColumn colSDiscount;
         private DevExpress.XtraGrid.Columns.GridColumn colNetTotal;
         private DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit repositoryItemHyperLinkEdit1;
         private DevExpress.XtraEditors.GroupControl grpSearchByCustomer;
@@ -1488,7 +1515,7 @@
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.TextEdit txtNetTotal;
         private DevExpress.XtraEditors.LabelControl labelControl12;
-        private DevExpress.XtraEditors.TextEdit txtDiscount;
+        private DevExpress.XtraEditors.TextEdit txtFinalDiscount;
         private DevExpress.XtraEditors.LabelControl labelControl11;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtUnitPrice;
         private DevExpress.XtraBars.BarLargeButtonItem bbtnExit;
@@ -1501,5 +1528,7 @@
         private DevExpress.XtraEditors.TextEdit txtUserName;
         private DevExpress.XtraEditors.RadioGroup rgpPaymentType;
         private DevExpress.XtraGrid.Columns.GridColumn colVAT;
+        private DevExpress.XtraGrid.Columns.GridColumn colDiscount;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtDiscount;
     }
 }
