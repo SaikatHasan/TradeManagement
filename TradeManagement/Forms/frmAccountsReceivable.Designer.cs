@@ -40,6 +40,7 @@
             this.bbtnDelete = new DevExpress.XtraBars.BarLargeButtonItem();
             this.barStatus = new DevExpress.XtraBars.Bar();
             this.sitmStatus = new DevExpress.XtraBars.BarStaticItem();
+            this.sitmTotalDue = new DevExpress.XtraBars.BarStaticItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -56,6 +57,7 @@
             this.colInvoiceNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTotalAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAmountPaying = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDue = new DevExpress.XtraGrid.Columns.GridColumn();
             this.dtpEndDate = new DevExpress.XtraEditors.DateEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.dtpStartDate = new DevExpress.XtraEditors.DateEdit();
@@ -68,8 +70,6 @@
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
             this.txtAmountPaying = new DevExpress.XtraEditors.TextEdit();
             this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
-            this.txtVAT = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.txtDue = new DevExpress.XtraEditors.TextEdit();
             this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
             this.txtDiscount = new DevExpress.XtraEditors.TextEdit();
@@ -82,8 +82,6 @@
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.txtReceivableId = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.colDue = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.sitmTotalDue = new DevExpress.XtraBars.BarStaticItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grcCaption)).BeginInit();
             this.grcCaption.SuspendLayout();
@@ -102,7 +100,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.cmbCustomerName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRemarks.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmountPaying.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtVAT.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDue.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDiscount.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalAmount.Properties)).BeginInit();
@@ -226,8 +223,15 @@
             this.sitmStatus.Id = 16;
             this.sitmStatus.Name = "sitmStatus";
             this.sitmStatus.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.sitmStatus.Size = new System.Drawing.Size(32, 0);
             this.sitmStatus.TextAlignment = System.Drawing.StringAlignment.Near;
             this.sitmStatus.Width = 32;
+            // 
+            // sitmTotalDue
+            // 
+            this.sitmTotalDue.Id = 30;
+            this.sitmTotalDue.Name = "sitmTotalDue";
+            this.sitmTotalDue.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
             // barDockControlTop
             // 
@@ -401,14 +405,14 @@
             this.colTotalAmount.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.colTotalAmount.AppearanceHeader.Options.UseTextOptions = true;
             this.colTotalAmount.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.colTotalAmount.Caption = "TotalAmount";
+            this.colTotalAmount.Caption = "Total Amount";
             this.colTotalAmount.DisplayFormat.FormatString = "f";
             this.colTotalAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colTotalAmount.FieldName = "acrTotalAmount";
             this.colTotalAmount.Name = "colTotalAmount";
             this.colTotalAmount.Visible = true;
             this.colTotalAmount.VisibleIndex = 3;
-            this.colTotalAmount.Width = 83;
+            this.colTotalAmount.Width = 98;
             // 
             // colAmountPaying
             // 
@@ -416,14 +420,28 @@
             this.colAmountPaying.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.colAmountPaying.AppearanceHeader.Options.UseTextOptions = true;
             this.colAmountPaying.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.colAmountPaying.Caption = "Amount Paying";
+            this.colAmountPaying.Caption = "Amount";
             this.colAmountPaying.DisplayFormat.FormatString = "f";
             this.colAmountPaying.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colAmountPaying.FieldName = "acrAmountPaying";
             this.colAmountPaying.Name = "colAmountPaying";
             this.colAmountPaying.Visible = true;
             this.colAmountPaying.VisibleIndex = 4;
-            this.colAmountPaying.Width = 96;
+            this.colAmountPaying.Width = 87;
+            // 
+            // colDue
+            // 
+            this.colDue.AppearanceCell.Options.UseTextOptions = true;
+            this.colDue.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.colDue.AppearanceHeader.Options.UseTextOptions = true;
+            this.colDue.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.colDue.Caption = "Due";
+            this.colDue.DisplayFormat.FormatString = "f";
+            this.colDue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colDue.FieldName = "acrDue";
+            this.colDue.Name = "colDue";
+            this.colDue.Visible = true;
+            this.colDue.VisibleIndex = 5;
             // 
             // dtpEndDate
             // 
@@ -489,8 +507,6 @@
             this.grpMain.Controls.Add(this.labelControl10);
             this.grpMain.Controls.Add(this.txtAmountPaying);
             this.grpMain.Controls.Add(this.labelControl13);
-            this.grpMain.Controls.Add(this.txtVAT);
-            this.grpMain.Controls.Add(this.labelControl4);
             this.grpMain.Controls.Add(this.txtDue);
             this.grpMain.Controls.Add(this.labelControl12);
             this.grpMain.Controls.Add(this.txtDiscount);
@@ -544,72 +560,48 @@
             // 
             // txtRemarks
             // 
-            this.txtRemarks.Location = new System.Drawing.Point(444, 57);
+            this.txtRemarks.Location = new System.Drawing.Point(265, 57);
             this.txtRemarks.Name = "txtRemarks";
             this.txtRemarks.Properties.MaxLength = 15;
-            this.txtRemarks.Size = new System.Drawing.Size(236, 20);
-            this.txtRemarks.TabIndex = 19;
+            this.txtRemarks.Size = new System.Drawing.Size(415, 20);
+            this.txtRemarks.TabIndex = 17;
             // 
             // labelControl10
             // 
-            this.labelControl10.Location = new System.Drawing.Point(397, 60);
+            this.labelControl10.Location = new System.Drawing.Point(218, 60);
             this.labelControl10.Name = "labelControl10";
             this.labelControl10.Size = new System.Drawing.Size(41, 13);
-            this.labelControl10.TabIndex = 18;
+            this.labelControl10.TabIndex = 16;
             this.labelControl10.Text = "Remarks";
             // 
             // txtAmountPaying
             // 
             this.txtAmountPaying.EditValue = "";
             this.txtAmountPaying.EnterMoveNextControl = true;
-            this.txtAmountPaying.Location = new System.Drawing.Point(265, 57);
+            this.txtAmountPaying.Location = new System.Drawing.Point(76, 57);
             this.txtAmountPaying.Name = "txtAmountPaying";
             this.txtAmountPaying.Properties.Appearance.Options.UseTextOptions = true;
             this.txtAmountPaying.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.txtAmountPaying.Properties.Mask.EditMask = "f";
             this.txtAmountPaying.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtAmountPaying.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.txtAmountPaying.Size = new System.Drawing.Size(91, 20);
-            this.txtAmountPaying.TabIndex = 17;
+            this.txtAmountPaying.Size = new System.Drawing.Size(99, 20);
+            this.txtAmountPaying.TabIndex = 15;
             this.txtAmountPaying.EditValueChanged += new System.EventHandler(this.txtAmountPaying_EditValueChanged);
             // 
             // labelControl13
             // 
-            this.labelControl13.Location = new System.Drawing.Point(187, 60);
+            this.labelControl13.Location = new System.Drawing.Point(33, 60);
             this.labelControl13.Name = "labelControl13";
-            this.labelControl13.Size = new System.Drawing.Size(72, 13);
-            this.labelControl13.TabIndex = 16;
-            this.labelControl13.Text = "Amount Paying";
-            // 
-            // txtVAT
-            // 
-            this.txtVAT.EditValue = "";
-            this.txtVAT.EnterMoveNextControl = true;
-            this.txtVAT.Location = new System.Drawing.Point(444, 31);
-            this.txtVAT.Name = "txtVAT";
-            this.txtVAT.Properties.Appearance.Options.UseTextOptions = true;
-            this.txtVAT.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txtVAT.Properties.Mask.EditMask = "f";
-            this.txtVAT.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtVAT.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.txtVAT.Properties.ReadOnly = true;
-            this.txtVAT.Size = new System.Drawing.Size(91, 20);
-            this.txtVAT.TabIndex = 11;
-            this.txtVAT.TabStop = false;
-            // 
-            // labelControl4
-            // 
-            this.labelControl4.Location = new System.Drawing.Point(419, 34);
-            this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(19, 13);
-            this.labelControl4.TabIndex = 10;
-            this.labelControl4.Text = "VAT";
+            this.labelControl13.Size = new System.Drawing.Size(37, 13);
+            this.labelControl13.TabIndex = 14;
+            this.labelControl13.Text = "Amount";
             // 
             // txtDue
             // 
             this.txtDue.EditValue = "";
             this.txtDue.EnterMoveNextControl = true;
-            this.txtDue.Location = new System.Drawing.Point(76, 57);
+            this.txtDue.Location = new System.Drawing.Point(581, 31);
             this.txtDue.Name = "txtDue";
             this.txtDue.Properties.Appearance.Options.UseTextOptions = true;
             this.txtDue.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
@@ -618,22 +610,22 @@
             this.txtDue.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtDue.Properties.ReadOnly = true;
             this.txtDue.Size = new System.Drawing.Size(99, 20);
-            this.txtDue.TabIndex = 15;
+            this.txtDue.TabIndex = 13;
             this.txtDue.TabStop = false;
             // 
             // labelControl12
             // 
-            this.labelControl12.Location = new System.Drawing.Point(51, 60);
+            this.labelControl12.Location = new System.Drawing.Point(556, 34);
             this.labelControl12.Name = "labelControl12";
             this.labelControl12.Size = new System.Drawing.Size(19, 13);
-            this.labelControl12.TabIndex = 14;
+            this.labelControl12.TabIndex = 12;
             this.labelControl12.Text = "Due";
             // 
             // txtDiscount
             // 
             this.txtDiscount.EditValue = "";
             this.txtDiscount.EnterMoveNextControl = true;
-            this.txtDiscount.Location = new System.Drawing.Point(589, 31);
+            this.txtDiscount.Location = new System.Drawing.Point(444, 31);
             this.txtDiscount.Name = "txtDiscount";
             this.txtDiscount.Properties.Appearance.Options.UseTextOptions = true;
             this.txtDiscount.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
@@ -641,16 +633,16 @@
             this.txtDiscount.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtDiscount.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtDiscount.Properties.ReadOnly = true;
-            this.txtDiscount.Size = new System.Drawing.Size(91, 20);
-            this.txtDiscount.TabIndex = 13;
+            this.txtDiscount.Size = new System.Drawing.Size(99, 20);
+            this.txtDiscount.TabIndex = 11;
             this.txtDiscount.TabStop = false;
             // 
             // labelControl6
             // 
-            this.labelControl6.Location = new System.Drawing.Point(542, 34);
+            this.labelControl6.Location = new System.Drawing.Point(397, 34);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(41, 13);
-            this.labelControl6.TabIndex = 12;
+            this.labelControl6.TabIndex = 10;
             this.labelControl6.Text = "Discount";
             // 
             // txtTotalAmount
@@ -734,26 +726,6 @@
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "Receivable Id";
             // 
-            // colDue
-            // 
-            this.colDue.AppearanceCell.Options.UseTextOptions = true;
-            this.colDue.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.colDue.AppearanceHeader.Options.UseTextOptions = true;
-            this.colDue.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.colDue.Caption = "Due";
-            this.colDue.DisplayFormat.FormatString = "f";
-            this.colDue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.colDue.FieldName = "acrDue";
-            this.colDue.Name = "colDue";
-            this.colDue.Visible = true;
-            this.colDue.VisibleIndex = 5;
-            // 
-            // sitmTotalDue
-            // 
-            this.sitmTotalDue.Id = 30;
-            this.sitmTotalDue.Name = "sitmTotalDue";
-            this.sitmTotalDue.TextAlignment = System.Drawing.StringAlignment.Near;
-            // 
             // frmAccountsReceivable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -794,7 +766,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.cmbCustomerName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRemarks.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmountPaying.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtVAT.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDue.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDiscount.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalAmount.Properties)).EndInit();
@@ -802,6 +773,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtpReceivableDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtReceivableId.Properties)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -848,8 +820,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl12;
         private DevExpress.XtraEditors.TextEdit txtDiscount;
         private DevExpress.XtraEditors.LabelControl labelControl6;
-        private DevExpress.XtraEditors.TextEdit txtVAT;
-        private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.TextEdit txtAmountPaying;
         private DevExpress.XtraEditors.LabelControl labelControl13;
         private DevExpress.XtraEditors.TextEdit txtRemarks;

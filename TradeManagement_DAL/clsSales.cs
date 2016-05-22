@@ -18,38 +18,34 @@ namespace TradeManagement_DAL
 
         public string GetNextInvoiceNo()
         {
-            return
-                $"INV-{DateTime.Now:yy}-{Query("SELECT ISNULL(MAX(RIGHT(slsInvoiceNo, 5)), 0) + 1 FROM Sales WHERE SUBSTRING(slsInvoiceNo, 5, 2) = RIGHT(DATEPART(YY, GETDATE()), 2)").Rows[0][0].ToString().PadLeft(5, '0')}";
+            return $"INV-{DateTime.Now:yy}-{Query("SELECT ISNULL(MAX(RIGHT(slsInvoiceNo, 5)), 0) + 1 FROM Sales WHERE SUBSTRING(slsInvoiceNo, 5, 2) = RIGHT(DATEPART(YY, GETDATE()), 2)").Rows[0][0].ToString().PadLeft(5, '0')}";
         }
 
         public DataTable GetUnpaidInvoiceNo(string slsCustomerId)
         {
-            return Query(
-                $"SELECT slsInvoiceNo FROM Sales WHERE slsCustomerId = '{slsCustomerId}' AND slsIsDelete = 0 AND slsIsFullPaid = 0");
+            return Query($"SELECT slsInvoiceNo FROM Sales WHERE slsCustomerId = '{slsCustomerId}' AND slsIsDelete = 0 AND slsIsFullPaid = 0");
         }
 
-        public bool InsertSales(string slsInvoiceNo, DateTime slsSalesDate, string slsCustomerId, string slsTotalAmount, string slsVAT, string slsDiscount, string slsPaymentType, string slsAmountPaid, string slsIsFullPaid, string slsInsertBy)
+        public bool InsertSales(string slsInvoiceNo, DateTime slsSalesDate, string slsCustomerId, string slsTotalAmount, string slsDiscount, string slsPaymentType, string slsChequeNo, string slsAccountId, string slsOthers, string slsAmountPaid, string slsIsFullPaid, string slsInsertBy)
         {
-            return Command(
-                $"INSERT INTO Sales (slsInvoiceNo, slsSalesDate, slsCustomerId, slsTotalAmount, slsVAT, slsDiscount, slsPaymentType, slsAmountPaid, slsIsFullPaid, slsInsertBy, slsInsertDate) Values ('{slsInvoiceNo}','{slsSalesDate}','{slsCustomerId}',{slsTotalAmount},{slsVAT},{slsDiscount},{slsPaymentType},{slsAmountPaid},{slsIsFullPaid},'{slsInsertBy}','{DateTime.Now}')");
+            return Command($@"INSERT INTO Sales (slsInvoiceNo, slsSalesDate, slsCustomerId, slsTotalAmount, slsDiscount, slsPaymentType, slsChequeNo, slsAccountId, slsOthers, slsAmountPaid, slsIsFullPaid, slsInsertBy, slsInsertDate)
+                            Values ('{slsInvoiceNo}', '{slsSalesDate}', '{slsCustomerId}', {slsTotalAmount}, {slsDiscount}, {slsPaymentType}, '{slsChequeNo}', '{slsAccountId}', '{slsOthers}', {slsAmountPaid}, {slsIsFullPaid}, '{slsInsertBy}', '{DateTime.Now}')");
         }
 
-        public bool InsertSaleDetails(string sldInvoiceNo, string sldProductId, string sldSalesPrice, string sldQuantity)
+        public bool InsertSaleDetails(string sldInvoiceNo, string sldProductId, string sldSalesPrice, string sldVAT, string sldQuantity, string sldDiscount)
         {
-            return Command(
-                $"INSERT INTO SaleDetails (sldInvoiceNo, sldProductId, sldSalesPrice, sldQuantity) Values ('{sldInvoiceNo}','{sldProductId}',{sldSalesPrice},{sldQuantity})");
+            return Command($"INSERT INTO SaleDetails (sldInvoiceNo, sldProductId, sldSalesPrice, sldVAT, sldQuantity, sldDiscount) Values ('{sldInvoiceNo}', '{sldProductId}', {sldSalesPrice}, {sldVAT}, {sldQuantity}, {sldDiscount})");
         }
 
-        public bool UpdateSales(string slsInvoiceNo, DateTime slsSalesDate, string slsCustomerId, string slsTotalAmount, string slsVAT, string slsDiscount, string slsPaymentType, string slsAmountPaid, string slsIsFullPaid, string slsUpdateBy)
+        public bool UpdateSales(string slsInvoiceNo, DateTime slsSalesDate, string slsCustomerId, string slsTotalAmount, string slsDiscount, string slsPaymentType, string slsChequeNo, string slsAccountId, string slsOthers, string slsAmountPaid, string slsIsFullPaid, string slsUpdateBy)
         {
-            return Command(string.Format("UPDATE Sales SET slsSalesDate = '{1}', slsCustomerId = '{2}', slsTotalAmount = {3}, slsVAT = {4}, slsDiscount = {5}, slsPaymentType = {6}, slsAmountPaid = {7}, slsIsFullPaid = {8}, slsUpdateBy = '{9}', slsUpdateDate = '{10}' WHERE slsInvoiceNo = '{0}'",
-                slsInvoiceNo, slsSalesDate, slsCustomerId, slsTotalAmount, slsVAT, slsDiscount, slsPaymentType, slsAmountPaid, slsIsFullPaid, slsUpdateBy, DateTime.Now));
+            return Command($@"UPDATE Sales SET slsSalesDate = '{slsSalesDate}', slsCustomerId = '{slsCustomerId}', slsTotalAmount = {slsTotalAmount}, slsDiscount = {slsDiscount}, slsPaymentType = {slsPaymentType}, slsChequeNo = '{slsChequeNo}', 
+                            slsAccountId = '{slsAccountId}', slsOthers = '{slsOthers}', slsAmountPaid = {slsAmountPaid}, slsIsFullPaid = {slsIsFullPaid}, slsUpdateBy = '{slsUpdateBy}', slsUpdateDate = '{DateTime.Now}' WHERE slsInvoiceNo = '{slsInvoiceNo}'");
         }
 
         public bool DeleteSales(string slsInvoiceNo, string slsDaleteBy)
         {
-            return Command(
-                $"UPDATE Sales SET slsIsDelete = 1, slsDaleteBy = '{slsDaleteBy}', slsDeleteDate = '{DateTime.Now}' WHERE slsInvoiceNo = '{slsInvoiceNo}'");
+            return Command($"UPDATE Sales SET slsIsDelete = 1, slsDaleteBy = '{slsDaleteBy}', slsDeleteDate = '{DateTime.Now}' WHERE slsInvoiceNo = '{slsInvoiceNo}'");
         }
 
         public bool DeleteSaleDetails(string sldInvoiceNo)
@@ -74,7 +70,7 @@ namespace TradeManagement_DAL
 
         public string GetSalesPersonName(string slsInvoiceNo)
         {
-            return Decrypt(Query("SELECT ISNULL(slsUpdateBy, slsInsertBy) FROM Sales WHERE slsInvoiceNo = '" + slsInvoiceNo + "'").Rows[0][0].ToString(), "Saikat");
+            return Decrypt(Query($"SELECT ISNULL(slsUpdateBy, slsInsertBy) FROM Sales WHERE slsInvoiceNo = '{slsInvoiceNo}'").Rows[0][0].ToString(), "Saikat");
         }
 
         public DataTable GetSales(string slsInvoiceNo)
@@ -87,25 +83,29 @@ namespace TradeManagement_DAL
             return Query($"SELECT * FROM vwSaleDetails WHERE sldInvoiceNo = '{sldInvoiceNo}'");
         }
 
+        public bool HasReference(string acrInvoiceNo)
+        {
+            return Query($"SELECT * FROM AccountsReceivable WHERE acrInvoiceNo = '{acrInvoiceNo}' AND acrIsDelete = 0").Rows.Count > 1;
+        }
+
         //Account Receivable
         public string GetTotalDue()
         {
-            var dtReceivableIds = Query("SELECT MAX(acrReceivableId) FROM AccountsReceivable WHERE acrIsDelete <> 1 AND acrDue <> 0 GROUP BY acrInvoiceNo ");
+            var dtReceivableIds = Query("SELECT MAX(acrReceivableId) FROM AccountsReceivable WHERE acrIsDelete <> 1 AND acrInvoiceNo NOT IN (SELECT acrInvoiceNo FROM AccountsReceivable WHERE acrDue = 0) GROUP BY acrInvoiceNo");
             if (dtReceivableIds.Rows.Count == 0) return "0";
-            var receivableIds = dtReceivableIds.Rows.Cast<DataRow>().Aggregate(string.Empty, (current, rowReceivableId) => current + ("'" + rowReceivableId[0] + "',"));
+            var receivableIds = dtReceivableIds.Rows.Cast<DataRow>().Aggregate(string.Empty, (current, rowReceivableId) => current + "'" + rowReceivableId[0] + "',");
             receivableIds = receivableIds.Remove(receivableIds.Length - 1);
             return Query("SELECT SUM(acrDue) FROM AccountsReceivable WHERE acrReceivableId IN (" + receivableIds + ")").Rows[0][0].ToString();
         }
 
         public string GetNextReceivableId()
         {
-            return
-                $"ACR-{DateTime.Now:yy}-{Query("SELECT ISNULL(MAX(RIGHT(acrReceivableId, 5)), 0) + 1 FROM AccountsReceivable WHERE SUBSTRING(acrReceivableId, 5, 2) = RIGHT(DATEPART(YY, GETDATE()), 2)").Rows[0][0].ToString().PadLeft(5, '0')}";
+            return $"ACR-{DateTime.Now:yy}-{Query("SELECT ISNULL(MAX(RIGHT(acrReceivableId, 5)), 0) + 1 FROM AccountsReceivable WHERE SUBSTRING(acrReceivableId, 5, 2) = RIGHT(DATEPART(YY, GETDATE()), 2)").Rows[0][0].ToString().PadLeft(5, '0')}";
         }
 
         public string GetReceivableId(string acrCustomerId, string acrInvoiceNo)
         {
-            return Query("SELECT acrReceivableId FROM AccountsReceivable WHERE acrCustomerId = '" + acrCustomerId + "' AND acrInvoiceNo = '" + acrInvoiceNo + "' AND acrIsDelete = 0").Rows[0][0].ToString();
+            return Query($"SELECT acrReceivableId FROM AccountsReceivable WHERE acrCustomerId = '{acrCustomerId}' AND acrInvoiceNo = '{acrInvoiceNo}' AND acrIsDelete = 0").Rows[0][0].ToString();
         }
 
         public DataTable GetAccountsReceivable(string acrInvoiceNo)
@@ -113,15 +113,15 @@ namespace TradeManagement_DAL
             return Query(string.Format("SELECT * FROM vwAccountsReceivable WHERE acrInvoiceNo = '{0}' AND acrReceivableId = (SELECT MAX(acrReceivableId) FROM vwAccountsReceivable  WHERE acrInvoiceNo = '{0}')", acrInvoiceNo));
         }
 
-        public bool InsertAccountsReceivable(string acrReceivableId, DateTime acrReceivableDate, string acrCustomerId, string acrInvoiceNo, string acrTotalAmount, string acrVAT, string acrDiscount, string acrDue, string acrAmountPaying, string acrFromSale, string acrRemarks, string acrInsertBy)
+        public bool InsertAccountsReceivable(string acrReceivableId, DateTime acrReceivableDate, string acrCustomerId, string acrInvoiceNo, string acrTotalAmount, string acrDiscount, string acrDue, string acrAmountPaying, string acrFromSale, string acrRemarks, string acrInsertBy)
         {
-            return Command("INSERT INTO AccountsReceivable (acrReceivableId, acrReceivableDate, acrCustomerId, acrInvoiceNo, acrTotalAmount, acrVAT, acrDiscount, acrDue, acrAmountPaying, acrFromSale, acrRemarks, acrInsertBy, acrInsertDate) VALUES ('" +
-                acrReceivableId + "', '" + acrReceivableDate + "', '" + acrCustomerId + "', '" + acrInvoiceNo + "', " + acrTotalAmount + ", " + acrVAT + ", " + acrDiscount + ", " + acrDue + ", " + acrAmountPaying + ", " + acrFromSale + ", '" + acrRemarks + "', '" + acrInsertBy + "', '" + DateTime.Now + "')");
+            return Command("INSERT INTO AccountsReceivable (acrReceivableId, acrReceivableDate, acrCustomerId, acrInvoiceNo, acrTotalAmount, acrDiscount, acrDue, acrAmountPaying, acrFromSale, acrRemarks, acrInsertBy, acrInsertDate) VALUES ('" +
+                acrReceivableId + "', '" + acrReceivableDate + "', '" + acrCustomerId + "', '" + acrInvoiceNo + "', " + acrTotalAmount + ", " + acrDiscount + ", " + acrDue + ", " + acrAmountPaying + ", " + acrFromSale + ", '" + acrRemarks + "', '" + acrInsertBy + "', '" + DateTime.Now + "')");
         }
 
-        public bool UpdateAccountsReceivable(string acrReceivableId, DateTime acrReceivableDate, string acrCustomerId, string acrInvoiceNo, string acrTotalAmount, string acrVAT, string acrDiscount, string acrDue, string acrAmountPaying, string acrFromSale, string acrRemarks, string acrUpdateBy)
+        public bool UpdateAccountsReceivable(string acrReceivableId, DateTime acrReceivableDate, string acrCustomerId, string acrInvoiceNo, string acrTotalAmount, string acrDiscount, string acrDue, string acrAmountPaying, string acrFromSale, string acrRemarks, string acrUpdateBy)
         {
-            return Command("UPDATE AccountsReceivable SET acrReceivableDate = '" + acrReceivableDate + "', acrCustomerId = '" + acrCustomerId + "', acrInvoiceNo = '" + acrInvoiceNo + "', acrTotalAmount = " + acrTotalAmount + ", acrVAT = " + acrVAT + ", acrDiscount = " + acrDiscount + ", acrDue = " + acrDue +
+            return Command("UPDATE AccountsReceivable SET acrReceivableDate = '" + acrReceivableDate + "', acrCustomerId = '" + acrCustomerId + "', acrInvoiceNo = '" + acrInvoiceNo + "', acrTotalAmount = " + acrTotalAmount + ", acrDiscount = " + acrDiscount + ", acrDue = " + acrDue +
                 ", acrAmountPaying = " + acrAmountPaying + ", acrFromSale = " + acrFromSale + ", acrRemarks = '" + acrRemarks + "', acrUpdateBy = '" + acrUpdateBy + "', acrUpdateDate = '" + DateTime.Now + "' WHERE acrReceivableId = '" + acrReceivableId + "'");
         }
 

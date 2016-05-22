@@ -114,7 +114,7 @@ namespace TradeManagement.Forms
             if (_isNew)
             {
                 _sales.BeginTran();
-                if (_sales.InsertAccountsReceivable(txtReceivableId.EditValue.ToString(), dtpReceivableDate.DateTime, cmbCustomerName.EditValue.ToString(), cmbInvoiceNo.EditValue.ToString(), txtTotalAmount.EditValue.ToString(), txtVAT.EditValue.ToString(),
+                if (_sales.InsertAccountsReceivable(txtReceivableId.EditValue.ToString(), dtpReceivableDate.DateTime, cmbCustomerName.EditValue.ToString(), cmbInvoiceNo.EditValue.ToString(), txtTotalAmount.EditValue.ToString(),
                     txtDiscount.EditValue.ToString(), (Convert.ToDecimal(txtDue.EditValue) - Convert.ToDecimal(txtAmountPaying.EditValue)).ToString(), txtAmountPaying.EditValue.ToString(), "0", txtRemarks.EditValue.ToString(), Program.UserName))
                 {
                     if (_sales.SetFullPaid(cmbInvoiceNo.EditValue.ToString(), txtDue.EditValue.ToString() == txtAmountPaying.EditValue.ToString() ? "1" : "0"))
@@ -144,7 +144,7 @@ namespace TradeManagement.Forms
             else
             {
                 _sales.BeginTran();
-                if (_sales.UpdateAccountsReceivable(txtReceivableId.EditValue.ToString(), dtpReceivableDate.DateTime, cmbCustomerName.EditValue.ToString(), cmbInvoiceNo.EditValue.ToString(), txtTotalAmount.EditValue.ToString(), txtVAT.EditValue.ToString(),
+                if (_sales.UpdateAccountsReceivable(txtReceivableId.EditValue.ToString(), dtpReceivableDate.DateTime, cmbCustomerName.EditValue.ToString(), cmbInvoiceNo.EditValue.ToString(), txtTotalAmount.EditValue.ToString(),
                     txtDiscount.EditValue.ToString(), (Convert.ToDecimal(txtDue.EditValue) - Convert.ToDecimal(txtAmountPaying.EditValue)).ToString(), txtAmountPaying.EditValue.ToString(), "0", txtRemarks.EditValue.ToString(), Program.UserName))
                 {
                     if (_sales.SetFullPaid(cmbInvoiceNo.EditValue.ToString(), txtDue.EditValue.Equals(txtAmountPaying.EditValue) ? "1" : "0"))
@@ -232,7 +232,6 @@ namespace TradeManagement.Forms
             if (cmbInvoiceNo.EditValue == null) return;
             var accountsReceivable = _sales.GetAccountsReceivable(cmbInvoiceNo.EditValue.ToString());
             txtTotalAmount.EditValue = accountsReceivable.Rows[0]["acrTotalAmount"];
-            txtVAT.EditValue = accountsReceivable.Rows[0]["acrVAT"];
             txtDiscount.EditValue = accountsReceivable.Rows[0]["acrDiscount"];
             txtDue.EditValue = accountsReceivable.Rows[0]["acrDue"];
         }
@@ -254,7 +253,6 @@ namespace TradeManagement.Forms
             cmbCustomerName.EditValue = gvwSearch.GetRowCellValue(gvwSearch.FocusedRowHandle, "acrCustomerId");
             cmbInvoiceNo.EditValue = gvwSearch.GetRowCellValue(gvwSearch.FocusedRowHandle, "acrInvoiceNo");
             txtTotalAmount.EditValue = gvwSearch.GetRowCellValue(gvwSearch.FocusedRowHandle, "acrTotalAmount");
-            txtVAT.EditValue = gvwSearch.GetRowCellValue(gvwSearch.FocusedRowHandle, "acrVAT");
             txtDiscount.EditValue = gvwSearch.GetRowCellValue(gvwSearch.FocusedRowHandle, "acrDiscount");
             txtAmountPaying.EditValue = gvwSearch.GetRowCellValue(gvwSearch.FocusedRowHandle, "acrAmountPaying");
             if (gvwSearch.GetRowCellValue(gvwSearch.FocusedRowHandle, "acrFromSale").ToString() == "True")

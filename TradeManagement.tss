@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<ArrayOfArrayOfArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ArrayOfArrayOfString>
+    <ArrayOfString>
+      <string>h:\localgit\trademanagement\trademanagement\forms\frmproducts.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>H:\LocalGit\TradeManagement\TradeManagement\Forms\frmSales.cs</string>
+      <string>H:\LocalGit\TradeManagement\TradeManagement\Forms\frmSales.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>h:\localgit\trademanagement\trademanagement_dal\clscommon.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>h:\localgit\trademanagement\trademanagement_dal\clssales.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>H:\LocalGit\TradeManagement\TradeManagement\Forms\frmAccountsReceivable.cs</string>
+      <string>H:\LocalGit\TradeManagement\TradeManagement\Forms\frmAccountsReceivable.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>H:\LocalGit\TradeManagement\TradeManagement\Forms\frmMain.Designer.cs</string>
+    </ArrayOfString>
+  </ArrayOfArrayOfString>
+</ArrayOfArrayOfArrayOfString>

@@ -69,7 +69,8 @@
             this.lblTotalSaleAmount = new DevExpress.XtraEditors.LabelControl();
             this.lblTotalSaleCount = new DevExpress.XtraEditors.LabelControl();
             this.pnlSales = new DevExpress.XtraEditors.PanelControl();
-            this.rgpPaymentType = new DevExpress.XtraEditors.RadioGroup();
+            this.txtRounding = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.txtDue = new DevExpress.XtraEditors.TextEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.txtAmountPaid = new DevExpress.XtraEditors.TextEdit();
@@ -81,6 +82,7 @@
             this.grdProducts = new DevExpress.XtraGrid.GridControl();
             this.gvwProducts = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colPName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPCategory = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPBrand = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPModel = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPPackageUnit = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -98,12 +100,24 @@
             this.colVAT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colQuantity = new DevExpress.XtraGrid.Columns.GridColumn();
             this.txtQuantity = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.colDiscount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.txtDiscount = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.colTotal = new DevExpress.XtraGrid.Columns.GridColumn();
             this.hlBarcode = new DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit();
             this.txtBarcode = new DevExpress.XtraEditors.TextEdit();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
-            this.txtUserName = new DevExpress.XtraEditors.TextEdit();
+            this.pnlBottom = new DevExpress.XtraEditors.PanelControl();
+            this.txtOthers = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl17 = new DevExpress.XtraEditors.LabelControl();
+            this.txtChequeNo = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl16 = new DevExpress.XtraEditors.LabelControl();
+            this.cmbBankAccount = new DevExpress.XtraEditors.LookUpEdit();
+            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
+            this.txtUserName = new DevExpress.XtraEditors.TextEdit();
+            this.rgpPaymentType = new DevExpress.XtraEditors.RadioGroup();
+            this.picCompanyLogo = new System.Windows.Forms.PictureBox();
             this.grpSearch = new DevExpress.XtraEditors.GroupControl();
             this.grpSearchByCustomer = new DevExpress.XtraEditors.GroupControl();
             this.cmbSearchCustomer = new DevExpress.XtraEditors.LookUpEdit();
@@ -122,12 +136,10 @@
             this.colCustomerId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCustomerName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTotalAmount = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colVATSearch = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colRounding = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSDiscount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNetTotal = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemHyperLinkEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit();
-            this.colDiscount = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.txtDiscount = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpMaster)).BeginInit();
             this.grpMaster.SuspendLayout();
@@ -143,7 +155,7 @@
             this.gclStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlSales)).BeginInit();
             this.pnlSales.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.rgpPaymentType.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRounding.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDue.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmountPaid.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNetTotal.Properties)).BeginInit();
@@ -154,9 +166,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvwSales)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUnitPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuantity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDiscount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hlBarcode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBarcode.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).BeginInit();
+            this.pnlBottom.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtOthers.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtChequeNo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbBankAccount.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rgpPaymentType.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCompanyLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpSearch)).BeginInit();
             this.grpSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grpSearchByCustomer)).BeginInit();
@@ -171,7 +191,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvwSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDiscount)).BeginInit();
             this.SuspendLayout();
             // 
             // barManager
@@ -228,7 +247,7 @@
             // 
             // bbtnNew
             // 
-            this.bbtnNew.Caption = "&New";
+            this.bbtnNew.Caption = "New (F&5)";
             this.bbtnNew.CaptionAlignment = DevExpress.XtraBars.BarItemCaptionAlignment.Right;
             this.bbtnNew.Id = 9;
             this.bbtnNew.LargeGlyph = global::TradeManagement.Properties.Resources.New;
@@ -238,7 +257,7 @@
             // 
             // bbtnEdit
             // 
-            this.bbtnEdit.Caption = "&Edit";
+            this.bbtnEdit.Caption = "Edit (F&6)";
             this.bbtnEdit.CaptionAlignment = DevExpress.XtraBars.BarItemCaptionAlignment.Right;
             this.bbtnEdit.Id = 10;
             this.bbtnEdit.LargeGlyph = global::TradeManagement.Properties.Resources.Edit;
@@ -248,7 +267,7 @@
             // 
             // bbtnSave
             // 
-            this.bbtnSave.Caption = "&Save";
+            this.bbtnSave.Caption = "Save (F&7)";
             this.bbtnSave.CaptionAlignment = DevExpress.XtraBars.BarItemCaptionAlignment.Right;
             this.bbtnSave.Enabled = false;
             this.bbtnSave.Id = 14;
@@ -259,7 +278,7 @@
             // 
             // bbtnCancel
             // 
-            this.bbtnCancel.Caption = "&Cancel";
+            this.bbtnCancel.Caption = "Cancel (F&8)";
             this.bbtnCancel.CaptionAlignment = DevExpress.XtraBars.BarItemCaptionAlignment.Right;
             this.bbtnCancel.Enabled = false;
             this.bbtnCancel.Id = 15;
@@ -270,7 +289,7 @@
             // 
             // bbtnDelete
             // 
-            this.bbtnDelete.Caption = "&Delete";
+            this.bbtnDelete.Caption = "Delete (F&9)";
             this.bbtnDelete.CaptionAlignment = DevExpress.XtraBars.BarItemCaptionAlignment.Right;
             this.bbtnDelete.Id = 11;
             this.bbtnDelete.LargeGlyph = global::TradeManagement.Properties.Resources.Delete;
@@ -280,7 +299,7 @@
             // 
             // bbtnPrint
             // 
-            this.bbtnPrint.Caption = "&Print";
+            this.bbtnPrint.Caption = "Print (F1&0)";
             this.bbtnPrint.CaptionAlignment = DevExpress.XtraBars.BarItemCaptionAlignment.Right;
             this.bbtnPrint.Id = 13;
             this.bbtnPrint.LargeGlyph = global::TradeManagement.Properties.Resources.Print;
@@ -290,7 +309,7 @@
             // 
             // bmnuSearch
             // 
-            this.bmnuSearch.Caption = "&Search";
+            this.bmnuSearch.Caption = "Search (F&11)";
             this.bmnuSearch.Glyph = global::TradeManagement.Properties.Resources.Search;
             this.bmnuSearch.Id = 25;
             this.bmnuSearch.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
@@ -353,28 +372,28 @@
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(1025, 47);
+            this.barDockControlTop.Size = new System.Drawing.Size(1044, 47);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 601);
-            this.barDockControlBottom.Size = new System.Drawing.Size(1025, 25);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 662);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1044, 25);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 47);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 554);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 615);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1025, 47);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 554);
+            this.barDockControlRight.Location = new System.Drawing.Point(1044, 47);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 615);
             // 
             // barStaticItem1
             // 
@@ -408,7 +427,7 @@
             this.grpMaster.Location = new System.Drawing.Point(12, 109);
             this.grpMaster.Name = "grpMaster";
             this.grpMaster.ShowCaption = false;
-            this.grpMaster.Size = new System.Drawing.Size(1001, 30);
+            this.grpMaster.Size = new System.Drawing.Size(1020, 30);
             this.grpMaster.TabIndex = 1;
             // 
             // dtpSalesDate
@@ -416,7 +435,7 @@
             this.dtpSalesDate.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dtpSalesDate.EditValue = null;
             this.dtpSalesDate.EnterMoveNextControl = true;
-            this.dtpSalesDate.Location = new System.Drawing.Point(391, 5);
+            this.dtpSalesDate.Location = new System.Drawing.Point(401, 5);
             this.dtpSalesDate.Name = "dtpSalesDate";
             this.dtpSalesDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -431,7 +450,7 @@
             // cmbCustomerName
             // 
             this.cmbCustomerName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cmbCustomerName.Location = new System.Drawing.Point(591, 5);
+            this.cmbCustomerName.Location = new System.Drawing.Point(601, 5);
             this.cmbCustomerName.Name = "cmbCustomerName";
             this.cmbCustomerName.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -447,7 +466,7 @@
             // labelControl3
             // 
             this.labelControl3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.labelControl3.Location = new System.Drawing.Point(509, 8);
+            this.labelControl3.Location = new System.Drawing.Point(519, 8);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(76, 13);
             this.labelControl3.TabIndex = 4;
@@ -456,7 +475,7 @@
             // labelControl2
             // 
             this.labelControl2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.labelControl2.Location = new System.Drawing.Point(334, 8);
+            this.labelControl2.Location = new System.Drawing.Point(344, 8);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(51, 13);
             this.labelControl2.TabIndex = 2;
@@ -466,7 +485,7 @@
             // 
             this.txtInvoiceNo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtInvoiceNo.EnterMoveNextControl = true;
-            this.txtInvoiceNo.Location = new System.Drawing.Point(230, 5);
+            this.txtInvoiceNo.Location = new System.Drawing.Point(240, 5);
             this.txtInvoiceNo.Name = "txtInvoiceNo";
             this.txtInvoiceNo.Properties.ReadOnly = true;
             this.txtInvoiceNo.Size = new System.Drawing.Size(98, 20);
@@ -475,7 +494,7 @@
             // labelControl1
             // 
             this.labelControl1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.labelControl1.Location = new System.Drawing.Point(173, 8);
+            this.labelControl1.Location = new System.Drawing.Point(183, 8);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(51, 13);
             this.labelControl1.TabIndex = 0;
@@ -489,7 +508,7 @@
             this.grcCaption.Location = new System.Drawing.Point(12, 53);
             this.grcCaption.Name = "grcCaption";
             this.grcCaption.ShowCaption = false;
-            this.grcCaption.Size = new System.Drawing.Size(1001, 50);
+            this.grcCaption.Size = new System.Drawing.Size(1020, 50);
             this.grcCaption.TabIndex = 0;
             // 
             // lblCaption
@@ -500,7 +519,7 @@
             this.lblCaption.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblCaption.Location = new System.Drawing.Point(2, 2);
             this.lblCaption.Name = "lblCaption";
-            this.lblCaption.Size = new System.Drawing.Size(997, 46);
+            this.lblCaption.Size = new System.Drawing.Size(1016, 46);
             this.lblCaption.TabIndex = 0;
             this.lblCaption.Text = "Sales";
             // 
@@ -516,13 +535,13 @@
             this.grpDetails.Controls.Add(this.grdSales);
             this.grpDetails.Controls.Add(this.txtBarcode);
             this.grpDetails.Controls.Add(this.labelControl7);
-            this.grpDetails.Controls.Add(this.txtUserName);
-            this.grpDetails.Controls.Add(this.labelControl8);
+            this.grpDetails.Controls.Add(this.pnlBottom);
+            this.grpDetails.Controls.Add(this.picCompanyLogo);
             this.grpDetails.Enabled = false;
             this.grpDetails.Location = new System.Drawing.Point(12, 145);
             this.grpDetails.Name = "grpDetails";
             this.grpDetails.ShowCaption = false;
-            this.grpDetails.Size = new System.Drawing.Size(1001, 450);
+            this.grpDetails.Size = new System.Drawing.Size(1020, 511);
             this.grpDetails.TabIndex = 2;
             // 
             // gclStatus
@@ -536,7 +555,7 @@
             this.gclStatus.Controls.Add(this.lblLastSaleAmount);
             this.gclStatus.Controls.Add(this.lblTotalSaleAmount);
             this.gclStatus.Controls.Add(this.lblTotalSaleCount);
-            this.gclStatus.Location = new System.Drawing.Point(5, 321);
+            this.gclStatus.Location = new System.Drawing.Point(5, 382);
             this.gclStatus.Name = "gclStatus";
             this.gclStatus.Size = new System.Drawing.Size(223, 123);
             this.gclStatus.TabIndex = 6;
@@ -578,7 +597,8 @@
             // 
             this.pnlSales.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlSales.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.pnlSales.Controls.Add(this.rgpPaymentType);
+            this.pnlSales.Controls.Add(this.txtRounding);
+            this.pnlSales.Controls.Add(this.labelControl4);
             this.pnlSales.Controls.Add(this.txtDue);
             this.pnlSales.Controls.Add(this.labelControl5);
             this.pnlSales.Controls.Add(this.txtAmountPaid);
@@ -587,35 +607,47 @@
             this.pnlSales.Controls.Add(this.labelControl12);
             this.pnlSales.Controls.Add(this.txtFinalDiscount);
             this.pnlSales.Controls.Add(this.labelControl11);
-            this.pnlSales.Location = new System.Drawing.Point(718, 320);
+            this.pnlSales.Location = new System.Drawing.Point(837, 186);
             this.pnlSales.Name = "pnlSales";
-            this.pnlSales.Size = new System.Drawing.Size(278, 124);
+            this.pnlSales.Size = new System.Drawing.Size(178, 320);
             this.pnlSales.TabIndex = 5;
             // 
-            // rgpPaymentType
+            // txtRounding
             // 
-            this.rgpPaymentType.Location = new System.Drawing.Point(2, 0);
-            this.rgpPaymentType.MenuManager = this.barManager;
-            this.rgpPaymentType.Name = "rgpPaymentType";
-            this.rgpPaymentType.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
-            this.rgpPaymentType.Properties.Appearance.Options.UseBackColor = true;
-            this.rgpPaymentType.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.rgpPaymentType.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Cash"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Visa"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "MasterCard"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "American Express"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Maestro"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Others")});
-            this.rgpPaymentType.Size = new System.Drawing.Size(111, 124);
-            this.rgpPaymentType.TabIndex = 12;
+            this.txtRounding.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtRounding.EditValue = "";
+            this.txtRounding.EnterMoveNextControl = true;
+            this.txtRounding.Location = new System.Drawing.Point(3, 99);
+            this.txtRounding.Name = "txtRounding";
+            this.txtRounding.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRounding.Properties.Appearance.Options.UseFont = true;
+            this.txtRounding.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtRounding.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txtRounding.Properties.Mask.EditMask = "f";
+            this.txtRounding.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtRounding.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.txtRounding.Size = new System.Drawing.Size(172, 30);
+            this.txtRounding.TabIndex = 14;
+            // 
+            // labelControl4
+            // 
+            this.labelControl4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelControl4.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl4.Location = new System.Drawing.Point(3, 69);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(91, 24);
+            this.labelControl4.TabIndex = 13;
+            this.labelControl4.Text = "Rounding";
             // 
             // txtDue
             // 
+            this.txtDue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDue.EditValue = "";
             this.txtDue.EnterMoveNextControl = true;
-            this.txtDue.Location = new System.Drawing.Point(197, 104);
+            this.txtDue.Location = new System.Drawing.Point(3, 287);
             this.txtDue.Name = "txtDue";
+            this.txtDue.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDue.Properties.Appearance.Options.UseFont = true;
             this.txtDue.Properties.Appearance.Options.UseTextOptions = true;
             this.txtDue.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.txtDue.Properties.DisplayFormat.FormatString = "n2";
@@ -624,49 +656,59 @@
             this.txtDue.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtDue.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtDue.Properties.ReadOnly = true;
-            this.txtDue.Size = new System.Drawing.Size(81, 20);
+            this.txtDue.Size = new System.Drawing.Size(172, 30);
             this.txtDue.TabIndex = 9;
             this.txtDue.TabStop = false;
             // 
             // labelControl5
             // 
-            this.labelControl5.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.labelControl5.Location = new System.Drawing.Point(169, 107);
+            this.labelControl5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelControl5.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl5.Location = new System.Drawing.Point(3, 261);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(22, 13);
+            this.labelControl5.Size = new System.Drawing.Size(38, 24);
             this.labelControl5.TabIndex = 8;
             this.labelControl5.Text = "Due";
             // 
             // txtAmountPaid
             // 
+            this.txtAmountPaid.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAmountPaid.EditValue = "";
             this.txtAmountPaid.EnterMoveNextControl = true;
-            this.txtAmountPaid.Location = new System.Drawing.Point(197, 78);
+            this.txtAmountPaid.Location = new System.Drawing.Point(3, 227);
             this.txtAmountPaid.Name = "txtAmountPaid";
+            this.txtAmountPaid.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAmountPaid.Properties.Appearance.Options.UseFont = true;
             this.txtAmountPaid.Properties.Appearance.Options.UseTextOptions = true;
             this.txtAmountPaid.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.txtAmountPaid.Properties.Mask.EditMask = "f";
             this.txtAmountPaid.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtAmountPaid.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.txtAmountPaid.Size = new System.Drawing.Size(81, 20);
+            this.txtAmountPaid.Size = new System.Drawing.Size(172, 30);
             this.txtAmountPaid.TabIndex = 7;
             this.txtAmountPaid.EditValueChanged += new System.EventHandler(this.txtAmountPaid_EditValueChanged);
             // 
             // labelControl6
             // 
-            this.labelControl6.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.labelControl6.Location = new System.Drawing.Point(119, 81);
+            this.labelControl6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelControl6.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl6.Location = new System.Drawing.Point(3, 197);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(72, 13);
+            this.labelControl6.Size = new System.Drawing.Size(119, 24);
             this.labelControl6.TabIndex = 6;
             this.labelControl6.Text = "Amount Paid";
             // 
             // txtNetTotal
             // 
+            this.txtNetTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNetTotal.EditValue = "";
             this.txtNetTotal.EnterMoveNextControl = true;
-            this.txtNetTotal.Location = new System.Drawing.Point(197, 52);
+            this.txtNetTotal.Location = new System.Drawing.Point(3, 161);
             this.txtNetTotal.Name = "txtNetTotal";
+            this.txtNetTotal.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNetTotal.Properties.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.txtNetTotal.Properties.Appearance.Options.UseFont = true;
+            this.txtNetTotal.Properties.Appearance.Options.UseForeColor = true;
             this.txtNetTotal.Properties.Appearance.Options.UseTextOptions = true;
             this.txtNetTotal.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.txtNetTotal.Properties.DisplayFormat.FormatString = "n2";
@@ -675,40 +717,45 @@
             this.txtNetTotal.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtNetTotal.Properties.Mask.UseMaskAsDisplayFormat = true;
             this.txtNetTotal.Properties.ReadOnly = true;
-            this.txtNetTotal.Size = new System.Drawing.Size(81, 20);
+            this.txtNetTotal.Size = new System.Drawing.Size(172, 30);
             this.txtNetTotal.TabIndex = 5;
             this.txtNetTotal.TabStop = false;
             // 
             // labelControl12
             // 
-            this.labelControl12.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.labelControl12.Location = new System.Drawing.Point(140, 55);
+            this.labelControl12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelControl12.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl12.Location = new System.Drawing.Point(3, 135);
             this.labelControl12.Name = "labelControl12";
-            this.labelControl12.Size = new System.Drawing.Size(51, 13);
+            this.labelControl12.Size = new System.Drawing.Size(84, 24);
             this.labelControl12.TabIndex = 4;
             this.labelControl12.Text = "Net Total";
             // 
             // txtFinalDiscount
             // 
+            this.txtFinalDiscount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFinalDiscount.EditValue = "";
             this.txtFinalDiscount.EnterMoveNextControl = true;
-            this.txtFinalDiscount.Location = new System.Drawing.Point(197, 26);
+            this.txtFinalDiscount.Location = new System.Drawing.Point(3, 33);
             this.txtFinalDiscount.Name = "txtFinalDiscount";
+            this.txtFinalDiscount.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFinalDiscount.Properties.Appearance.Options.UseFont = true;
             this.txtFinalDiscount.Properties.Appearance.Options.UseTextOptions = true;
             this.txtFinalDiscount.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.txtFinalDiscount.Properties.Mask.EditMask = "f";
             this.txtFinalDiscount.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtFinalDiscount.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.txtFinalDiscount.Size = new System.Drawing.Size(81, 20);
+            this.txtFinalDiscount.Size = new System.Drawing.Size(172, 30);
             this.txtFinalDiscount.TabIndex = 3;
             this.txtFinalDiscount.EditValueChanged += new System.EventHandler(this.txtFinalDiscount_EditValueChanged);
             // 
             // labelControl11
             // 
-            this.labelControl11.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.labelControl11.Location = new System.Drawing.Point(142, 29);
+            this.labelControl11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelControl11.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl11.Location = new System.Drawing.Point(3, 3);
             this.labelControl11.Name = "labelControl11";
-            this.labelControl11.Size = new System.Drawing.Size(49, 13);
+            this.labelControl11.Size = new System.Drawing.Size(82, 24);
             this.labelControl11.TabIndex = 2;
             this.labelControl11.Text = "Discount";
             // 
@@ -718,14 +765,15 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grdProducts.Cursor = System.Windows.Forms.Cursors.Default;
-            this.grdProducts.Location = new System.Drawing.Point(97, 100);
+            this.grdProducts.Location = new System.Drawing.Point(97, 31);
             this.grdProducts.MainView = this.gvwProducts;
             this.grdProducts.Name = "grdProducts";
-            this.grdProducts.Size = new System.Drawing.Size(808, 321);
+            this.grdProducts.Size = new System.Drawing.Size(643, 474);
             this.grdProducts.TabIndex = 4;
             this.grdProducts.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvwProducts});
             this.grdProducts.Visible = false;
+            this.grdProducts.KeyDown += new System.Windows.Forms.KeyEventHandler(this.grdProducts_KeyDown);
             // 
             // gvwProducts
             // 
@@ -737,6 +785,7 @@
             this.gvwProducts.Appearance.HeaderPanel.Options.UseFont = true;
             this.gvwProducts.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colPName,
+            this.colPCategory,
             this.colPBrand,
             this.colPModel,
             this.colPPackageUnit,
@@ -767,7 +816,18 @@
             this.colPName.Name = "colPName";
             this.colPName.Visible = true;
             this.colPName.VisibleIndex = 0;
-            this.colPName.Width = 210;
+            this.colPName.Width = 195;
+            // 
+            // colPCategory
+            // 
+            this.colPCategory.AppearanceHeader.Options.UseTextOptions = true;
+            this.colPCategory.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colPCategory.Caption = "Category";
+            this.colPCategory.FieldName = "pctProductCategoryName";
+            this.colPCategory.Name = "colPCategory";
+            this.colPCategory.Visible = true;
+            this.colPCategory.VisibleIndex = 1;
+            this.colPCategory.Width = 130;
             // 
             // colPBrand
             // 
@@ -777,8 +837,8 @@
             this.colPBrand.FieldName = "bndBrandName";
             this.colPBrand.Name = "colPBrand";
             this.colPBrand.Visible = true;
-            this.colPBrand.VisibleIndex = 1;
-            this.colPBrand.Width = 175;
+            this.colPBrand.VisibleIndex = 2;
+            this.colPBrand.Width = 130;
             // 
             // colPModel
             // 
@@ -788,8 +848,8 @@
             this.colPModel.FieldName = "pdtModel";
             this.colPModel.Name = "colPModel";
             this.colPModel.Visible = true;
-            this.colPModel.VisibleIndex = 2;
-            this.colPModel.Width = 145;
+            this.colPModel.VisibleIndex = 3;
+            this.colPModel.Width = 119;
             // 
             // colPPackageUnit
             // 
@@ -799,8 +859,8 @@
             this.colPPackageUnit.FieldName = "pdtPackageUnit";
             this.colPPackageUnit.Name = "colPPackageUnit";
             this.colPPackageUnit.Visible = true;
-            this.colPPackageUnit.VisibleIndex = 3;
-            this.colPPackageUnit.Width = 137;
+            this.colPPackageUnit.VisibleIndex = 4;
+            this.colPPackageUnit.Width = 113;
             // 
             // colPStockQuantity
             // 
@@ -810,13 +870,13 @@
             this.colPStockQuantity.FieldName = "pdtStockQuantity";
             this.colPStockQuantity.Name = "colPStockQuantity";
             this.colPStockQuantity.Visible = true;
-            this.colPStockQuantity.VisibleIndex = 4;
-            this.colPStockQuantity.Width = 108;
+            this.colPStockQuantity.VisibleIndex = 5;
+            this.colPStockQuantity.Width = 103;
             // 
             // btnProductList
             // 
             this.btnProductList.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnProductList.Location = new System.Drawing.Point(542, 5);
+            this.btnProductList.Location = new System.Drawing.Point(471, 5);
             this.btnProductList.Name = "btnProductList";
             this.btnProductList.Size = new System.Drawing.Size(124, 20);
             this.btnProductList.TabIndex = 2;
@@ -837,7 +897,7 @@
             this.txtQuantity,
             this.txtUnitPrice,
             this.txtDiscount});
-            this.grdSales.Size = new System.Drawing.Size(991, 284);
+            this.grdSales.Size = new System.Drawing.Size(826, 345);
             this.grdSales.TabIndex = 3;
             this.grdSales.TabStop = false;
             this.grdSales.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -990,6 +1050,24 @@
             this.txtQuantity.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtQuantity.Name = "txtQuantity";
             // 
+            // colDiscount
+            // 
+            this.colDiscount.AppearanceCell.Options.UseTextOptions = true;
+            this.colDiscount.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.colDiscount.AppearanceHeader.Options.UseTextOptions = true;
+            this.colDiscount.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colDiscount.Caption = "Discount";
+            this.colDiscount.ColumnEdit = this.txtDiscount;
+            this.colDiscount.FieldName = "sldDiscount";
+            this.colDiscount.Name = "colDiscount";
+            this.colDiscount.Visible = true;
+            this.colDiscount.VisibleIndex = 7;
+            // 
+            // txtDiscount
+            // 
+            this.txtDiscount.AutoHeight = false;
+            this.txtDiscount.Name = "txtDiscount";
+            // 
             // colTotal
             // 
             this.colTotal.AppearanceCell.Options.UseTextOptions = true;
@@ -1016,7 +1094,7 @@
             // txtBarcode
             // 
             this.txtBarcode.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtBarcode.Location = new System.Drawing.Point(379, 5);
+            this.txtBarcode.Location = new System.Drawing.Point(308, 5);
             this.txtBarcode.Name = "txtBarcode";
             this.txtBarcode.Size = new System.Drawing.Size(157, 20);
             this.txtBarcode.TabIndex = 1;
@@ -1025,33 +1103,159 @@
             // labelControl7
             // 
             this.labelControl7.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.labelControl7.Location = new System.Drawing.Point(334, 8);
+            this.labelControl7.Location = new System.Drawing.Point(263, 8);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(39, 13);
             this.labelControl7.TabIndex = 0;
             this.labelControl7.Text = "Barcode";
             // 
-            // txtUserName
+            // pnlBottom
             // 
-            this.txtUserName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.pnlBottom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtUserName.Location = new System.Drawing.Point(318, 321);
-            this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.txtUserName.Properties.Appearance.Options.UseFont = true;
-            this.txtUserName.Properties.ReadOnly = true;
-            this.txtUserName.Size = new System.Drawing.Size(396, 20);
-            this.txtUserName.TabIndex = 8;
+            this.pnlBottom.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.pnlBottom.Controls.Add(this.txtOthers);
+            this.pnlBottom.Controls.Add(this.labelControl17);
+            this.pnlBottom.Controls.Add(this.txtChequeNo);
+            this.pnlBottom.Controls.Add(this.labelControl16);
+            this.pnlBottom.Controls.Add(this.cmbBankAccount);
+            this.pnlBottom.Controls.Add(this.labelControl10);
+            this.pnlBottom.Controls.Add(this.labelControl9);
+            this.pnlBottom.Controls.Add(this.labelControl8);
+            this.pnlBottom.Controls.Add(this.txtUserName);
+            this.pnlBottom.Controls.Add(this.rgpPaymentType);
+            this.pnlBottom.Location = new System.Drawing.Point(234, 382);
+            this.pnlBottom.Name = "pnlBottom";
+            this.pnlBottom.Size = new System.Drawing.Size(597, 123);
+            this.pnlBottom.TabIndex = 13;
+            // 
+            // txtOthers
+            // 
+            this.txtOthers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtOthers.Enabled = false;
+            this.txtOthers.Location = new System.Drawing.Point(371, 47);
+            this.txtOthers.Name = "txtOthers";
+            this.txtOthers.Size = new System.Drawing.Size(223, 20);
+            this.txtOthers.TabIndex = 19;
+            // 
+            // labelControl17
+            // 
+            this.labelControl17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelControl17.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.labelControl17.Location = new System.Drawing.Point(327, 50);
+            this.labelControl17.Name = "labelControl17";
+            this.labelControl17.Size = new System.Drawing.Size(38, 13);
+            this.labelControl17.TabIndex = 18;
+            this.labelControl17.Text = "Others";
+            // 
+            // txtChequeNo
+            // 
+            this.txtChequeNo.Enabled = false;
+            this.txtChequeNo.Location = new System.Drawing.Point(94, 47);
+            this.txtChequeNo.Name = "txtChequeNo";
+            this.txtChequeNo.Size = new System.Drawing.Size(223, 20);
+            this.txtChequeNo.TabIndex = 17;
+            // 
+            // labelControl16
+            // 
+            this.labelControl16.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.labelControl16.Location = new System.Drawing.Point(29, 50);
+            this.labelControl16.Name = "labelControl16";
+            this.labelControl16.Size = new System.Drawing.Size(59, 13);
+            this.labelControl16.TabIndex = 16;
+            this.labelControl16.Text = "Cheque No";
+            // 
+            // cmbBankAccount
+            // 
+            this.cmbBankAccount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbBankAccount.Enabled = false;
+            this.cmbBankAccount.Location = new System.Drawing.Point(94, 73);
+            this.cmbBankAccount.Name = "cmbBankAccount";
+            this.cmbBankAccount.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbBankAccount.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("bacBankAccount", "Bank Account")});
+            this.cmbBankAccount.Properties.DisplayMember = "bacBankAccount";
+            this.cmbBankAccount.Properties.NullText = "";
+            this.cmbBankAccount.Properties.ValueMember = "bacAccountId";
+            this.cmbBankAccount.Size = new System.Drawing.Size(500, 20);
+            this.cmbBankAccount.TabIndex = 15;
+            // 
+            // labelControl10
+            // 
+            this.labelControl10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelControl10.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.labelControl10.Location = new System.Drawing.Point(11, 75);
+            this.labelControl10.Name = "labelControl10";
+            this.labelControl10.Size = new System.Drawing.Size(77, 13);
+            this.labelControl10.TabIndex = 14;
+            this.labelControl10.Text = "Bank Account";
+            // 
+            // labelControl9
+            // 
+            this.labelControl9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelControl9.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.labelControl9.Location = new System.Drawing.Point(3, 5);
+            this.labelControl9.Name = "labelControl9";
+            this.labelControl9.Size = new System.Drawing.Size(85, 13);
+            this.labelControl9.TabIndex = 13;
+            this.labelControl9.Text = "Payment Mode";
             // 
             // labelControl8
             // 
             this.labelControl8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelControl8.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.labelControl8.Location = new System.Drawing.Point(234, 324);
+            this.labelControl8.Location = new System.Drawing.Point(16, 102);
             this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(78, 13);
+            this.labelControl8.Size = new System.Drawing.Size(72, 13);
             this.labelControl8.TabIndex = 7;
-            this.labelControl8.Text = "Sales Person: ";
+            this.labelControl8.Text = "Sales Person";
+            // 
+            // txtUserName
+            // 
+            this.txtUserName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtUserName.Location = new System.Drawing.Point(94, 99);
+            this.txtUserName.Name = "txtUserName";
+            this.txtUserName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.txtUserName.Properties.Appearance.Options.UseFont = true;
+            this.txtUserName.Properties.ReadOnly = true;
+            this.txtUserName.Size = new System.Drawing.Size(500, 20);
+            this.txtUserName.TabIndex = 8;
+            // 
+            // rgpPaymentType
+            // 
+            this.rgpPaymentType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.rgpPaymentType.Location = new System.Drawing.Point(89, 0);
+            this.rgpPaymentType.MenuManager = this.barManager;
+            this.rgpPaymentType.Name = "rgpPaymentType";
+            this.rgpPaymentType.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.rgpPaymentType.Properties.Appearance.Options.UseBackColor = true;
+            this.rgpPaymentType.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.rgpPaymentType.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Cash"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Cheque"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Bikash"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Visa"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "MasterCard"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "American Express"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Maestro"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(null, "Others")});
+            this.rgpPaymentType.Size = new System.Drawing.Size(505, 46);
+            this.rgpPaymentType.TabIndex = 12;
+            this.rgpPaymentType.SelectedIndexChanged += new System.EventHandler(this.rgpPaymentType_SelectedIndexChanged);
+            // 
+            // picCompanyLogo
+            // 
+            this.picCompanyLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picCompanyLogo.Location = new System.Drawing.Point(837, 5);
+            this.picCompanyLogo.Name = "picCompanyLogo";
+            this.picCompanyLogo.Size = new System.Drawing.Size(178, 178);
+            this.picCompanyLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picCompanyLogo.TabIndex = 15;
+            this.picCompanyLogo.TabStop = false;
             // 
             // grpSearch
             // 
@@ -1064,7 +1268,7 @@
             this.grpSearch.Location = new System.Drawing.Point(12, 109);
             this.grpSearch.Name = "grpSearch";
             this.grpSearch.ShowCaption = false;
-            this.grpSearch.Size = new System.Drawing.Size(1001, 486);
+            this.grpSearch.Size = new System.Drawing.Size(1020, 547);
             this.grpSearch.TabIndex = 3;
             this.grpSearch.Visible = false;
             // 
@@ -1074,7 +1278,7 @@
             this.grpSearchByCustomer.Controls.Add(this.cmbSearchCustomer);
             this.grpSearchByCustomer.Controls.Add(this.btnSearchByCustomer);
             this.grpSearchByCustomer.Controls.Add(this.labelControl14);
-            this.grpSearchByCustomer.Location = new System.Drawing.Point(293, 5);
+            this.grpSearchByCustomer.Location = new System.Drawing.Point(303, 5);
             this.grpSearchByCustomer.Name = "grpSearchByCustomer";
             this.grpSearchByCustomer.ShowCaption = false;
             this.grpSearchByCustomer.Size = new System.Drawing.Size(414, 35);
@@ -1120,7 +1324,7 @@
             this.grpSearchByDate.Controls.Add(this.labelControl13);
             this.grpSearchByDate.Controls.Add(this.dtpStartDate);
             this.grpSearchByDate.Controls.Add(this.labelControl15);
-            this.grpSearchByDate.Location = new System.Drawing.Point(285, 5);
+            this.grpSearchByDate.Location = new System.Drawing.Point(295, 5);
             this.grpSearchByDate.Name = "grpSearchByDate";
             this.grpSearchByDate.ShowCaption = false;
             this.grpSearchByDate.Size = new System.Drawing.Size(430, 35);
@@ -1192,7 +1396,7 @@
             this.grdSearch.Name = "grdSearch";
             this.grdSearch.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemHyperLinkEdit1});
-            this.grdSearch.Size = new System.Drawing.Size(991, 435);
+            this.grdSearch.Size = new System.Drawing.Size(1010, 496);
             this.grdSearch.TabIndex = 2;
             this.grdSearch.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvwSearch});
@@ -1211,7 +1415,7 @@
             this.colCustomerId,
             this.colCustomerName,
             this.colTotalAmount,
-            this.colVATSearch,
+            this.colRounding,
             this.colSDiscount,
             this.colNetTotal});
             this.gvwSearch.GridControl = this.grdSearch;
@@ -1287,20 +1491,20 @@
             this.colTotalAmount.VisibleIndex = 3;
             this.colTotalAmount.Width = 92;
             // 
-            // colVATSearch
+            // colRounding
             // 
-            this.colVATSearch.AppearanceCell.Options.UseTextOptions = true;
-            this.colVATSearch.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.colVATSearch.AppearanceHeader.Options.UseTextOptions = true;
-            this.colVATSearch.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colVATSearch.Caption = "VAT";
-            this.colVATSearch.DisplayFormat.FormatString = "f";
-            this.colVATSearch.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.colVATSearch.FieldName = "slsVAT";
-            this.colVATSearch.Name = "colVATSearch";
-            this.colVATSearch.Visible = true;
-            this.colVATSearch.VisibleIndex = 4;
-            this.colVATSearch.Width = 49;
+            this.colRounding.AppearanceCell.Options.UseTextOptions = true;
+            this.colRounding.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.colRounding.AppearanceHeader.Options.UseTextOptions = true;
+            this.colRounding.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colRounding.Caption = "Rounding";
+            this.colRounding.DisplayFormat.FormatString = "f";
+            this.colRounding.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colRounding.FieldName = "slsRounding";
+            this.colRounding.Name = "colRounding";
+            this.colRounding.Visible = true;
+            this.colRounding.VisibleIndex = 4;
+            this.colRounding.Width = 49;
             // 
             // colSDiscount
             // 
@@ -1339,44 +1543,27 @@
             this.repositoryItemHyperLinkEdit1.AutoHeight = false;
             this.repositoryItemHyperLinkEdit1.Name = "repositoryItemHyperLinkEdit1";
             // 
-            // colDiscount
-            // 
-            this.colDiscount.AppearanceCell.Options.UseTextOptions = true;
-            this.colDiscount.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.colDiscount.AppearanceHeader.Options.UseTextOptions = true;
-            this.colDiscount.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.colDiscount.Caption = "Discount";
-            this.colDiscount.ColumnEdit = this.txtDiscount;
-            this.colDiscount.DisplayFormat.FormatString = "f";
-            this.colDiscount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.colDiscount.FieldName = "sldDiscount";
-            this.colDiscount.Name = "colDiscount";
-            this.colDiscount.Visible = true;
-            this.colDiscount.VisibleIndex = 7;
-            // 
-            // txtDiscount
-            // 
-            this.txtDiscount.AutoHeight = false;
-            this.txtDiscount.Name = "txtDiscount";
-            // 
             // frmSales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1025, 626);
+            this.ClientSize = new System.Drawing.Size(1044, 687);
+            this.Controls.Add(this.grpSearch);
             this.Controls.Add(this.grcCaption);
             this.Controls.Add(this.grpDetails);
             this.Controls.Add(this.grpMaster);
-            this.Controls.Add(this.grpSearch);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
+            this.MinimumSize = new System.Drawing.Size(1060, 726);
             this.Name = "frmSales";
             this.Text = "Sales";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmSales_Load);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.frmSales_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpMaster)).EndInit();
             this.grpMaster.ResumeLayout(false);
@@ -1396,7 +1583,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pnlSales)).EndInit();
             this.pnlSales.ResumeLayout(false);
             this.pnlSales.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.rgpPaymentType.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRounding.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDue.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmountPaid.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNetTotal.Properties)).EndInit();
@@ -1407,9 +1594,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvwSales)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUnitPrice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuantity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDiscount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.hlBarcode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBarcode.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlBottom)).EndInit();
+            this.pnlBottom.ResumeLayout(false);
+            this.pnlBottom.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtOthers.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtChequeNo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbBankAccount.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rgpPaymentType.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCompanyLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpSearch)).EndInit();
             this.grpSearch.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grpSearchByCustomer)).EndInit();
@@ -1426,7 +1622,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdSearch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvwSearch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDiscount)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1484,7 +1679,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colSalesDate;
         private DevExpress.XtraGrid.Columns.GridColumn colCustomerId;
         private DevExpress.XtraGrid.Columns.GridColumn colCustomerName;
-        private DevExpress.XtraGrid.Columns.GridColumn colVATSearch;
+        private DevExpress.XtraGrid.Columns.GridColumn colRounding;
         private DevExpress.XtraGrid.Columns.GridColumn colTotalAmount;
         private DevExpress.XtraGrid.Columns.GridColumn colSDiscount;
         private DevExpress.XtraGrid.Columns.GridColumn colNetTotal;
@@ -1509,14 +1704,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colPPackageUnit;
         private DevExpress.XtraGrid.Columns.GridColumn colPStockQuantity;
         private DevExpress.XtraEditors.PanelControl pnlSales;
-        private DevExpress.XtraEditors.TextEdit txtDue;
-        private DevExpress.XtraEditors.LabelControl labelControl5;
-        private DevExpress.XtraEditors.TextEdit txtAmountPaid;
-        private DevExpress.XtraEditors.LabelControl labelControl6;
-        private DevExpress.XtraEditors.TextEdit txtNetTotal;
-        private DevExpress.XtraEditors.LabelControl labelControl12;
-        private DevExpress.XtraEditors.TextEdit txtFinalDiscount;
-        private DevExpress.XtraEditors.LabelControl labelControl11;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtUnitPrice;
         private DevExpress.XtraBars.BarLargeButtonItem bbtnExit;
         private DevExpress.XtraEditors.GroupControl gclStatus;
@@ -1530,5 +1717,25 @@
         private DevExpress.XtraGrid.Columns.GridColumn colVAT;
         private DevExpress.XtraGrid.Columns.GridColumn colDiscount;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtDiscount;
+        private DevExpress.XtraEditors.TextEdit txtRounding;
+        private DevExpress.XtraEditors.LabelControl labelControl4;
+        private DevExpress.XtraEditors.TextEdit txtDue;
+        private DevExpress.XtraEditors.LabelControl labelControl5;
+        private DevExpress.XtraEditors.TextEdit txtAmountPaid;
+        private DevExpress.XtraEditors.LabelControl labelControl6;
+        private DevExpress.XtraEditors.TextEdit txtNetTotal;
+        private DevExpress.XtraEditors.LabelControl labelControl12;
+        private DevExpress.XtraEditors.TextEdit txtFinalDiscount;
+        private DevExpress.XtraEditors.LabelControl labelControl11;
+        private DevExpress.XtraEditors.PanelControl pnlBottom;
+        private DevExpress.XtraEditors.LabelControl labelControl9;
+        private DevExpress.XtraEditors.LabelControl labelControl10;
+        private DevExpress.XtraEditors.LookUpEdit cmbBankAccount;
+        private DevExpress.XtraGrid.Columns.GridColumn colPCategory;
+        private DevExpress.XtraEditors.TextEdit txtChequeNo;
+        private DevExpress.XtraEditors.LabelControl labelControl16;
+        private System.Windows.Forms.PictureBox picCompanyLogo;
+        private DevExpress.XtraEditors.TextEdit txtOthers;
+        private DevExpress.XtraEditors.LabelControl labelControl17;
     }
 }

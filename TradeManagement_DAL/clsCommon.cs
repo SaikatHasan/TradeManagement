@@ -104,6 +104,11 @@ namespace TradeManagement_DAL
             return Query("SELECT cstCustomerID, cstCustomerName FROM Customers WHERE cstIsActive = 1 AND cstIsDelete = 0 ORDER BY cstCustomerName");
         }
 
+        public DataTable GetAllBankAccounts()
+        {
+            return Query("SELECT bacBankName + ' - ' + bacAccountNo AS bacBankAccount, bacAccountId FROM BankAccounts ORDER BY 1");
+        }
+
         public DataTable GetAllInvoiceNo(string slsCustomerId)
         {
             return Query($"SELECT slsInvoiceNo FROM Sales WHERE slsCustomerId = '{slsCustomerId}' AND slsIsDelete = 0");
