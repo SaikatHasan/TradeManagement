@@ -67,11 +67,7 @@
             this.txtVATRegNo.EnterMoveNextControl = true;
             this.txtVATRegNo.Location = new System.Drawing.Point(10, 31);
             this.txtVATRegNo.Name = "txtVATRegNo";
-            this.txtVATRegNo.Properties.Appearance.Options.UseTextOptions = true;
-            this.txtVATRegNo.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txtVATRegNo.Properties.Mask.EditMask = "f";
-            this.txtVATRegNo.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtVATRegNo.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.txtVATRegNo.Properties.MaxLength = 20;
             this.txtVATRegNo.Size = new System.Drawing.Size(150, 20);
             this.txtVATRegNo.TabIndex = 1;
             // 

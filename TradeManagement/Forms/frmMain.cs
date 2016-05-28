@@ -470,5 +470,12 @@ namespace TradeManagement.Forms
                 report.Show();
             }
         }
+
+        private void bbtnVATReport_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            frmReports.Instance().ReportFor = "VAT";
+            frmReports.Instance().MdiParent = this;
+            frmReports.Instance().Show();
+        }
     }
 }

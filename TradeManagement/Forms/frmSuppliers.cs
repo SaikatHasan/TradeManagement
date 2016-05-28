@@ -94,6 +94,11 @@ namespace TradeManagement.Forms
         private void bbtnEdit_ItemClick(object sender, ItemClickEventArgs e)
         {
             if (!gvwSuppliers.IsDataRow(gvwSuppliers.FocusedRowHandle)) return;
+            if (gvwSuppliers.GetRowCellValue(gvwSuppliers.FocusedRowHandle, "supSupplierName").ToString() == "Cash Purchase")
+            {
+                XtraMessageBox.Show("Cannot edit the Cash supplier.", ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             _isNew = false;
             MakeEnable(false);
             txtSupplierName.Focus();
@@ -156,6 +161,11 @@ namespace TradeManagement.Forms
         {
             if (!gvwSuppliers.IsDataRow(gvwSuppliers.FocusedRowHandle)) return;
             if (gvwSuppliers.SelectedRowsCount <= 0) return;
+            if (gvwSuppliers.GetRowCellValue(gvwSuppliers.FocusedRowHandle, "supSupplierName").ToString() == "Cash Purchase")
+            {
+                XtraMessageBox.Show("Cannot delete the Cash supplier.", ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             if (XtraMessageBox.Show("Are you sure to delete the selected supplier?", ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 if (_suppliers.IsRefferedInPurchases((gvwSuppliers.GetRowCellValue(gvwSuppliers.FocusedRowHandle, "supSupplierId").ToString())))

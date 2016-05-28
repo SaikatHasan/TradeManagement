@@ -126,12 +126,14 @@ namespace TradeManagement_DAL
 
         public string GetVATRegNo()
         {
-            return Query("SELECT vatRegistrationNo FROM VAT").Rows[0][0].ToString();
-        }
+            var dtVat = Query("SELECT vatRegistrationNo FROM VAT");
+            if(dtVat.Rows.Count > 0)
+                return dtVat.Rows[0][0].ToString();
+            return string.Empty;}
 
         public bool UpdateVATRegNo(string vatRegistrationNo)
         {
-            return Command("UPDATE VAT SET vatRegistrationNo = " + vatRegistrationNo);
+            return Command($"UPDATE VAT SET vatRegistrationNo = '{vatRegistrationNo}'");
         }
 
         public bool IsValidUser(string usrUserName, string usrPassword)

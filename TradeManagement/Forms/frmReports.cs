@@ -140,6 +140,15 @@ namespace TradeManagement.Forms
                             report.GetDataSource("vwSaleReturnDetails").Enabled = true;
                             report.Show();
                             break;
+                        case "VAT":
+                            report.Load(@"Reports\rptVAT.frx");
+                            report.SetParameterValue("Title", "Total VAT of " + dtpSingleDate.DateTime.ToString("MMM dd, yyyy"));
+                            report.RegisterData(_reports.GetCompanyInformation(), "CompanyInformation");
+                            report.RegisterData(_reports.GetTotalVATByDate(dtpSingleDate.DateTime), "vwVAT");
+                            report.GetDataSource("CompanyInformation").Enabled = true;
+                            report.GetDataSource("vwVAT").Enabled = true;
+                            report.Show();
+                            break;
                     }
                 }
                 else
@@ -231,6 +240,15 @@ namespace TradeManagement.Forms
                             report.GetDataSource("CompanyInformation").Enabled = true;
                             report.GetDataSource("vwSaleReturns").Enabled = true;
                             report.GetDataSource("vwSaleReturnDetails").Enabled = true;
+                            report.Show();
+                            break;
+                        case "VAT":
+                            report.Load(@"Reports\rptVAT.frx");
+                            report.SetParameterValue("Title", "Total VAT from " + dtpStartDate.DateTime.ToString("MMM dd, yyyy") + " to " + dtpEndDate.DateTime.ToString("MMM dd, yyyy"));
+                            report.RegisterData(_reports.GetCompanyInformation(), "CompanyInformation");
+                            report.RegisterData(_reports.GetTotalVATByRange(dtpStartDate.DateTime, dtpEndDate.DateTime), "vwVAT");
+                            report.GetDataSource("CompanyInformation").Enabled = true;
+                            report.GetDataSource("vwVAT").Enabled = true;
                             report.Show();
                             break;
                     }

@@ -32,12 +32,12 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup2 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
-            FastReport.Design.DesignerSettings designerSettings2 = new FastReport.Design.DesignerSettings();
-            FastReport.Design.DesignerRestrictions designerRestrictions2 = new FastReport.Design.DesignerRestrictions();
-            FastReport.Export.Email.EmailSettings emailSettings2 = new FastReport.Export.Email.EmailSettings();
-            FastReport.PreviewSettings previewSettings2 = new FastReport.PreviewSettings();
-            FastReport.ReportSettings reportSettings2 = new FastReport.ReportSettings();
+            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup1 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
+            FastReport.Design.DesignerSettings designerSettings1 = new FastReport.Design.DesignerSettings();
+            FastReport.Design.DesignerRestrictions designerRestrictions1 = new FastReport.Design.DesignerRestrictions();
+            FastReport.Export.Email.EmailSettings emailSettings1 = new FastReport.Export.Email.EmailSettings();
+            FastReport.PreviewSettings previewSettings1 = new FastReport.PreviewSettings();
+            FastReport.ReportSettings reportSettings1 = new FastReport.ReportSettings();
             this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.mnuApplication = new DevExpress.XtraBars.Ribbon.ApplicationMenu(this.components);
             this.pccOptions = new DevExpress.XtraBars.PopupControlContainer(this.components);
@@ -130,6 +130,7 @@
             this.tmrDateTime = new System.Windows.Forms.Timer(this.components);
             this.ofdRestore = new System.Windows.Forms.OpenFileDialog();
             this.fbdBackup = new System.Windows.Forms.FolderBrowserDialog();
+            this.bbtnVATReport = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mnuApplication)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pccOptions)).BeginInit();
@@ -192,9 +193,10 @@
             this.bbtnWithdrawCashReport,
             this.bbtnVAT,
             this.bbtnExpenseCategories,
-            this.bbtnBankAccounts});
+            this.bbtnBankAccounts,
+            this.bbtnVATReport});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 26;
+            this.ribbon.MaxItemId = 27;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rpManagement,
@@ -453,9 +455,9 @@
             // 
             // 
             // 
-            galleryItemGroup2.Caption = "Standard";
+            galleryItemGroup1.Caption = "Standard";
             this.skinGalleryBarItem.Gallery.Groups.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItemGroup[] {
-            galleryItemGroup2});
+            galleryItemGroup1});
             this.skinGalleryBarItem.Id = 35;
             this.skinGalleryBarItem.Name = "skinGalleryBarItem";
             this.skinGalleryBarItem.GalleryItemClick += new DevExpress.XtraBars.Ribbon.GalleryItemClickEventHandler(this.skinGalleryBarItem_GalleryItemClick);
@@ -788,6 +790,7 @@
             this.rpgAccountsReports.ItemLinks.Add(this.bbtnExpensesReport);
             this.rpgAccountsReports.ItemLinks.Add(this.bbtnDepositCashReport);
             this.rpgAccountsReports.ItemLinks.Add(this.bbtnWithdrawCashReport);
+            this.rpgAccountsReports.ItemLinks.Add(this.bbtnVATReport);
             this.rpgAccountsReports.ItemLinks.Add(this.bbtnProfitReport, true);
             this.rpgAccountsReports.Name = "rpgAccountsReports";
             this.rpgAccountsReports.ShowCaptionButton = false;
@@ -901,20 +904,20 @@
             // 
             // envSettings
             // 
-            designerSettings2.ApplicationConnection = null;
-            designerSettings2.DefaultFont = new System.Drawing.Font("Arial", 10F);
-            designerSettings2.Icon = null;
-            designerSettings2.Restrictions = designerRestrictions2;
-            designerSettings2.Text = "";
-            this.envSettings.DesignerSettings = designerSettings2;
-            emailSettings2.Address = "";
-            emailSettings2.Host = "";
-            emailSettings2.MessageTemplate = "";
-            emailSettings2.Name = "";
-            emailSettings2.Password = "";
-            emailSettings2.UserName = "";
-            this.envSettings.EmailSettings = emailSettings2;
-            previewSettings2.Buttons = ((FastReport.PreviewButtons)((((((((((FastReport.PreviewButtons.Print | FastReport.PreviewButtons.Save) 
+            designerSettings1.ApplicationConnection = null;
+            designerSettings1.DefaultFont = new System.Drawing.Font("Arial", 10F);
+            designerSettings1.Icon = null;
+            designerSettings1.Restrictions = designerRestrictions1;
+            designerSettings1.Text = "";
+            this.envSettings.DesignerSettings = designerSettings1;
+            emailSettings1.Address = "";
+            emailSettings1.Host = "";
+            emailSettings1.MessageTemplate = "";
+            emailSettings1.Name = "";
+            emailSettings1.Password = "";
+            emailSettings1.UserName = "";
+            this.envSettings.EmailSettings = emailSettings1;
+            previewSettings1.Buttons = ((FastReport.PreviewButtons)((((((((((FastReport.PreviewButtons.Print | FastReport.PreviewButtons.Save) 
             | FastReport.PreviewButtons.Email) 
             | FastReport.PreviewButtons.Find) 
             | FastReport.PreviewButtons.Zoom) 
@@ -923,10 +926,10 @@
             | FastReport.PreviewButtons.Watermark) 
             | FastReport.PreviewButtons.Navigator) 
             | FastReport.PreviewButtons.Close)));
-            previewSettings2.Icon = ((System.Drawing.Icon)(resources.GetObject("previewSettings2.Icon")));
-            previewSettings2.Text = "";
-            this.envSettings.PreviewSettings = previewSettings2;
-            this.envSettings.ReportSettings = reportSettings2;
+            previewSettings1.Icon = ((System.Drawing.Icon)(resources.GetObject("previewSettings1.Icon")));
+            previewSettings1.Text = "";
+            this.envSettings.PreviewSettings = previewSettings1;
+            this.envSettings.ReportSettings = reportSettings1;
             this.envSettings.UIStyle = FastReport.Utils.UIStyle.VistaGlass;
             this.envSettings.DatabaseLogin += new FastReport.DatabaseLoginEventHandler(this.envSettings_DatabaseLogin);
             // 
@@ -1013,6 +1016,15 @@
             // fbdBackup
             // 
             this.fbdBackup.Description = "Select where to create the database backup";
+            // 
+            // bbtnVATReport
+            // 
+            this.bbtnVATReport.Caption = "VAT Report";
+            this.bbtnVATReport.Glyph = ((System.Drawing.Image)(resources.GetObject("bbtnVATReport.Glyph")));
+            this.bbtnVATReport.Id = 26;
+            this.bbtnVATReport.Name = "bbtnVATReport";
+            this.bbtnVATReport.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.bbtnVATReport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbtnVATReport_ItemClick);
             // 
             // frmMain
             // 
@@ -1140,5 +1152,6 @@
         private DevExpress.XtraBars.BarButtonItem bbtnVAT;
         private DevExpress.XtraBars.BarButtonItem bbtnExpenseCategories;
         private DevExpress.XtraBars.BarButtonItem bbtnBankAccounts;
+        private DevExpress.XtraBars.BarButtonItem bbtnVATReport;
     }
 }

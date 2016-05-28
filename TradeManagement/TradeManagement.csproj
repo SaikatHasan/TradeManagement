@@ -448,6 +448,7 @@
     <None Include="bin\Debug\Reports\rptSales.frx" />
     <None Include="bin\Debug\Reports\rptSuppliers.frx" />
     <None Include="bin\Debug\Reports\rptTop10Products.frx" />
+    <None Include="bin\Debug\Reports\rptVAT.frx" />
     <None Include="bin\Debug\Reports\rptWithdrawCashByDate.frx" />
     <None Include="bin\Debug\Reports\rptWithdrawCashByRange.frx" />
     <None Include="Resources\Cancel.png" />

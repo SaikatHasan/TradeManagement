@@ -90,6 +90,11 @@ namespace TradeManagement.Forms
         private void bbtnEdit_ItemClick(object sender, ItemClickEventArgs e)
         {
             if (!gvwCustomers.IsDataRow(gvwCustomers.FocusedRowHandle)) return;
+            if (gvwCustomers.GetRowCellValue(gvwCustomers.FocusedRowHandle, "cstCustomerName").ToString() == "Cash Sale")
+            {
+                XtraMessageBox.Show("Cannot edit the Cash customer.", ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             _isNew = false;
             MakeEnable(false);
             txtCustomerName.Focus();
@@ -152,9 +157,14 @@ namespace TradeManagement.Forms
         {
             if (!gvwCustomers.IsDataRow(gvwCustomers.FocusedRowHandle)) return;
             if (gvwCustomers.SelectedRowsCount <= 0) return;
+            if (gvwCustomers.GetRowCellValue(gvwCustomers.FocusedRowHandle, "cstCustomerName").ToString() == "Cash Sale")
+            {
+                XtraMessageBox.Show("Cannot delete the Cash customer.", ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             if (XtraMessageBox.Show("Are you sure to delete the selected customer?", ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                if (_customers.IsRefferedInSales((gvwCustomers.GetRowCellValue(gvwCustomers.FocusedRowHandle, "cstCustomerId").ToString())))
+                if (_customers.IsRefferedInSales(gvwCustomers.GetRowCellValue(gvwCustomers.FocusedRowHandle, "cstCustomerId").ToString()))
                 {
                     XtraMessageBox.Show("Cannot delete the customer. Found a reference in Sales.", ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;

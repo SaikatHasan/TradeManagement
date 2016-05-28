@@ -2,24 +2,18 @@
 <ArrayOfArrayOfArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ArrayOfArrayOfString>
     <ArrayOfString>
-      <string>h:\localgit\trademanagement\trademanagement\forms\frmproducts.cs</string>
+      <string>h:\localgit\trademanagement\trademanagement\forms\frmmain.cs</string>
+      <string>h:\localgit\trademanagement\trademanagement\forms\frmmain.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>H:\LocalGit\TradeManagement\TradeManagement\Forms\frmSales.cs</string>
-      <string>H:\LocalGit\TradeManagement\TradeManagement\Forms\frmSales.cs</string>
+      <string>h:\localgit\trademanagement\trademanagement\forms\frmspecificreports.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>h:\localgit\trademanagement\trademanagement_dal\clscommon.cs</string>
+      <string>H:\LocalGit\TradeManagement\TradeManagement\Forms\frmReports.cs</string>
+      <string>H:\LocalGit\TradeManagement\TradeManagement\Forms\frmReports.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>h:\localgit\trademanagement\trademanagement_dal\clssales.cs</string>
-    </ArrayOfString>
-    <ArrayOfString>
-      <string>H:\LocalGit\TradeManagement\TradeManagement\Forms\frmAccountsReceivable.cs</string>
-      <string>H:\LocalGit\TradeManagement\TradeManagement\Forms\frmAccountsReceivable.cs</string>
-    </ArrayOfString>
-    <ArrayOfString>
-      <string>H:\LocalGit\TradeManagement\TradeManagement\Forms\frmMain.Designer.cs</string>
+      <string>h:\localgit\trademanagement\trademanagement_dal\clsreports.cs</string>
     </ArrayOfString>
   </ArrayOfArrayOfString>
 </ArrayOfArrayOfArrayOfString>

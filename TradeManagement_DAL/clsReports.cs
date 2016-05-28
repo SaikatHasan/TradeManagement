@@ -62,7 +62,17 @@ namespace TradeManagement_DAL
 
         public string GetTotalSalePriceByDate(DateTime slsSalesDate)
         {
-            return Query("SELECT ISNULL(SUM(slsTotalAmount) - SUM(slsDiscount) + SUM(slsVAT), 0) FROM Sales WHERE slsSalesDate = '" + slsSalesDate + "'").Rows[0][0].ToString();
+            return Query($"SELECT ISNULL(SUM(slsTotalAmount) - SUM(slsDiscount) + SUM(slsVAT), 0) FROM Sales WHERE slsSalesDate = '{slsSalesDate}'").Rows[0][0].ToString();
+        }
+
+        public DataTable GetTotalVATByDate(DateTime slsSalesDate)
+        {
+            return Query($"SELECT slsInvoiceNo, slsSalesDate, cstCustomerName, SUM(sldVAT) sldVAT FROM vwVAT WHERE slsSalesDate = '{slsSalesDate}' GROUP BY slsInvoiceNo, slsSalesDate, cstCustomerName ORDER BY slsSalesDate");
+        }
+
+        public DataTable GetTotalVATByRange(DateTime startDate, DateTime endDate)
+        {
+            return Query($"SELECT slsInvoiceNo, slsSalesDate, cstCustomerName, SUM(sldVAT) sldVAT FROM vwVAT WHERE slsSalesDate BETWEEN '{startDate}' AND '{endDate}' GROUP BY slsInvoiceNo, slsSalesDate, cstCustomerName ORDER BY slsSalesDate");
         }
 
         public string GetTotalPurchasePriceByDate(DateTime slsSalesDate)
