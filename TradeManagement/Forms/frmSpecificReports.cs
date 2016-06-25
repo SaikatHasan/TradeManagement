@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using FastReport;
@@ -18,8 +19,18 @@ namespace TradeManagement.Forms
 
         private void frmSpecificReports_Load(object sender, EventArgs e)
         {
-            cmbCustomers.Properties.DataSource = _reports.GetAllCustomers();
-            cmbSuppliers.Properties.DataSource = _reports.GetAllSuppliers();
+            var customers = _reports.GetAllActiveCustomers();
+            var dataRow = customers.NewRow();
+            dataRow[0] = "ALL";
+            dataRow[1] = "All Customers";
+            customers.Rows.InsertAt(dataRow, 0);
+            cmbCustomers.Properties.DataSource = customers;
+            var suppliers = _reports.GetAllActiveSuppliers();
+            dataRow = suppliers.NewRow();
+            dataRow[0] = "ALL";
+            dataRow[1] = "All Suppliers";
+            suppliers.Rows.InsertAt(dataRow, 0);
+            cmbSuppliers.Properties.DataSource = suppliers;
             dtpSingleDate.DateTime = DateTime.Today;
             dtpStartDate.DateTime = DateTime.Today.AddMonths(-1);
             dtpEndDate.DateTime = DateTime.Today;
@@ -37,7 +48,6 @@ namespace TradeManagement.Forms
             else
                 grpSingleDate.Enabled = false;
         }
-
         private void chkDateRange_CheckedChanged(object sender, EventArgs e)
         {
             if (chkDateRange.Checked)

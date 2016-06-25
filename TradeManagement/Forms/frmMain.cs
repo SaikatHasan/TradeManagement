@@ -18,12 +18,16 @@ namespace TradeManagement.Forms
     public partial class frmMain : RibbonForm
     {
         private readonly clsCommon _common = new clsCommon();
+        readonly SerialKeyConfiguration _serialKeyConfiguration = new SerialKeyConfiguration();
 
         public frmMain()
         {
             InitializeComponent();
+            _common.RunChangeScripts();
+            var machineCode = new Generate(_serialKeyConfiguration).MachineCode;
             SkinHelper.InitSkinGallery(skinGalleryBarItem, true);
-            dlfSkin.LookAndFeel.SkinName = _common.GetTheme();
+            var dtTheme = _common.GetTheme(machineCode.ToString());
+            dlfSkin.LookAndFeel.SkinName = dtTheme.Rows.Count > 0 ? dtTheme.Rows[0]["optTheme"].ToString() : "DevExpress Style";
             frmLogin.Instance().ShowDialog();
             CheckLicense();
             tmrDateTime.Enabled = true;
@@ -32,8 +36,9 @@ namespace TradeManagement.Forms
 
         private void CheckLicense()
         {
+            var machineCode = new Generate(_serialKeyConfiguration).MachineCode;
             var skc = new SerialKeyConfiguration();
-            var licenseInformation = _common.GetLicenseInformation();
+            var licenseInformation = _common.GetLicenseInformation(machineCode.ToString());
             //var key = Registry.CurrentUser.OpenSubKey("Software", true).CreateSubKey("AlphaSoftTradeManagement");
             //if (key == null) return;
             var validate = new Validate(skc)
@@ -45,7 +50,7 @@ namespace TradeManagement.Forms
             if (validate.DaysLeft <= 10)
             {
                 _common.BeginTran();
-                _common.UpdateLicenseInformation("1");
+                _common.UpdateLicenseInformation(machineCode.ToString(), "1");
                 _common.CommitTran();
                 XtraMessageBox.Show("Your license will expire in " + validate.DaysLeft + " days. Please renew the license before it expires to continue without uninterruption.", ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -241,13 +246,14 @@ namespace TradeManagement.Forms
 
         private void tmrDateTime_Tick(object sender, EventArgs e)
         {
-            barStaticDateTime.Caption =
-                $"Today is : {DateTime.Now.ToLongDateString()} and Time is : {DateTime.Now.ToLongTimeString()}";
+            barStaticDateTime.Caption = $"Today is : {DateTime.Now.ToLongDateString()} and Time is : {DateTime.Now.ToLongTimeString()}";
             var stats = _common.GetStatistics();
             lblTotalSaleCount.Text = "Total Sale Count : " + stats.Rows[0]["TotalSaleCount"];
             lblTotalSaleAmount.Text = "Total Sale Amount : " + stats.Rows[0]["TotalSaleAmount"];
             lblLastSaleAmount.Text = "Last Sale Amount : " + stats.Rows[0]["LastSaleAmount"];
             lblLastInvoice.Text = "Last Invoice No : " + stats.Rows[0]["LastInvoiceNo"];
+            grdProducts.DataSource = _common.GetLowStockProducts();
+            gvwProducts.ExpandAllGroups();
         }
 
         private void frmMain_Load(object sender, EventArgs e)
@@ -305,9 +311,20 @@ namespace TradeManagement.Forms
 
         private void skinGalleryBarItem_GalleryItemClick(object sender, GalleryItemClickEventArgs e)
         {
-            _common.BeginTran();
-            _common.SaveTheme(e.Item.Caption);
-            _common.CommitTran();
+            var machineCode = new Generate(_serialKeyConfiguration).MachineCode;
+            var dtTheme = _common.GetTheme(machineCode.ToString());
+            if (dtTheme.Rows.Count > 0)
+            {
+                _common.BeginTran();
+                _common.UpdateTheme(machineCode.ToString(), e.Item.Caption);
+                _common.CommitTran();
+            }
+            else
+            {
+                _common.BeginTran();
+                _common.SaveTheme(machineCode.ToString(), e.Item.Caption);
+                _common.CommitTran();
+            }
         }
 
         private void bbtnBackupDatabase_ItemClick(object sender, ItemClickEventArgs e)
@@ -474,6 +491,13 @@ namespace TradeManagement.Forms
         private void bbtnVATReport_ItemClick(object sender, ItemClickEventArgs e)
         {
             frmReports.Instance().ReportFor = "VAT";
+            frmReports.Instance().MdiParent = this;
+            frmReports.Instance().Show();
+        }
+
+        private void bbtnCashReport_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            frmReports.Instance().ReportFor = "Cash";
             frmReports.Instance().MdiParent = this;
             frmReports.Instance().Show();
         }

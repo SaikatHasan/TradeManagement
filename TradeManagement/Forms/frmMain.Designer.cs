@@ -32,12 +32,12 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup1 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
-            FastReport.Design.DesignerSettings designerSettings1 = new FastReport.Design.DesignerSettings();
-            FastReport.Design.DesignerRestrictions designerRestrictions1 = new FastReport.Design.DesignerRestrictions();
-            FastReport.Export.Email.EmailSettings emailSettings1 = new FastReport.Export.Email.EmailSettings();
-            FastReport.PreviewSettings previewSettings1 = new FastReport.PreviewSettings();
-            FastReport.ReportSettings reportSettings1 = new FastReport.ReportSettings();
+            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup3 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
+            FastReport.Design.DesignerSettings designerSettings3 = new FastReport.Design.DesignerSettings();
+            FastReport.Design.DesignerRestrictions designerRestrictions3 = new FastReport.Design.DesignerRestrictions();
+            FastReport.Export.Email.EmailSettings emailSettings3 = new FastReport.Export.Email.EmailSettings();
+            FastReport.PreviewSettings previewSettings3 = new FastReport.PreviewSettings();
+            FastReport.ReportSettings reportSettings3 = new FastReport.ReportSettings();
             this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.mnuApplication = new DevExpress.XtraBars.Ribbon.ApplicationMenu(this.components);
             this.pccOptions = new DevExpress.XtraBars.PopupControlContainer(this.components);
@@ -89,6 +89,8 @@
             this.bbtnVAT = new DevExpress.XtraBars.BarButtonItem();
             this.bbtnExpenseCategories = new DevExpress.XtraBars.BarButtonItem();
             this.bbtnBankAccounts = new DevExpress.XtraBars.BarButtonItem();
+            this.bbtnVATReport = new DevExpress.XtraBars.BarButtonItem();
+            this.bbtnCashReport = new DevExpress.XtraBars.BarButtonItem();
             this.rpManagement = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgPersons = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpgProducts = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -130,7 +132,13 @@
             this.tmrDateTime = new System.Windows.Forms.Timer(this.components);
             this.ofdRestore = new System.Windows.Forms.OpenFileDialog();
             this.fbdBackup = new System.Windows.Forms.FolderBrowserDialog();
-            this.bbtnVATReport = new DevExpress.XtraBars.BarButtonItem();
+            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.grdProducts = new DevExpress.XtraGrid.GridControl();
+            this.gvwProducts = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colCategory = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colBrand = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colProductName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colStockQuantity = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mnuApplication)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pccOptions)).BeginInit();
@@ -139,6 +147,10 @@
             this.pnlInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
+            this.groupControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdProducts)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvwProducts)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbon
@@ -194,9 +206,10 @@
             this.bbtnVAT,
             this.bbtnExpenseCategories,
             this.bbtnBankAccounts,
-            this.bbtnVATReport});
+            this.bbtnVATReport,
+            this.bbtnCashReport});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 27;
+            this.ribbon.MaxItemId = 28;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rpManagement,
@@ -455,9 +468,9 @@
             // 
             // 
             // 
-            galleryItemGroup1.Caption = "Standard";
+            galleryItemGroup3.Caption = "Standard";
             this.skinGalleryBarItem.Gallery.Groups.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItemGroup[] {
-            galleryItemGroup1});
+            galleryItemGroup3});
             this.skinGalleryBarItem.Id = 35;
             this.skinGalleryBarItem.Name = "skinGalleryBarItem";
             this.skinGalleryBarItem.GalleryItemClick += new DevExpress.XtraBars.Ribbon.GalleryItemClickEventHandler(this.skinGalleryBarItem_GalleryItemClick);
@@ -660,6 +673,24 @@
             this.bbtnBankAccounts.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.bbtnBankAccounts.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbtnBankAccounts_ItemClick);
             // 
+            // bbtnVATReport
+            // 
+            this.bbtnVATReport.Caption = "VAT Report";
+            this.bbtnVATReport.Glyph = ((System.Drawing.Image)(resources.GetObject("bbtnVATReport.Glyph")));
+            this.bbtnVATReport.Id = 26;
+            this.bbtnVATReport.Name = "bbtnVATReport";
+            this.bbtnVATReport.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.bbtnVATReport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbtnVATReport_ItemClick);
+            // 
+            // bbtnCashReport
+            // 
+            this.bbtnCashReport.Caption = "Cash Report";
+            this.bbtnCashReport.Glyph = ((System.Drawing.Image)(resources.GetObject("bbtnCashReport.Glyph")));
+            this.bbtnCashReport.Id = 27;
+            this.bbtnCashReport.Name = "bbtnCashReport";
+            this.bbtnCashReport.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.bbtnCashReport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbtnCashReport_ItemClick);
+            // 
             // rpManagement
             // 
             this.rpManagement.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -773,6 +804,7 @@
             this.rpgCash.ItemLinks.Add(this.bbtnExpenses);
             this.rpgCash.ItemLinks.Add(this.bbtnDepositCash);
             this.rpgCash.ItemLinks.Add(this.bbtnWithdrawCash);
+            this.rpgCash.ItemLinks.Add(this.bbtnCashReport);
             this.rpgCash.Name = "rpgCash";
             this.rpgCash.ShowCaptionButton = false;
             this.rpgCash.Text = "Cash";
@@ -904,20 +936,20 @@
             // 
             // envSettings
             // 
-            designerSettings1.ApplicationConnection = null;
-            designerSettings1.DefaultFont = new System.Drawing.Font("Arial", 10F);
-            designerSettings1.Icon = null;
-            designerSettings1.Restrictions = designerRestrictions1;
-            designerSettings1.Text = "";
-            this.envSettings.DesignerSettings = designerSettings1;
-            emailSettings1.Address = "";
-            emailSettings1.Host = "";
-            emailSettings1.MessageTemplate = "";
-            emailSettings1.Name = "";
-            emailSettings1.Password = "";
-            emailSettings1.UserName = "";
-            this.envSettings.EmailSettings = emailSettings1;
-            previewSettings1.Buttons = ((FastReport.PreviewButtons)((((((((((FastReport.PreviewButtons.Print | FastReport.PreviewButtons.Save) 
+            designerSettings3.ApplicationConnection = null;
+            designerSettings3.DefaultFont = new System.Drawing.Font("Arial", 10F);
+            designerSettings3.Icon = null;
+            designerSettings3.Restrictions = designerRestrictions3;
+            designerSettings3.Text = "";
+            this.envSettings.DesignerSettings = designerSettings3;
+            emailSettings3.Address = "";
+            emailSettings3.Host = "";
+            emailSettings3.MessageTemplate = "";
+            emailSettings3.Name = "";
+            emailSettings3.Password = "";
+            emailSettings3.UserName = "";
+            this.envSettings.EmailSettings = emailSettings3;
+            previewSettings3.Buttons = ((FastReport.PreviewButtons)((((((((((FastReport.PreviewButtons.Print | FastReport.PreviewButtons.Save) 
             | FastReport.PreviewButtons.Email) 
             | FastReport.PreviewButtons.Find) 
             | FastReport.PreviewButtons.Zoom) 
@@ -926,15 +958,16 @@
             | FastReport.PreviewButtons.Watermark) 
             | FastReport.PreviewButtons.Navigator) 
             | FastReport.PreviewButtons.Close)));
-            previewSettings1.Icon = ((System.Drawing.Icon)(resources.GetObject("previewSettings1.Icon")));
-            previewSettings1.Text = "";
-            this.envSettings.PreviewSettings = previewSettings1;
-            this.envSettings.ReportSettings = reportSettings1;
+            previewSettings3.Icon = ((System.Drawing.Icon)(resources.GetObject("previewSettings3.Icon")));
+            previewSettings3.Text = "";
+            this.envSettings.PreviewSettings = previewSettings3;
+            this.envSettings.ReportSettings = reportSettings3;
             this.envSettings.UIStyle = FastReport.Utils.UIStyle.VistaGlass;
             this.envSettings.DatabaseLogin += new FastReport.DatabaseLoginEventHandler(this.envSettings_DatabaseLogin);
             // 
             // pnlInfo
             // 
+            this.pnlInfo.Controls.Add(this.groupControl2);
             this.pnlInfo.Controls.Add(this.groupControl1);
             this.pnlInfo.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlInfo.Location = new System.Drawing.Point(0, 144);
@@ -954,9 +987,9 @@
             this.groupControl1.Controls.Add(this.lblLastSaleAmount);
             this.groupControl1.Controls.Add(this.lblTotalSaleAmount);
             this.groupControl1.Controls.Add(this.lblTotalSaleCount);
-            this.groupControl1.Location = new System.Drawing.Point(6, 6);
+            this.groupControl1.Location = new System.Drawing.Point(5, 6);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(223, 116);
+            this.groupControl1.Size = new System.Drawing.Size(224, 116);
             this.groupControl1.TabIndex = 2;
             this.groupControl1.Text = "Today\'s Status";
             // 
@@ -1006,6 +1039,7 @@
             // 
             // tmrDateTime
             // 
+            this.tmrDateTime.Interval = 1000;
             this.tmrDateTime.Tick += new System.EventHandler(this.tmrDateTime_Tick);
             // 
             // ofdRestore
@@ -1017,14 +1051,103 @@
             // 
             this.fbdBackup.Description = "Select where to create the database backup";
             // 
-            // bbtnVATReport
+            // groupControl2
             // 
-            this.bbtnVATReport.Caption = "VAT Report";
-            this.bbtnVATReport.Glyph = ((System.Drawing.Image)(resources.GetObject("bbtnVATReport.Glyph")));
-            this.bbtnVATReport.Id = 26;
-            this.bbtnVATReport.Name = "bbtnVATReport";
-            this.bbtnVATReport.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            this.bbtnVATReport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.bbtnVATReport_ItemClick);
+            this.groupControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupControl2.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupControl2.AppearanceCaption.ForeColor = System.Drawing.Color.Red;
+            this.groupControl2.AppearanceCaption.Options.UseFont = true;
+            this.groupControl2.AppearanceCaption.Options.UseForeColor = true;
+            this.groupControl2.AppearanceCaption.Options.UseTextOptions = true;
+            this.groupControl2.AppearanceCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.groupControl2.Controls.Add(this.grdProducts);
+            this.groupControl2.Location = new System.Drawing.Point(5, 128);
+            this.groupControl2.Name = "groupControl2";
+            this.groupControl2.Size = new System.Drawing.Size(224, 241);
+            this.groupControl2.TabIndex = 3;
+            this.groupControl2.Text = "Products Under Reorder Level";
+            // 
+            // grdProducts
+            // 
+            this.grdProducts.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grdProducts.Cursor = System.Windows.Forms.Cursors.Default;
+            this.grdProducts.Location = new System.Drawing.Point(5, 24);
+            this.grdProducts.MainView = this.gvwProducts;
+            this.grdProducts.Name = "grdProducts";
+            this.grdProducts.Size = new System.Drawing.Size(214, 212);
+            this.grdProducts.TabIndex = 3;
+            this.grdProducts.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gvwProducts});
+            // 
+            // gvwProducts
+            // 
+            this.gvwProducts.Appearance.FooterPanel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.gvwProducts.Appearance.FooterPanel.Options.UseFont = true;
+            this.gvwProducts.Appearance.GroupFooter.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.gvwProducts.Appearance.GroupFooter.Options.UseFont = true;
+            this.gvwProducts.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.gvwProducts.Appearance.HeaderPanel.Options.UseFont = true;
+            this.gvwProducts.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colCategory,
+            this.colBrand,
+            this.colProductName,
+            this.colStockQuantity});
+            this.gvwProducts.GridControl = this.grdProducts;
+            this.gvwProducts.GroupCount = 2;
+            this.gvwProducts.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "pdtStockQuantity", null, "")});
+            this.gvwProducts.Name = "gvwProducts";
+            this.gvwProducts.OptionsBehavior.AutoExpandAllGroups = true;
+            this.gvwProducts.OptionsBehavior.Editable = false;
+            this.gvwProducts.OptionsCustomization.AllowColumnMoving = false;
+            this.gvwProducts.OptionsCustomization.AllowFilter = false;
+            this.gvwProducts.OptionsCustomization.AllowGroup = false;
+            this.gvwProducts.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
+            this.gvwProducts.OptionsMenu.EnableColumnMenu = false;
+            this.gvwProducts.OptionsView.EnableAppearanceEvenRow = true;
+            this.gvwProducts.OptionsView.EnableAppearanceOddRow = true;
+            this.gvwProducts.OptionsView.ShowGroupPanel = false;
+            this.gvwProducts.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colCategory, DevExpress.Data.ColumnSortOrder.Ascending),
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colBrand, DevExpress.Data.ColumnSortOrder.Ascending),
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colProductName, DevExpress.Data.ColumnSortOrder.Ascending)});
+            // 
+            // colCategory
+            // 
+            this.colCategory.Caption = "Category";
+            this.colCategory.FieldName = "pctProductCategoryName";
+            this.colCategory.Name = "colCategory";
+            this.colCategory.Width = 107;
+            // 
+            // colBrand
+            // 
+            this.colBrand.Caption = "Brand";
+            this.colBrand.FieldName = "bndBrandName";
+            this.colBrand.Name = "colBrand";
+            // 
+            // colProductName
+            // 
+            this.colProductName.Caption = "Product Name";
+            this.colProductName.FieldName = "pdtProductName";
+            this.colProductName.Name = "colProductName";
+            this.colProductName.Visible = true;
+            this.colProductName.VisibleIndex = 0;
+            this.colProductName.Width = 163;
+            // 
+            // colStockQuantity
+            // 
+            this.colStockQuantity.AppearanceHeader.Options.UseTextOptions = true;
+            this.colStockQuantity.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.colStockQuantity.Caption = "Qty";
+            this.colStockQuantity.FieldName = "pdtStockQuantity";
+            this.colStockQuantity.Name = "colStockQuantity";
+            this.colStockQuantity.Visible = true;
+            this.colStockQuantity.VisibleIndex = 1;
+            this.colStockQuantity.Width = 33;
             // 
             // frmMain
             // 
@@ -1053,6 +1176,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
+            this.groupControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdProducts)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvwProducts)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1153,5 +1280,13 @@
         private DevExpress.XtraBars.BarButtonItem bbtnExpenseCategories;
         private DevExpress.XtraBars.BarButtonItem bbtnBankAccounts;
         private DevExpress.XtraBars.BarButtonItem bbtnVATReport;
+        private DevExpress.XtraBars.BarButtonItem bbtnCashReport;
+        private DevExpress.XtraEditors.GroupControl groupControl2;
+        private DevExpress.XtraGrid.GridControl grdProducts;
+        private DevExpress.XtraGrid.Views.Grid.GridView gvwProducts;
+        private DevExpress.XtraGrid.Columns.GridColumn colCategory;
+        private DevExpress.XtraGrid.Columns.GridColumn colBrand;
+        private DevExpress.XtraGrid.Columns.GridColumn colProductName;
+        private DevExpress.XtraGrid.Columns.GridColumn colStockQuantity;
     }
 }

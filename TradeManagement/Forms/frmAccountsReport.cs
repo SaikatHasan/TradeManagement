@@ -18,8 +18,8 @@ namespace TradeManagement.Forms
 
         private void frmAccountsReport_Load(object sender, EventArgs e)
         {
-            cmbCustomers.Properties.DataSource = _reports.GetAllCustomers();
-            cmbSuppliers.Properties.DataSource = _reports.GetAllSuppliers();
+            cmbCustomers.Properties.DataSource = _reports.GetAllActiveCustomers();
+            cmbSuppliers.Properties.DataSource = _reports.GetAllActiveSuppliers();
         }
 
         private void cmbCustomers_EditValueChanged(object sender, EventArgs e)

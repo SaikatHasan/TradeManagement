@@ -40,6 +40,7 @@
             this.bbtnDelete = new DevExpress.XtraBars.BarLargeButtonItem();
             this.barStatus = new DevExpress.XtraBars.Bar();
             this.sitmStatus = new DevExpress.XtraBars.BarStaticItem();
+            this.sitmTotalDue = new DevExpress.XtraBars.BarStaticItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -74,14 +75,13 @@
             this.colVoucherNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTotalAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAmountPaying = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDue = new DevExpress.XtraGrid.Columns.GridColumn();
             this.dtpEndDate = new DevExpress.XtraEditors.DateEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.dtpStartDate = new DevExpress.XtraEditors.DateEdit();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.cmbSearchSupplier = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
-            this.colDue = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.sitmTotalDue = new DevExpress.XtraBars.BarStaticItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grcCaption)).BeginInit();
             this.grcCaption.SuspendLayout();
@@ -223,8 +223,15 @@
             this.sitmStatus.Id = 16;
             this.sitmStatus.Name = "sitmStatus";
             this.sitmStatus.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.sitmStatus.Size = new System.Drawing.Size(32, 0);
             this.sitmStatus.TextAlignment = System.Drawing.StringAlignment.Near;
             this.sitmStatus.Width = 32;
+            // 
+            // sitmTotalDue
+            // 
+            this.sitmTotalDue.Id = 30;
+            this.sitmTotalDue.Name = "sitmTotalDue";
+            this.sitmTotalDue.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
             // barDockControlTop
             // 
@@ -381,7 +388,7 @@
             // 
             this.txtRemarks.Location = new System.Drawing.Point(250, 57);
             this.txtRemarks.Name = "txtRemarks";
-            this.txtRemarks.Properties.MaxLength = 15;
+            this.txtRemarks.Properties.MaxLength = 100;
             this.txtRemarks.Size = new System.Drawing.Size(420, 20);
             this.txtRemarks.TabIndex = 17;
             // 
@@ -572,6 +579,7 @@
             this.gvwSearch.OptionsCustomization.AllowColumnMoving = false;
             this.gvwSearch.OptionsCustomization.AllowFilter = false;
             this.gvwSearch.OptionsCustomization.AllowGroup = false;
+            this.gvwSearch.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
             this.gvwSearch.OptionsMenu.EnableColumnMenu = false;
             this.gvwSearch.OptionsView.EnableAppearanceEvenRow = true;
             this.gvwSearch.OptionsView.EnableAppearanceOddRow = true;
@@ -635,6 +643,21 @@
             this.colAmountPaying.Visible = true;
             this.colAmountPaying.VisibleIndex = 4;
             this.colAmountPaying.Width = 95;
+            // 
+            // colDue
+            // 
+            this.colDue.AppearanceCell.Options.UseTextOptions = true;
+            this.colDue.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.colDue.AppearanceHeader.Options.UseTextOptions = true;
+            this.colDue.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.colDue.Caption = "Due";
+            this.colDue.DisplayFormat.FormatString = "f";
+            this.colDue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colDue.FieldName = "acpDue";
+            this.colDue.Name = "colDue";
+            this.colDue.Visible = true;
+            this.colDue.VisibleIndex = 5;
+            this.colDue.Width = 72;
             // 
             // dtpEndDate
             // 
@@ -705,27 +728,6 @@
             this.labelControl11.TabIndex = 0;
             this.labelControl11.Text = "Supplier Name";
             // 
-            // colDue
-            // 
-            this.colDue.AppearanceCell.Options.UseTextOptions = true;
-            this.colDue.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.colDue.AppearanceHeader.Options.UseTextOptions = true;
-            this.colDue.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.colDue.Caption = "Due";
-            this.colDue.DisplayFormat.FormatString = "f";
-            this.colDue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.colDue.FieldName = "acpDue";
-            this.colDue.Name = "colDue";
-            this.colDue.Visible = true;
-            this.colDue.VisibleIndex = 5;
-            this.colDue.Width = 72;
-            // 
-            // sitmTotalDue
-            // 
-            this.sitmTotalDue.Id = 30;
-            this.sitmTotalDue.Name = "sitmTotalDue";
-            this.sitmTotalDue.TextAlignment = System.Drawing.StringAlignment.Near;
-            // 
             // frmAccountsPayable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -773,6 +775,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtpStartDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbSearchSupplier.Properties)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

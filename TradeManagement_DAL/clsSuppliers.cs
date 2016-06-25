@@ -5,7 +5,7 @@ namespace TradeManagement_DAL
 {
     public class clsSuppliers : clsCommon
     {
-        public new DataTable GetAllSuppliers()
+        public DataTable GetAllSuppliers()
         {
             return Query("SELECT * FROM Suppliers WHERE supIsDelete = 0");
         }
@@ -22,20 +22,17 @@ namespace TradeManagement_DAL
 
         public bool InsertSupplier(string supSupplierId, string supSupplierName, string supAddress, string supContactPerson, string supLandPhone, string supMobile1, string supMobile2, string supIsActive, string supInsertBy)
         {
-            return Command(
-                $"INSERT INTO Suppliers (supSupplierId, supSupplierName, supAddress, supContactPerson, supLandPhone, supMobile1, supMobile2, supIsActive, supInsertBy, supInsertDate) Values ('{supSupplierId}','{supSupplierName}','{supAddress}','{supContactPerson}','{supLandPhone}','{supMobile1}','{supMobile2}',{supIsActive},'{supInsertBy}','{DateTime.Now}')");
+            return Command($"INSERT INTO Suppliers (supSupplierId, supSupplierName, supAddress, supContactPerson, supLandPhone, supMobile1, supMobile2, supIsActive, supInsertBy, supInsertDate) Values ('{supSupplierId}','{supSupplierName.Replace("'", "''")}','{supAddress.Replace("'", "''")}','{supContactPerson}','{supLandPhone}','{supMobile1}','{supMobile2}',{supIsActive},'{supInsertBy}','{DateTime.Now}')");
         }
 
         public bool UpdateSupplier(string supSupplierId, string supSupplierName, string supAddress, string supContactPerson, string supLandPhone, string supMobile1, string supMobile2, string supIsActive, string supUpdateBy)
         {
-            return Command(
-                $"UPDATE Suppliers SET supSupplierName = '{supSupplierName}', supAddress = '{supAddress}', supContactPerson = '{supContactPerson}', supLandPhone = '{supLandPhone}', supMobile1 = '{supMobile1}', supMobile2 = '{supMobile2}', supIsActive = {supIsActive}, supUpdateBy = '{supUpdateBy}', supUpdateDate = '{DateTime.Now}' WHERE supSupplierId = '{supSupplierId}'");
+            return Command($"UPDATE Suppliers SET supSupplierName = '{supSupplierName.Replace("'", "''")}', supAddress = '{supAddress.Replace("'", "''")}', supContactPerson = '{supContactPerson}', supLandPhone = '{supLandPhone}', supMobile1 = '{supMobile1}', supMobile2 = '{supMobile2}', supIsActive = {supIsActive}, supUpdateBy = '{supUpdateBy}', supUpdateDate = '{DateTime.Now}' WHERE supSupplierId = '{supSupplierId}'");
         }
 
         public bool DeleteSupplier(string supSupplierId, string supDeleteBy)
         {
-            return Command(
-                $"UPDATE Suppliers SET supIsDelete = 1, supDeleteBy = '{supDeleteBy}', supDeleteDate = '{DateTime.Now}' WHERE supSupplierId = '{supSupplierId}'");
+            return Command($"UPDATE Suppliers SET supIsDelete = 1, supDeleteBy = '{supDeleteBy}', supDeleteDate = '{DateTime.Now}' WHERE supSupplierId = '{supSupplierId}'");
         }
     }
 }

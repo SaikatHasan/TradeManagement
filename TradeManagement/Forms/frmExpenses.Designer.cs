@@ -50,6 +50,7 @@
             this.grcCaption = new DevExpress.XtraEditors.GroupControl();
             this.lblCaption = new DevExpress.XtraEditors.LabelControl();
             this.grpMain = new DevExpress.XtraEditors.GroupControl();
+            this.cmbCategory = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.dtpExpenseDate = new DevExpress.XtraEditors.DateEdit();
             this.txtAmount = new DevExpress.XtraEditors.TextEdit();
@@ -63,17 +64,17 @@
             this.colDescription = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grpSearch = new DevExpress.XtraEditors.GroupControl();
+            this.cmbSCategory = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.btnSearch = new DevExpress.XtraEditors.SimpleButton();
             this.dtpSDate = new DevExpress.XtraEditors.DateEdit();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
-            this.cmbCategory = new DevExpress.XtraEditors.LookUpEdit();
-            this.cmbSCategory = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grcCaption)).BeginInit();
             this.grcCaption.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grpMain)).BeginInit();
             this.grpMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbCategory.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpExpenseDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpExpenseDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmount.Properties)).BeginInit();
@@ -82,10 +83,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvwSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpSearch)).BeginInit();
             this.grpSearch.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbSCategory.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpSDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpSDate.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbCategory.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbSCategory.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // barManager
@@ -204,6 +204,7 @@
             this.sitmStatus.Id = 16;
             this.sitmStatus.Name = "sitmStatus";
             this.sitmStatus.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.sitmStatus.Size = new System.Drawing.Size(32, 0);
             this.sitmStatus.TextAlignment = System.Drawing.StringAlignment.Near;
             this.sitmStatus.Width = 32;
             // 
@@ -292,6 +293,22 @@
             this.grpMain.ShowCaption = false;
             this.grpMain.Size = new System.Drawing.Size(449, 56);
             this.grpMain.TabIndex = 1;
+            // 
+            // cmbCategory
+            // 
+            this.cmbCategory.EnterMoveNextControl = true;
+            this.cmbCategory.Location = new System.Drawing.Point(241, 5);
+            this.cmbCategory.MenuManager = this.barManager;
+            this.cmbCategory.Name = "cmbCategory";
+            this.cmbCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbCategory.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ectExpenseCategoryName", "Category")});
+            this.cmbCategory.Properties.DisplayMember = "ectExpenseCategoryName";
+            this.cmbCategory.Properties.NullText = "";
+            this.cmbCategory.Properties.ValueMember = "ectExpenseCategoryId";
+            this.cmbCategory.Size = new System.Drawing.Size(164, 20);
+            this.cmbCategory.TabIndex = 3;
             // 
             // labelControl4
             // 
@@ -391,10 +408,10 @@
             this.gvwSearch.OptionsCustomization.AllowColumnMoving = false;
             this.gvwSearch.OptionsCustomization.AllowFilter = false;
             this.gvwSearch.OptionsCustomization.AllowGroup = false;
+            this.gvwSearch.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
             this.gvwSearch.OptionsMenu.EnableColumnMenu = false;
             this.gvwSearch.OptionsView.EnableAppearanceEvenRow = true;
             this.gvwSearch.OptionsView.EnableAppearanceOddRow = true;
-            this.gvwSearch.OptionsView.ShowFooter = true;
             this.gvwSearch.OptionsView.ShowGroupPanel = false;
             // 
             // colCategory
@@ -425,8 +442,6 @@
             this.colAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colAmount.FieldName = "expAmount";
             this.colAmount.Name = "colAmount";
-            this.colAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "dexAmount", "{0:f}")});
             this.colAmount.Visible = true;
             this.colAmount.VisibleIndex = 2;
             this.colAmount.Width = 50;
@@ -446,6 +461,22 @@
             this.grpSearch.ShowCaption = false;
             this.grpSearch.Size = new System.Drawing.Size(449, 261);
             this.grpSearch.TabIndex = 2;
+            // 
+            // cmbSCategory
+            // 
+            this.cmbSCategory.EnterMoveNextControl = true;
+            this.cmbSCategory.Location = new System.Drawing.Point(203, 6);
+            this.cmbSCategory.MenuManager = this.barManager;
+            this.cmbSCategory.Name = "cmbSCategory";
+            this.cmbSCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cmbSCategory.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ectExpenseCategoryName", "Category")});
+            this.cmbSCategory.Properties.DisplayMember = "ectExpenseCategoryName";
+            this.cmbSCategory.Properties.NullText = "";
+            this.cmbSCategory.Properties.ValueMember = "ectExpenseCategoryId";
+            this.cmbSCategory.Size = new System.Drawing.Size(164, 20);
+            this.cmbSCategory.TabIndex = 3;
             // 
             // labelControl5
             // 
@@ -487,38 +518,6 @@
             this.labelControl6.TabIndex = 0;
             this.labelControl6.Text = "Date";
             // 
-            // cmbCategory
-            // 
-            this.cmbCategory.EnterMoveNextControl = true;
-            this.cmbCategory.Location = new System.Drawing.Point(241, 5);
-            this.cmbCategory.MenuManager = this.barManager;
-            this.cmbCategory.Name = "cmbCategory";
-            this.cmbCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbCategory.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ectExpenseCategoryName", "Category")});
-            this.cmbCategory.Properties.DisplayMember = "ectExpenseCategoryName";
-            this.cmbCategory.Properties.NullText = "";
-            this.cmbCategory.Properties.ValueMember = "ectExpenseCategoryId";
-            this.cmbCategory.Size = new System.Drawing.Size(164, 20);
-            this.cmbCategory.TabIndex = 3;
-            // 
-            // cmbSCategory
-            // 
-            this.cmbSCategory.EnterMoveNextControl = true;
-            this.cmbSCategory.Location = new System.Drawing.Point(203, 6);
-            this.cmbSCategory.MenuManager = this.barManager;
-            this.cmbSCategory.Name = "cmbSCategory";
-            this.cmbSCategory.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbSCategory.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ectExpenseCategoryName", "Category")});
-            this.cmbSCategory.Properties.DisplayMember = "ectExpenseCategoryName";
-            this.cmbSCategory.Properties.NullText = "";
-            this.cmbSCategory.Properties.ValueMember = "ectExpenseCategoryId";
-            this.cmbSCategory.Size = new System.Drawing.Size(164, 20);
-            this.cmbSCategory.TabIndex = 3;
-            // 
             // frmExpenses
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -545,6 +544,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grpMain)).EndInit();
             this.grpMain.ResumeLayout(false);
             this.grpMain.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbCategory.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpExpenseDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpExpenseDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmount.Properties)).EndInit();
@@ -554,11 +554,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.grpSearch)).EndInit();
             this.grpSearch.ResumeLayout(false);
             this.grpSearch.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmbSCategory.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpSDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtpSDate.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbCategory.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbSCategory.Properties)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

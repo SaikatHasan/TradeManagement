@@ -11,31 +11,34 @@ namespace TradeManagement
     internal static class Program
     {
         private static readonly clsCommon Common = new clsCommon();
+        static readonly SerialKeyConfiguration SerialKeyConfiguration = new SerialKeyConfiguration();
 
         public static string UserName = string.Empty;
 
         [STAThread]
         private static void Main()
         {
-            try
-            {
+            //try
+            //{
                 BonusSkins.Register();
                 SkinManager.EnableFormSkins();
                 SkinManager.EnableMdiFormSkins();
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new frmMain());
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
         }
 
         public static bool ValidateLicense(DateTime checkDate)
         {
+            var machineCode = new Generate(SerialKeyConfiguration).MachineCode;
             var skc = new SerialKeyConfiguration();
-            var licenseInformation = Common.GetLicenseInformation();
+            var licenseInformation = Common.GetLicenseInformation(machineCode.ToString());
+            if (licenseInformation.Rows.Count == 0) return false;
             if (Convert.ToBoolean(licenseInformation.Rows[0]["lcnIsLicenseValid"]) == false) return false;
             //var key = Registry.CurrentUser.OpenSubKey("Software", true).CreateSubKey("AlphaSoftTradeManagement");
             //if (key == null) return false;

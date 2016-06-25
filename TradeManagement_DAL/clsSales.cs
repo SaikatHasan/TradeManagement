@@ -34,7 +34,7 @@ namespace TradeManagement_DAL
 
         public bool InsertSaleDetails(string sldInvoiceNo, string sldProductId, string sldSalesPrice, string sldVAT, string sldQuantity, string sldDiscount)
         {
-            return Command($"INSERT INTO SaleDetails (sldInvoiceNo, sldProductId, sldSalesPrice, sldVAT, sldQuantity, sldDiscount) Values ('{sldInvoiceNo}', '{sldProductId}', {sldSalesPrice}, {sldVAT}, {sldQuantity}, {sldDiscount})");
+            return Command($"INSERT INTO SaleDetails (sldInvoiceNo, sldProductId, sldSalesPrice, sldVAT, sldQuantity, sldDiscount) Values ('{sldInvoiceNo}', '{sldProductId}', {sldSalesPrice}, {sldVAT}, {sldQuantity}, '{sldDiscount}')");
         }
 
         public bool UpdateSales(string slsInvoiceNo, DateTime slsSalesDate, string slsCustomerId, string slsTotalAmount, string slsDiscount, string slsPaymentType, string slsChequeNo, string slsAccountId, string slsOthers, string slsAmountPaid, string slsIsFullPaid, string slsUpdateBy)

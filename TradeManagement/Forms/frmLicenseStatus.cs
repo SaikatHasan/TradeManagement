@@ -8,7 +8,8 @@ namespace TradeManagement.Forms
     public partial class frmLicenseStatus : XtraForm
     {
         private readonly clsCommon _common = new clsCommon();
-        
+        readonly SerialKeyConfiguration _serialKeyConfiguration = new SerialKeyConfiguration();
+
         public frmLicenseStatus()
         {
             InitializeComponent();
@@ -16,8 +17,9 @@ namespace TradeManagement.Forms
 
         private void frmLicenseStatus_Load(object sender, EventArgs e)
         {
+            var machineCode = new Generate(_serialKeyConfiguration).MachineCode;
             var skc = new SerialKeyConfiguration();
-            var licenseInformation = _common.GetLicenseInformation();
+            var licenseInformation = _common.GetLicenseInformation(machineCode.ToString());
             //var key = Registry.CurrentUser.OpenSubKey("Software", true).CreateSubKey("AlphaSoftTradeManagement");
             //if (key == null) return;
             var validate = new Validate(skc)

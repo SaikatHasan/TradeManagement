@@ -58,7 +58,7 @@ namespace TradeManagement.Forms
                     {
                         case "Purchase":
                             report.Load(@"Reports\rptPurchases.frx");
-                            report.SetParameterValue("Title", "Purchases of " + dtpSingleDate.DateTime.ToString("MMM dd, yyyy"));
+                            report.SetParameterValue("Title", $"Purchases of {dtpSingleDate.DateTime.ToString("MMM dd, yyyy")}");
                             report.RegisterData(_reports.GetCompanyInformation(), "CompanyInformation");
                             report.RegisterData(_reports.GetPurchasesByDate(dtpSingleDate.DateTime), "vwPurchases");
                             report.RegisterData(_reports.GetPurchaseDetails(), "vwPurchaseDetails");
@@ -69,7 +69,7 @@ namespace TradeManagement.Forms
                             break;
                         case "Sales":
                             report.Load(@"Reports\rptSales.frx");
-                            report.SetParameterValue("Title", "Sales of " + dtpSingleDate.DateTime.ToString("MMM dd, yyyy"));
+                            report.SetParameterValue("Title", $"Sales of {dtpSingleDate.DateTime.ToString("MMM dd, yyyy")}");
                             report.RegisterData(_reports.GetCompanyInformation(), "CompanyInformation");
                             report.RegisterData(_reports.GetSalesByDate(dtpSingleDate.DateTime), "vwSales");
                             report.RegisterData(_reports.GetSaleDetails(), "vwSaleDetails");
@@ -81,13 +81,12 @@ namespace TradeManagement.Forms
                         case "Profit":
                             var totalSalePrice = Convert.ToDecimal(_reports.GetTotalSalePriceByDate(dtpSingleDate.DateTime));
                             var totalPurchasePrice = Convert.ToDecimal(_reports.GetTotalPurchasePriceByDate(dtpSingleDate.DateTime));
-                            var totalExpense = Convert.ToDecimal(_reports.GetTotalExpenseByDate(dtpSingleDate.DateTime));
                             report.Load(@"Reports\rptProfit.frx");
-                            report.SetParameterValue("Title", "Net Profit of " + dtpSingleDate.DateTime.ToString("MMM dd, yyyy"));
+                            report.SetParameterValue("Title", $"Net Profit of {dtpSingleDate.DateTime.ToString("MMM dd, yyyy")}");
                             report.SetParameterValue("TotalSalePrice", totalSalePrice);
                             report.SetParameterValue("TotalPurchasePrice", totalPurchasePrice);
-                            report.SetParameterValue("TotalExpense", totalExpense);
                             report.RegisterData(_reports.GetCompanyInformation(), "CompanyInformation");
+                            report.RegisterData(_reports.GetSummaryExpenseByDate(dtpSingleDate.DateTime), "Expense");
                             report.GetDataSource("CompanyInformation").Enabled = true;
                             report.Show();
                             break;
@@ -120,7 +119,7 @@ namespace TradeManagement.Forms
                             break;
                         case "PurchaseReturn":
                             report.Load(@"Reports\rptPurchaseReturns.frx");
-                            report.SetParameterValue("Title", "Purchase Returns of " + dtpSingleDate.DateTime.ToString("MMM dd, yyyy"));
+                            report.SetParameterValue("Title", $"Purchase Returns of {dtpSingleDate.DateTime.ToString("MMM dd, yyyy")}");
                             report.RegisterData(_reports.GetCompanyInformation(), "CompanyInformation");
                             report.RegisterData(_reports.GetPurchaseReturnsByDate(dtpSingleDate.DateTime), "vwPurchaseReturns");
                             report.RegisterData(_reports.GetPurchaseReturnDetails(), "vwPurchaseReturnDetails");
@@ -131,7 +130,7 @@ namespace TradeManagement.Forms
                             break;
                         case "SaleReturn":
                             report.Load(@"Reports\rptSaleReturns.frx");
-                            report.SetParameterValue("Title", "Sales Returns of " + dtpSingleDate.DateTime.ToString("MMM dd, yyyy"));
+                            report.SetParameterValue("Title", $"Sales Returns of {dtpSingleDate.DateTime.ToString("MMM dd, yyyy")}");
                             report.RegisterData(_reports.GetCompanyInformation(), "CompanyInformation");
                             report.RegisterData(_reports.GetSaleReturnsByDate(dtpSingleDate.DateTime), "vwSaleReturns");
                             report.RegisterData(_reports.GetSaleReturnDetails(), "vwSaleReturnDetails");
@@ -142,11 +141,24 @@ namespace TradeManagement.Forms
                             break;
                         case "VAT":
                             report.Load(@"Reports\rptVAT.frx");
-                            report.SetParameterValue("Title", "Total VAT of " + dtpSingleDate.DateTime.ToString("MMM dd, yyyy"));
+                            report.SetParameterValue("Title", $"Total VAT of {dtpSingleDate.DateTime.ToString("MMM dd, yyyy")}");
                             report.RegisterData(_reports.GetCompanyInformation(), "CompanyInformation");
                             report.RegisterData(_reports.GetTotalVATByDate(dtpSingleDate.DateTime), "vwVAT");
                             report.GetDataSource("CompanyInformation").Enabled = true;
                             report.GetDataSource("vwVAT").Enabled = true;
+                            report.Show();
+                            break;
+                        case "Cash":
+                            report.Load(@"Reports\rptCash.frx");
+                            report.SetParameterValue("Title", $"Cash Report of {dtpSingleDate.DateTime.ToString("MMM dd, yyyy")}");
+                            report.SetParameterValue("OpeningBalance", _reports.GetOpeningBalance(dtpSingleDate.DateTime));
+                            report.SetParameterValue("TotalDeposit", _reports.GetTotalCashDepositByDate(dtpSingleDate.DateTime));
+                            report.SetParameterValue("TotalWithdraw", _reports.GetTotalCashWithdrawByDate(dtpSingleDate.DateTime));
+                            report.SetParameterValue("TotalSale", _reports.GetTotalCashSaleByDate(dtpSingleDate.DateTime));
+                            report.SetParameterValue("TotalPurchase", _reports.GetTotalCashPurchaseByDate(dtpSingleDate.DateTime));
+                            report.SetParameterValue("TotalExpense", _reports.GetTotalCashExpenseByDate(dtpSingleDate.DateTime));
+                            report.RegisterData(_reports.GetCompanyInformation(), "CompanyInformation");
+                            report.GetDataSource("CompanyInformation").Enabled = true;
                             report.Show();
                             break;
                     }
@@ -157,7 +169,7 @@ namespace TradeManagement.Forms
                     {
                         case "Purchase":
                             report.Load(@"Reports\rptPurchases.frx");
-                            report.SetParameterValue("Title", "Purchases from " + dtpStartDate.DateTime.ToString("MMM dd, yyyy") + " to " + dtpEndDate.DateTime.ToString("MMM dd, yyyy"));
+                            report.SetParameterValue("Title", $"Purchases from {dtpStartDate.DateTime.ToString("MMM dd, yyyy")} to {dtpEndDate.DateTime.ToString("MMM dd, yyyy")}");
                             report.RegisterData(_reports.GetCompanyInformation(), "CompanyInformation");
                             report.RegisterData(_reports.GetPurchasesByRange(dtpStartDate.DateTime, dtpEndDate.DateTime), "vwPurchases");
                             report.RegisterData(_reports.GetPurchaseDetails(), "vwPurchaseDetails");
@@ -168,7 +180,7 @@ namespace TradeManagement.Forms
                             break;
                         case "Sales":
                             report.Load(@"Reports\rptSales.frx");
-                            report.SetParameterValue("Title", "Sales from " + dtpStartDate.DateTime.ToString("MMM dd, yyyy") + " to " + dtpEndDate.DateTime.ToString("MMM dd, yyyy"));
+                            report.SetParameterValue("Title", $"Sales from {dtpStartDate.DateTime.ToString("MMM dd, yyyy")} to {dtpEndDate.DateTime.ToString("MMM dd, yyyy")}");
                             report.RegisterData(_reports.GetCompanyInformation(), "CompanyInformation");
                             report.RegisterData(_reports.GetSalesByRange(dtpStartDate.DateTime, dtpEndDate.DateTime), "vwSales");
                             report.RegisterData(_reports.GetSaleDetails(), "vwSaleDetails");
@@ -180,13 +192,12 @@ namespace TradeManagement.Forms
                         case "Profit":
                             var totalSalePrice = Convert.ToDecimal(_reports.GetTotalSalePriceByRange(dtpStartDate.DateTime, dtpEndDate.DateTime));
                             var totalPurchasePrice = Convert.ToDecimal(_reports.GetTotalPurchasePriceByRange(dtpStartDate.DateTime, dtpEndDate.DateTime));
-                            var totalExpense = Convert.ToDecimal(_reports.GetTotalExpenseByRange(dtpStartDate.DateTime, dtpEndDate.DateTime));
                             report.Load(@"Reports\rptProfit.frx");
-                            report.SetParameterValue("Title", "Net Profit from " + dtpStartDate.DateTime.ToString("MMM dd, yyyy") + " to " + dtpEndDate.DateTime.ToString("MMM dd, yyyy"));
+                            report.SetParameterValue("Title", $"Net Profit from {dtpStartDate.DateTime.ToString("MMM dd, yyyy")} to {dtpEndDate.DateTime.ToString("MMM dd, yyyy")}");
                             report.SetParameterValue("TotalSalePrice", totalSalePrice);
                             report.SetParameterValue("TotalPurchasePrice", totalPurchasePrice);
-                            report.SetParameterValue("TotalExpense", totalExpense);
                             report.RegisterData(_reports.GetCompanyInformation(), "CompanyInformation");
+                            report.RegisterData(_reports.GetSummaryExpenseByRange(dtpStartDate.DateTime, dtpEndDate.DateTime), "Expense");
                             report.GetDataSource("CompanyInformation").Enabled = true;
                             report.Show();
                             break;
@@ -222,7 +233,7 @@ namespace TradeManagement.Forms
                             break;
                         case "PurchaseReturn":
                             report.Load(@"Reports\rptPurchaseReturns.frx");
-                            report.SetParameterValue("Title", "Purchase Returns from " + dtpStartDate.DateTime.ToString("MMM dd, yyyy") + " to " + dtpEndDate.DateTime.ToString("MMM dd, yyyy"));
+                            report.SetParameterValue("Title", $"Purchase Returns from {dtpStartDate.DateTime.ToString("MMM dd, yyyy")} to {dtpEndDate.DateTime.ToString("MMM dd, yyyy")}");
                             report.RegisterData(_reports.GetCompanyInformation(), "CompanyInformation");
                             report.RegisterData(_reports.GetPurchaseReturnsByRange(dtpStartDate.DateTime, dtpEndDate.DateTime), "vwPurchaseReturns");
                             report.RegisterData(_reports.GetPurchaseReturnDetails(), "vwPurchaseReturnDetails");
@@ -233,7 +244,7 @@ namespace TradeManagement.Forms
                             break;
                         case "SaleReturn":
                             report.Load(@"Reports\rptSaleReturns.frx");
-                            report.SetParameterValue("Title", "Sales Returns from " + dtpStartDate.DateTime.ToString("MMM dd, yyyy") + " to " + dtpEndDate.DateTime.ToString("MMM dd, yyyy"));
+                            report.SetParameterValue("Title", $"Sales Returns from {dtpStartDate.DateTime.ToString("MMM dd, yyyy")} to {dtpEndDate.DateTime.ToString("MMM dd, yyyy")}");
                             report.RegisterData(_reports.GetCompanyInformation(), "CompanyInformation");
                             report.RegisterData(_reports.GetSaleReturnsByRange(dtpStartDate.DateTime, dtpEndDate.DateTime), "vwSaleReturns");
                             report.RegisterData(_reports.GetSaleReturnDetails(), "vwSaleReturnDetails");
@@ -244,11 +255,24 @@ namespace TradeManagement.Forms
                             break;
                         case "VAT":
                             report.Load(@"Reports\rptVAT.frx");
-                            report.SetParameterValue("Title", "Total VAT from " + dtpStartDate.DateTime.ToString("MMM dd, yyyy") + " to " + dtpEndDate.DateTime.ToString("MMM dd, yyyy"));
+                            report.SetParameterValue("Title", $"Total VAT from {dtpStartDate.DateTime.ToString("MMM dd, yyyy")} to {dtpEndDate.DateTime.ToString("MMM dd, yyyy")}");
                             report.RegisterData(_reports.GetCompanyInformation(), "CompanyInformation");
                             report.RegisterData(_reports.GetTotalVATByRange(dtpStartDate.DateTime, dtpEndDate.DateTime), "vwVAT");
                             report.GetDataSource("CompanyInformation").Enabled = true;
                             report.GetDataSource("vwVAT").Enabled = true;
+                            report.Show();
+                            break;
+                        case "Cash":
+                            report.Load(@"Reports\rptCash.frx");
+                            report.SetParameterValue("Title", $"Cash Report from {dtpStartDate.DateTime.ToString("MMM dd, yyyy")} to {dtpEndDate.DateTime.ToString("MMM dd, yyyy")}");
+                            report.SetParameterValue("OpeningBalance", _reports.GetOpeningBalance(dtpStartDate.DateTime));
+                            report.SetParameterValue("TotalDeposit", _reports.GetTotalCashDepositByRange(dtpStartDate.DateTime, dtpEndDate.DateTime));
+                            report.SetParameterValue("TotalWithdraw", _reports.GetTotalCashWithdrawByRange(dtpStartDate.DateTime, dtpEndDate.DateTime));
+                            report.SetParameterValue("TotalSale", _reports.GetTotalCashSaleByRange(dtpStartDate.DateTime, dtpEndDate.DateTime));
+                            report.SetParameterValue("TotalPurchase", _reports.GetTotalCashPurchaseByRange(dtpStartDate.DateTime, dtpEndDate.DateTime));
+                            report.SetParameterValue("TotalExpense", _reports.GetTotalCashExpenseByRange(dtpStartDate.DateTime, dtpEndDate.DateTime));
+                            report.RegisterData(_reports.GetCompanyInformation(), "CompanyInformation");
+                            report.GetDataSource("CompanyInformation").Enabled = true;
                             report.Show();
                             break;
                     }

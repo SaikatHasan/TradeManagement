@@ -13,8 +13,7 @@ namespace TradeManagement_DAL
 
         public DataTable GetPurchasesBySupplierAndDate(string purSupplierId, DateTime purPurchaseDate)
         {
-            return Query(
-                $"SELECT * FROM vwPurchases WHERE purSupplierId = '{purSupplierId}' AND purPurchaseDate = '{purPurchaseDate}'");
+            return Query(purSupplierId == "ALL" ? $"SELECT * FROM vwPurchases WHERE purPurchaseDate = '{purPurchaseDate}'" : $"SELECT * FROM vwPurchases WHERE purSupplierId = '{purSupplierId}' AND purPurchaseDate = '{purPurchaseDate}'");
         }
 
         public DataTable GetPurchasesByRange(DateTime startDate, DateTime endDate)
@@ -24,8 +23,7 @@ namespace TradeManagement_DAL
 
         public DataTable GetPurchasesBySupplierAndRange(string purSupplierId, DateTime startDate, DateTime endDate)
         {
-            return Query(
-                $"SELECT * FROM vwPurchases WHERE purSupplierId = '{purSupplierId}' AND purPurchaseDate BETWEEN '{startDate}' AND '{endDate}'");
+            return Query(purSupplierId == "ALL" ? $"SELECT * FROM vwPurchases WHERE purPurchaseDate BETWEEN '{startDate}' AND '{endDate}'" : $"SELECT * FROM vwPurchases WHERE purSupplierId = '{purSupplierId}' AND purPurchaseDate BETWEEN '{startDate}' AND '{endDate}'");
         }
 
         public DataTable GetPurchaseDetails()
@@ -40,8 +38,9 @@ namespace TradeManagement_DAL
 
         public DataTable GetSalesByCustomerAndDate(string slsCustomerId, DateTime slsSalesDate)
         {
-            return Query(
-                $"SELECT * FROM vwSales WHERE slsCustomerId = '{slsCustomerId}' AND slsSalesDate = '{slsSalesDate}'");
+            if(slsCustomerId == "ALL")
+                return Query($"SELECT * FROM vwSales WHERE slsSalesDate = '{slsSalesDate}'");
+            return Query($"SELECT * FROM vwSales WHERE slsCustomerId = '{slsCustomerId}' AND slsSalesDate = '{slsSalesDate}'");
         }
 
         public DataTable GetSalesByRange(DateTime startDate, DateTime endDate)
@@ -51,8 +50,9 @@ namespace TradeManagement_DAL
 
         public DataTable GetSalesByCustomerAndRange(string slsCustomerId, DateTime startDate, DateTime endDate)
         {
-            return Query(
-                $"SELECT * FROM vwSales WHERE slsCustomerId = '{slsCustomerId}' AND slsSalesDate BETWEEN '{startDate}' AND '{endDate}'");
+            if(slsCustomerId == "ALL")
+                return Query($"SELECT * FROM vwSales WHERE slsSalesDate BETWEEN '{startDate}' AND '{endDate}'");
+            return Query($"SELECT * FROM vwSales WHERE slsCustomerId = '{slsCustomerId}' AND slsSalesDate BETWEEN '{startDate}' AND '{endDate}'");
         }
 
         public DataTable GetSaleDetails()
@@ -62,7 +62,12 @@ namespace TradeManagement_DAL
 
         public string GetTotalSalePriceByDate(DateTime slsSalesDate)
         {
-            return Query($"SELECT ISNULL(SUM(slsTotalAmount) - SUM(slsDiscount) + SUM(slsVAT), 0) FROM Sales WHERE slsSalesDate = '{slsSalesDate}'").Rows[0][0].ToString();
+            return Query($"SELECT ISNULL(SUM(slsTotalAmount) - SUM(slsDiscount) + SUM(slsRounding), 0) FROM vwSales WHERE slsSalesDate = '{slsSalesDate}'").Rows[0][0].ToString();
+        }
+
+        public string GetTotalSalePriceByRange(DateTime startDate, DateTime endDate)
+        {
+            return Query("SELECT ISNULL(SUM(slsTotalAmount) - SUM(slsDiscount) + SUM(slsRounding), 0) FROM vwSales WHERE slsSalesDate BETWEEN '" + startDate + "' AND '" + endDate + "'").Rows[0][0].ToString();
         }
 
         public DataTable GetTotalVATByDate(DateTime slsSalesDate)
@@ -77,39 +82,32 @@ namespace TradeManagement_DAL
 
         public string GetTotalPurchasePriceByDate(DateTime slsSalesDate)
         {
-            return Query("SELECT ISNULL(SUM(prdPurchasePrice * sldQuantity), 0) FROM PurchaseDetails JOIN vwSaleDetails ON prdProductId = sldProductId JOIN Sales ON sldInvoiceNo = slsInvoiceNo WHERE slsSalesDate = '" + slsSalesDate + "'").Rows[0][0].ToString();
-        }
-
-        public string GetTotalExpenseByDate(DateTime expExpenseDate)
-        {
-            return Query("SELECT ISNULL(SUM(expAmount), 0) FROM Expenses WHERE expExpenseDate = '" + expExpenseDate + "'").Rows[0][0].ToString();
-        }
-
-        public string GetTotalSalePriceByRange(DateTime startDate, DateTime endDate)
-        {
-            return Query("SELECT ISNULL(SUM(slsTotalAmount) - SUM(slsDiscount) + SUM(slsVAT), 0) FROM Sales WHERE slsSalesDate BETWEEN '" + startDate + "' AND '" + endDate + "'").Rows[0][0].ToString();
+            return Query($"SELECT ISNULL(SUM(prdPurchasePrice * sldQuantity), 0) FROM PurchaseDetails JOIN vwSaleDetails ON prdProductId = sldProductId JOIN Sales ON sldInvoiceNo = slsInvoiceNo WHERE slsSalesDate = '{slsSalesDate}'").Rows[0][0].ToString();
         }
 
         public string GetTotalPurchasePriceByRange(DateTime startDate, DateTime endDate)
         {
-            return Query("SELECT ISNULL(SUM(prdPurchasePrice * sldQuantity), 0) FROM PurchaseDetails JOIN vwSaleDetails ON prdProductId = sldProductId JOIN Sales ON sldInvoiceNo = slsInvoiceNo WHERE slsSalesDate BETWEEN '" + startDate + "' AND '" + endDate + "'").Rows[0][0].ToString();
+            return Query($"SELECT ISNULL(SUM(prdPurchasePrice * sldQuantity), 0) FROM PurchaseDetails JOIN vwSaleDetails ON prdProductId = sldProductId JOIN Sales ON sldInvoiceNo = slsInvoiceNo WHERE slsSalesDate BETWEEN '{startDate}' AND '{endDate}'").Rows[0][0].ToString();
         }
 
-        public string GetTotalExpenseByRange(DateTime startDate, DateTime endDate)
+        public DataTable GetSummaryExpenseByDate(DateTime expExpenseDate)
         {
-            return Query("SELECT ISNULL(SUM(expAmount), 0) FROM Expenses WHERE expExpenseDate BETWEEN '" + startDate + "' AND '" + endDate + "'").Rows[0][0].ToString();
+            return Query($"SELECT ectExpenseCategoryName, SUM(expAmount) expAmount FROM Expenses JOIN ExpenseCategories ON expExpenseCategoryId = ectExpenseCategoryId WHERE expExpenseDate = '{expExpenseDate}' AND expIsDelete != 1 GROUP BY ectExpenseCategoryName");
+        }
+
+        public DataTable GetSummaryExpenseByRange(DateTime startDate, DateTime endDate)
+        {
+            return Query($"SELECT ectExpenseCategoryName, SUM(expAmount) expAmount FROM Expenses JOIN ExpenseCategories ON expExpenseCategoryId = ectExpenseCategoryId WHERE expExpenseDate BETWEEN '{startDate}' AND '{endDate}' AND expIsDelete != 1 GROUP BY ectExpenseCategoryName");
         }
 
         public DataTable GetExpenseByDate(DateTime expExpenseDate)
         {
-            return Query(
-                $"SELECT expExpenseDate, ectExpenseCategoryName, expDescription, expAmount FROM Expenses JOIN ExpenseCategories ON expExpenseCategoryId = ectExpenseCategoryId WHERE expExpenseDate = '{expExpenseDate}'");
+            return Query($"SELECT expExpenseDate, ectExpenseCategoryName, expDescription, expAmount FROM Expenses JOIN ExpenseCategories ON expExpenseCategoryId = ectExpenseCategoryId WHERE expExpenseDate = '{expExpenseDate}' AND expIsDelete != 1");
         }
 
         public DataTable GetExpenseByRange(DateTime startDate, DateTime endDate)
         {
-            return Query(
-                $"SELECT expExpenseDate, ectExpenseCategoryName, expDescription, expAmount FROM Expenses JOIN ExpenseCategories ON expExpenseCategoryId = ectExpenseCategoryId WHERE expExpenseDate BETWEEN '{startDate}' AND '{endDate}'");
+            return Query($"SELECT expExpenseDate, ectExpenseCategoryName, expDescription, expAmount FROM Expenses JOIN ExpenseCategories ON expExpenseCategoryId = ectExpenseCategoryId WHERE expExpenseDate BETWEEN '{startDate}' AND '{endDate}' AND expIsDelete != 1");
         }
 
         public DataTable GetDepositCashByDate(DateTime dpcDate)
@@ -124,14 +122,12 @@ namespace TradeManagement_DAL
 
         public DataTable GetDepositCashByRange(DateTime startDate, DateTime endDate)
         {
-            return Query(
-                $"SELECT * FROM DepositCash WHERE dpcDate BETWEEN '{startDate}' AND '{endDate}' ORDER BY dpcDate");
+            return Query($"SELECT * FROM DepositCash WHERE dpcDate BETWEEN '{startDate}' AND '{endDate}' ORDER BY dpcDate");
         }
 
         public DataTable GetWithdrawCashByRange(DateTime startDate, DateTime endDate)
         {
-            return Query(
-                $"SELECT * FROM WithdrawCash WHERE wdcDate BETWEEN '{startDate}' AND '{endDate}' ORDER BY wdcDate");
+            return Query($"SELECT * FROM WithdrawCash WHERE wdcDate BETWEEN '{startDate}' AND '{endDate}' ORDER BY wdcDate");
         }
 
         public DataTable GetPurchaseReturnsByDate(DateTime prtReturnDate)
@@ -141,8 +137,7 @@ namespace TradeManagement_DAL
 
         public DataTable GetPurchaseReturnsBySupplierAndDate(string purSupplierId, DateTime prtReturnDate)
         {
-            return Query(
-                $"SELECT * FROM vwPurchaseReturns WHERE purSupplierId = '{purSupplierId}' AND prtReturnDate = '{prtReturnDate}'");
+            return Query(purSupplierId == "ALL" ? $"SELECT * FROM vwPurchaseReturns WHERE prtReturnDate = '{prtReturnDate}'" : $"SELECT * FROM vwPurchaseReturns WHERE purSupplierId = '{purSupplierId}' AND prtReturnDate = '{prtReturnDate}'");
         }
 
         public DataTable GetPurchaseReturnsByRange(DateTime startDate, DateTime endDate)
@@ -152,8 +147,7 @@ namespace TradeManagement_DAL
 
         public DataTable GetPurchaseReturnsBySupplierAndRange(string purSupplierId, DateTime startDate, DateTime endDate)
         {
-            return Query(
-                $"SELECT * FROM vwPurchaseReturns WHERE purSupplierId = '{purSupplierId}' AND prtReturnDate BETWEEN '{startDate}' AND '{endDate}'");
+            return Query(purSupplierId == "ALL" ? $"SELECT * FROM vwPurchaseReturns WHERE prtReturnDate BETWEEN '{startDate}' AND '{endDate}'" : $"SELECT * FROM vwPurchaseReturns WHERE purSupplierId = '{purSupplierId}' AND prtReturnDate BETWEEN '{startDate}' AND '{endDate}'");
         }
 
         public DataTable GetPurchaseReturnDetails()
@@ -168,8 +162,7 @@ namespace TradeManagement_DAL
 
         public DataTable GetSaleReturnsByCustomerAndDate(string slsCustomerId, DateTime srtReturnDate)
         {
-            return Query(
-                $"SELECT * FROM vwSaleReturns WHERE slsCustomerId = '{slsCustomerId}' AND srtReturnDate = '{srtReturnDate}'");
+            return Query(slsCustomerId == "ALL" ? $"SELECT * FROM vwSaleReturns WHERE srtReturnDate = '{srtReturnDate}'" : $"SELECT * FROM vwSaleReturns WHERE slsCustomerId = '{slsCustomerId}' AND srtReturnDate = '{srtReturnDate}'");
         }
 
         public DataTable GetSaleReturnsByRange(DateTime startDate, DateTime endDate)
@@ -179,8 +172,7 @@ namespace TradeManagement_DAL
 
         public DataTable GetSaleReturnsByCustomerAndRange(string slsCustomerId, DateTime startDate, DateTime endDate)
         {
-            return Query(
-                $"SELECT * FROM vwSaleReturns WHERE slsCustomerId = '{slsCustomerId}' AND srtReturnDate BETWEEN '{startDate}' AND '{endDate}'");
+            return Query(slsCustomerId == "ALL" ? $"SELECT * FROM vwSaleReturns WHERE srtReturnDate BETWEEN '{startDate}' AND '{endDate}'" : $"SELECT * FROM vwSaleReturns WHERE slsCustomerId = '{slsCustomerId}' AND srtReturnDate BETWEEN '{startDate}' AND '{endDate}'");
         }
 
         public DataTable GetSaleReturnDetails()
@@ -228,6 +220,63 @@ namespace TradeManagement_DAL
         public DataTable GetTop10Products()
         {
             return Query("SELECT * FROM vwSaleDetails");
+        }
+
+        public decimal GetOpeningBalance(DateTime date)
+        {
+            return Convert.ToDecimal(Query($@"SELECT (SELECT ISNULL(SUM(dpcAmount), 0) FROM DepositCash WHERE dpcDate < '{date}') - (SELECT ISNULL(SUM(wdcAmount), 0) FROM WithdrawCash WHERE wdcDate < '{date}') + 
+                (SELECT ISNULL(SUM(slsAmountPaid), 0) FROM Sales WHERE slsSalesDate < '{date}' AND slsCustomerId = 'CST-1001') - (SELECT ISNULL(SUM(purAmountPaid), 0) FROM Purchases WHERE purPurchaseDate < '{date}' AND purSupplierId = 'SUP-0001') - 
+                (SELECT ISNULL(SUM(expAmount), 0) FROM Expenses WHERE expExpenseDate < '{date}') OpeningBalance").Rows[0]["OpeningBalance"]);
+        }
+
+        public decimal GetTotalCashDepositByDate(DateTime dpcDate)
+        {
+            return Convert.ToDecimal(Query($"SELECT ISNULL(SUM(dpcAmount), 0) dpcAmount FROM DepositCash WHERE dpcDate = '{dpcDate}'").Rows[0]["dpcAmount"]);
+        }
+
+        public decimal GetTotalCashDepositByRange(DateTime startDate, DateTime endDate)
+        {
+            return Convert.ToDecimal(Query($"SELECT ISNULL(SUM(dpcAmount), 0) dpcAmount FROM DepositCash WHERE dpcDate BETWEEN '{startDate}' AND '{endDate}'").Rows[0]["dpcAmount"]);
+        }
+
+        public decimal GetTotalCashWithdrawByDate(DateTime wdcDate)
+        {
+            return Convert.ToDecimal(Query($"SELECT ISNULL(SUM(wdcAmount), 0) wdcAmount FROM WithdrawCash WHERE wdcDate = '{wdcDate}'").Rows[0]["wdcAmount"]);
+        }
+
+        public decimal GetTotalCashWithdrawByRange(DateTime startDate, DateTime endDate)
+        {
+            return Convert.ToDecimal(Query($"SELECT ISNULL(SUM(wdcAmount), 0) wdcAmount FROM WithdrawCash WHERE wdcDate BETWEEN '{startDate}' AND '{endDate}'").Rows[0]["wdcAmount"]);
+        }
+
+        public decimal GetTotalCashSaleByDate(DateTime slsSalesDate)
+        {
+            return Convert.ToDecimal(Query($"SELECT ISNULL(SUM(slsAmountPaid), 0) slsAmountPaid FROM Sales WHERE slsSalesDate = '{slsSalesDate}' AND slsCustomerId = 'CST-1001'").Rows[0]["slsAmountPaid"]);
+        }
+
+        public decimal GetTotalCashSaleByRange(DateTime startDate, DateTime endDate)
+        {
+            return Convert.ToDecimal(Query($"SELECT ISNULL(SUM(slsAmountPaid), 0) slsAmountPaid FROM Sales WHERE slsSalesDate BETWEEN '{startDate}' AND '{endDate}' AND slsCustomerId = 'CST-1001'").Rows[0]["slsAmountPaid"]);
+        }
+
+        public decimal GetTotalCashPurchaseByDate(DateTime purPurchaseDate)
+        {
+            return Convert.ToDecimal(Query($"SELECT ISNULL(SUM(purAmountPaid), 0) purAmountPaid FROM Purchases WHERE purPurchaseDate = '{purPurchaseDate}' AND purSupplierId = 'SUP-0001'").Rows[0]["purAmountPaid"]);
+        }
+
+        public decimal GetTotalCashPurchaseByRange(DateTime startDate, DateTime endDate)
+        {
+            return Convert.ToDecimal(Query($"SELECT ISNULL(SUM(purAmountPaid), 0) purAmountPaid FROM Purchases WHERE purPurchaseDate BETWEEN '{startDate}' AND '{endDate}' AND purSupplierId = 'SUP-0001'").Rows[0]["purAmountPaid"]);
+        }
+
+        public decimal GetTotalCashExpenseByDate(DateTime expExpenseDate)
+        {
+            return Convert.ToDecimal(Query($"SELECT ISNULL(SUM(expAmount), 0) expAmount FROM Expenses WHERE expExpenseDate = '{expExpenseDate}'").Rows[0]["expAmount"]);
+        }
+
+        public decimal GetTotalCashExpenseByRange(DateTime startDate, DateTime endDate)
+        {
+            return Convert.ToDecimal(Query($"SELECT ISNULL(SUM(expAmount), 0) expAmount FROM Expenses WHERE expExpenseDate BETWEEN '{startDate}' AND '{endDate}'").Rows[0]["expAmount"]);
         }
     }
 }

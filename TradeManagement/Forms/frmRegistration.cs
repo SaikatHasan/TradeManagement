@@ -31,9 +31,18 @@ namespace TradeManagement.Forms
             var validate = new Validate(_serialKeyConfiguration) { Key = txtSerialNumber.EditValue.ToString(), secretPhase = "91b53799-75d5-4590-90fd-c1f64b41cd47" };
             if (validate.IsValid && validate.IsOnRightMachine && !validate.IsExpired)
             {
-                _common.BeginTran();
-                _common.UpdateLicenseInformation(txtMachineCode.EditValue.ToString(), txtSerialNumber.EditValue.ToString(), "1");
-                _common.CommitTran();
+                if (_common.GetLicenseInformation(txtMachineCode.EditValue.ToString()).Rows.Count > 0)
+                {
+                    _common.BeginTran();
+                    _common.UpdateLicenseInformation(txtMachineCode.EditValue.ToString(), txtSerialNumber.EditValue.ToString(), "1");
+                    _common.CommitTran();
+                }
+                else
+                {
+                    _common.BeginTran();
+                    _common.InsertLicenseInformation(txtMachineCode.EditValue.ToString(), txtSerialNumber.EditValue.ToString(), "1");
+                    _common.CommitTran();
+                }
                 //var key = Registry.CurrentUser.OpenSubKey("Software", true).CreateSubKey("AlphaSoftTradeManagement");
                 //if (key == null) return;
                 //key.SetValue("MachineCode", txtMachineCode.EditValue.ToString());

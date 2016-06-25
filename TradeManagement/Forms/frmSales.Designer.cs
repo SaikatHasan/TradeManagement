@@ -372,27 +372,27 @@
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(1044, 47);
+            this.barDockControlTop.Size = new System.Drawing.Size(1044, 45);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 662);
-            this.barDockControlBottom.Size = new System.Drawing.Size(1044, 25);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 660);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1044, 27);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 47);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 45);
             this.barDockControlLeft.Size = new System.Drawing.Size(0, 615);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1044, 47);
+            this.barDockControlRight.Location = new System.Drawing.Point(1044, 45);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 615);
             // 
             // barStaticItem1
@@ -797,6 +797,7 @@
             this.gvwProducts.OptionsCustomization.AllowColumnMoving = false;
             this.gvwProducts.OptionsCustomization.AllowFilter = false;
             this.gvwProducts.OptionsCustomization.AllowGroup = false;
+            this.gvwProducts.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
             this.gvwProducts.OptionsMenu.EnableColumnMenu = false;
             this.gvwProducts.OptionsView.EnableAppearanceEvenRow = true;
             this.gvwProducts.OptionsView.EnableAppearanceOddRow = true;
@@ -929,6 +930,7 @@
             this.gvwSales.OptionsCustomization.AllowColumnMoving = false;
             this.gvwSales.OptionsCustomization.AllowFilter = false;
             this.gvwSales.OptionsCustomization.AllowGroup = false;
+            this.gvwSales.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
             this.gvwSales.OptionsMenu.EnableColumnMenu = false;
             this.gvwSales.OptionsView.EnableAppearanceEvenRow = true;
             this.gvwSales.OptionsView.EnableAppearanceOddRow = true;
@@ -1075,13 +1077,13 @@
             this.colTotal.AppearanceHeader.Options.UseTextOptions = true;
             this.colTotal.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colTotal.Caption = "Total";
-            this.colTotal.DisplayFormat.FormatString = "f";
+            this.colTotal.DisplayFormat.FormatString = "n2";
             this.colTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colTotal.FieldName = "sldTotal";
             this.colTotal.Name = "colTotal";
             this.colTotal.OptionsColumn.AllowEdit = false;
             this.colTotal.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sldTotal", "{0:f}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sldTotal", "{0:n2}")});
             this.colTotal.Visible = true;
             this.colTotal.VisibleIndex = 8;
             this.colTotal.Width = 103;
@@ -1426,6 +1428,7 @@
             this.gvwSearch.OptionsCustomization.AllowColumnMoving = false;
             this.gvwSearch.OptionsCustomization.AllowFilter = false;
             this.gvwSearch.OptionsCustomization.AllowGroup = false;
+            this.gvwSearch.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
             this.gvwSearch.OptionsMenu.EnableColumnMenu = false;
             this.gvwSearch.OptionsView.EnableAppearanceEvenRow = true;
             this.gvwSearch.OptionsView.EnableAppearanceOddRow = true;
@@ -1483,7 +1486,7 @@
             this.colTotalAmount.AppearanceHeader.Options.UseTextOptions = true;
             this.colTotalAmount.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colTotalAmount.Caption = "Total Amount";
-            this.colTotalAmount.DisplayFormat.FormatString = "f";
+            this.colTotalAmount.DisplayFormat.FormatString = "n2";
             this.colTotalAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colTotalAmount.FieldName = "slsTotalAmount";
             this.colTotalAmount.Name = "colTotalAmount";
@@ -1498,7 +1501,7 @@
             this.colRounding.AppearanceHeader.Options.UseTextOptions = true;
             this.colRounding.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colRounding.Caption = "Rounding";
-            this.colRounding.DisplayFormat.FormatString = "f";
+            this.colRounding.DisplayFormat.FormatString = "n2";
             this.colRounding.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colRounding.FieldName = "slsRounding";
             this.colRounding.Name = "colRounding";
@@ -1513,8 +1516,6 @@
             this.colSDiscount.AppearanceHeader.Options.UseTextOptions = true;
             this.colSDiscount.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colSDiscount.Caption = "Discount";
-            this.colSDiscount.DisplayFormat.FormatString = "f";
-            this.colSDiscount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colSDiscount.FieldName = "slsDiscount";
             this.colSDiscount.Name = "colSDiscount";
             this.colSDiscount.Visible = true;
@@ -1528,12 +1529,12 @@
             this.colNetTotal.AppearanceHeader.Options.UseTextOptions = true;
             this.colNetTotal.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.colNetTotal.Caption = "Net Total";
-            this.colNetTotal.DisplayFormat.FormatString = "f";
+            this.colNetTotal.DisplayFormat.FormatString = "n2";
             this.colNetTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colNetTotal.FieldName = "slsNetTotal";
             this.colNetTotal.Name = "colNetTotal";
             this.colNetTotal.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "slsNetTotal", "{0:f}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "slsNetTotal", "{0:n2}")});
             this.colNetTotal.Visible = true;
             this.colNetTotal.VisibleIndex = 6;
             this.colNetTotal.Width = 80;

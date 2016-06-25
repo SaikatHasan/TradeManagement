@@ -52,12 +52,12 @@ namespace TradeManagement_DAL
 
         public bool InsertProduct(string pdtProductId, string pdtProductName, string pdtProductCategoryId, string pdtBrandId, string pdtModel, string pdtPackageUnit, string pdtUnitPrice, string pdtVAT, string pdtReorderLevel, string pdtBarcode, string pdtIsActive, string pdtInsertBy)
         {
-            return Command($"INSERT INTO Products (pdtProductID, pdtProductName, pdtProductCategoryID, pdtBrandID, pdtModel, pdtPackageUnit, pdtUnitPrice, pdtVAT, pdtReorderLevel, pdtBarcode, pdtIsActive, pdtInsertBy, pdtInsertDate) Values ('{pdtProductId}','{pdtProductName}','{pdtProductCategoryId}','{pdtBrandId}','{pdtModel}','{pdtPackageUnit}',{pdtUnitPrice},{pdtVAT},{pdtReorderLevel},'{pdtBarcode}',{pdtIsActive},'{pdtInsertBy}','{DateTime.Now}')");
+            return Command($"INSERT INTO Products (pdtProductID, pdtProductName, pdtProductCategoryID, pdtBrandID, pdtModel, pdtPackageUnit, pdtUnitPrice, pdtVAT, pdtReorderLevel, pdtBarcode, pdtIsActive, pdtInsertBy, pdtInsertDate) Values ('{pdtProductId}','{pdtProductName.Replace("'", "''")}','{pdtProductCategoryId}','{pdtBrandId}','{pdtModel.Replace("'", "''")}','{pdtPackageUnit}',{pdtUnitPrice},{pdtVAT},{pdtReorderLevel},'{pdtBarcode}',{pdtIsActive},'{pdtInsertBy}','{DateTime.Now}')");
         }
 
         public bool UpdateProduct(string pdtProductId, string pdtProductName, string pdtProductCategoryId, string pdtBrandId, string pdtModel, string pdtPackageUnit, string pdtUnitPrice, string pdtVAT, string pdtReorderLevel, string pdtBarcode, string pdtIsActive, string pdtUpdateBy)
         {
-            return Command($"UPDATE Products SET pdtProductName = '{pdtProductName}', pdtProductCategoryId = '{pdtProductCategoryId}', pdtBrandId = '{pdtBrandId}', pdtModel = '{pdtModel}', pdtPackageUnit = '{pdtPackageUnit}', pdtUnitPrice = {pdtUnitPrice}, pdtVAT = {pdtVAT}, pdtReorderLevel = {pdtReorderLevel}, pdtBarcode = '{pdtBarcode}', pdtIsActive = {pdtIsActive}, pdtUpdateBy = '{pdtUpdateBy}', pdtUpdateDate = '{DateTime.Now}' WHERE pdtProductID = '{pdtProductId}'");
+            return Command($"UPDATE Products SET pdtProductName = '{pdtProductName.Replace("'", "''")}', pdtProductCategoryId = '{pdtProductCategoryId}', pdtBrandId = '{pdtBrandId}', pdtModel = '{pdtModel.Replace("'", "''")}', pdtPackageUnit = '{pdtPackageUnit}', pdtUnitPrice = {pdtUnitPrice}, pdtVAT = {pdtVAT}, pdtReorderLevel = {pdtReorderLevel}, pdtBarcode = '{pdtBarcode}', pdtIsActive = {pdtIsActive}, pdtUpdateBy = '{pdtUpdateBy}', pdtUpdateDate = '{DateTime.Now}' WHERE pdtProductID = '{pdtProductId}'");
         }
 
         public bool DeleteProduct(string pdtProductId, string pdtDeleteBy)

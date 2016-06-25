@@ -53,7 +53,7 @@ namespace TradeManagement.Forms
                 bbtnDelete.Visibility = permission.Substring(permission.IndexOf("PrtD", 0) + 4, 1) == "1" ? BarItemVisibility.Always : BarItemVisibility.Never;
             else
                 bbtnDelete.Visibility = BarItemVisibility.Never;
-            cmbSupplierName.Properties.DataSource = _purchaseReturns.GetAllSuppliers();
+            cmbSupplierName.Properties.DataSource = _purchaseReturns.GetAllActiveSuppliers();
             cmbSearchSupplier.Properties.DataSource = cmbSupplierName.Properties.DataSource;
             dtpStartDate.DateTime = DateTime.Today.AddMonths(-1);
             dtpEndDate.DateTime = DateTime.Today;

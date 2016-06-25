@@ -92,7 +92,7 @@ namespace TradeManagement_DAL
         //Account Payable
         public string GetTotalDue()
         {
-            var dtPayableIds = Query("SELECT MAX(acpPayableId) FROM AccountsPayable WHERE acpIsDelete <> 1 AND acpDue <> 0 GROUP BY acpPurchaseId");
+            var dtPayableIds = Query("SELECT MAX(acpPayableId) FROM AccountsPayable WHERE acpIsDelete <> 1 AND acpPurchaseId NOT IN (SELECT acpPurchaseId FROM AccountsPayable WHERE acpDue = 0) GROUP BY acpPurchaseId");
             if (dtPayableIds.Rows.Count == 0) return "0";
             var payableIds = dtPayableIds.Rows.Cast<DataRow>().Aggregate(string.Empty, (current, rowPayableId) => current + ("'" + rowPayableId[0] + "',"));
             payableIds = payableIds.Remove(payableIds.Length - 1);

@@ -5,7 +5,7 @@ namespace TradeManagement_DAL
 {
     public class clsCustomers : clsCommon
     {
-        public new DataTable GetAllCustomers()
+        public DataTable GetAllCustomers()
         {
             return Query("SELECT * FROM Customers WHERE cstIsDelete = 0");
         }
@@ -23,13 +23,13 @@ namespace TradeManagement_DAL
         public bool InsertCustomer(string cstCustomerId, string cstCustomerName, string cstAddress, string cstLandPhone, string cstMobile, string cstIsActive, string cstInsertBy)
         {
             return Command(
-                $"INSERT INTO Customers (cstCustomerId, cstCustomerName, cstAddress, cstLandPhone, cstMobile, cstIsActive, cstInsertBy, cstInsertDate) Values ('{cstCustomerId}','{cstCustomerName}','{cstAddress}','{cstLandPhone}','{cstMobile}',{cstIsActive},'{cstInsertBy}','{DateTime.Now}')");
+                $"INSERT INTO Customers (cstCustomerId, cstCustomerName, cstAddress, cstLandPhone, cstMobile, cstIsActive, cstInsertBy, cstInsertDate) Values ('{cstCustomerId}','{cstCustomerName.Replace("'", "''")}','{cstAddress.Replace("'", "''")}','{cstLandPhone}','{cstMobile}',{cstIsActive},'{cstInsertBy}','{DateTime.Now}')");
         }
 
         public bool UpdateCustomer(string cstCustomerId, string cstCustomerName, string cstAddress, string cstLandPhone, string cstMobile, string cstIsActive, string cstUpdateBy)
         {
             return Command(
-                $"UPDATE Customers SET cstCustomerName = '{cstCustomerName}', cstAddress = '{cstAddress}', cstLandPhone = '{cstLandPhone}', cstMobile = '{cstMobile}', cstIsActive = {cstIsActive}, cstUpdateBy = '{cstUpdateBy}', cstUpdateDate = '{DateTime.Now}' WHERE cstCustomerId = '{cstCustomerId}'");
+                $"UPDATE Customers SET cstCustomerName = '{cstCustomerName.Replace("'", "''")}', cstAddress = '{cstAddress.Replace("'", "''")}', cstLandPhone = '{cstLandPhone}', cstMobile = '{cstMobile}', cstIsActive = {cstIsActive}, cstUpdateBy = '{cstUpdateBy}', cstUpdateDate = '{DateTime.Now}' WHERE cstCustomerId = '{cstCustomerId}'");
         }
 
         public bool DeleteCustomer(string cstCustomerId, string cstDeleteBy)

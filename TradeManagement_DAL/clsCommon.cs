@@ -59,19 +59,45 @@ namespace TradeManagement_DAL
             using (var command = new VistaDBCommand(cmd, _connection) { Transaction = _transaction })
                 return command.ExecuteNonQuery() > 0;
         }
-        public DataTable GetLicenseInformation()
+
+        public void RunChangeScripts()
         {
-            return Query("SELECT * FROM License");
+            if (!Query("SELECT * FROM vwSales").Columns.Contains("slsTime"))
+            {
+                BeginTran();
+                Command("DROP VIEW vwSales");
+                Command(@"CREATE VIEW vwSales AS SELECT slsInvoiceNo, slsSalesDate, Cast(IsNull(slsUpdateDate, slsInsertDate) AS Time) slsTime, slsCustomerId, cstCustomerName, cstAddress,
+                        cstMobile, slsTotalAmount, slsDiscount, (Round(slsTotalAmount - slsDiscount, 0) - (slsTotalAmount - slsDiscount)) AS slsRounding,
+                        Round(slsTotalAmount - slsDiscount, 0) AS slsNetTotal, slsPaymentType, slsChequeNo, slsAccountId, slsOthers, slsAmountPaid,
+                        Round((slsTotalAmount - slsDiscount) - slsAmountPaid, 0) AS slsDue FROM Customers INNER JOIN Sales ON cstCustomerId = slsCustomerId WHERE slsIsDelete = 0 ORDER BY slsInvoiceNo");
+                CommitTran();
+            }
+            if (!Query("SELECT * FROM Options").Columns.Contains("optMachineCode"))
+            {
+                BeginTran();
+                Command("DROP TABLE Options");
+                Command("CREATE TABLE Options (optMachineCode VARCHAR(10), optTheme VARCHAR(25))");
+                CommitTran();
+            }
+        }
+        public DataTable GetLicenseInformation(string lcnMachineCode)
+        {
+            return Query($"SELECT * FROM License WHERE lcnMachineCode = '{lcnMachineCode}'");
+        }
+
+        public bool InsertLicenseInformation(string lcnMachineCode, string lcnSerialNo, string lcnIsLicenseValid)
+        {
+            return Command($"INSERT INTO License (lcnMachineCode, lcnSerialNo, lcnIsLicenseValid, lcnLastUseDate) VALUES ('{lcnMachineCode}', '{lcnSerialNo}', {lcnIsLicenseValid}, GETDATE())");
         }
 
         public bool UpdateLicenseInformation(string lcnMachineCode, string lcnSerialNo, string lcnIsLicenseValid)
         {
-            return Command("UPDATE License SET lcnMachineCode = '" + lcnMachineCode + "', lcnSerialNo = '" + lcnSerialNo + "', lcnIsLicenseValid = " + lcnIsLicenseValid + ", lcnLastUseDate = GETDATE()");
+            return Command($"UPDATE License SET lcnSerialNo = '{lcnSerialNo}', lcnIsLicenseValid = {lcnIsLicenseValid}, lcnLastUseDate = GETDATE() WHERE lcnMachineCode = '{lcnMachineCode}'");
         }
 
-        public bool UpdateLicenseInformation(string lcnIsLicenseValid)
+        public bool UpdateLicenseInformation(string lcnMachineCode, string lcnIsLicenseValid)
         {
-            return Command("UPDATE License SET lcnIsLicenseValid = " + lcnIsLicenseValid + ", lcnLastUseDate = GETDATE()");
+            return Command($"UPDATE License SET lcnIsLicenseValid = {lcnIsLicenseValid}, lcnLastUseDate = GETDATE() WHERE lcnMachineCode = '{lcnMachineCode}'");
         }
 
         public DataTable GetCompanyInformation()
@@ -79,17 +105,22 @@ namespace TradeManagement_DAL
             return Query("SELECT * FROM CompanyInformation");
         }
 
-        public string GetTheme()
+        public DataTable GetTheme(string optMachineCode)
         {
-            return Query("SELECT optTheme FROM Options").Rows[0][0].ToString();
+            return Query($"SELECT optTheme FROM Options WHERE optMachineCode = '{optMachineCode}'");
         }
 
-        public void SaveTheme(string optTheme)
+        public void SaveTheme(string optMachineCode, string optTheme)
         {
-            Command("UPDATE Options SET optTheme = '" + optTheme + "'");
+            Command($"INSERT INTO Options (optMachineCode, optTheme) VALUES ('{optMachineCode}', '{optTheme}')");
         }
 
-        public DataTable GetAllSuppliers()
+        public void UpdateTheme(string optMachineCode, string optTheme)
+        {
+            Command($"UPDATE Options SET optTheme = '{optTheme}' WHERE optMachineCode = '{optMachineCode}'");
+        }
+
+        public DataTable GetAllActiveSuppliers()
         {
             return Query("SELECT supSupplierId, supSupplierName FROM Suppliers WHERE supIsActive = 1 AND supIsDelete = 0 ORDER BY supSupplierName");
         }
@@ -99,7 +130,7 @@ namespace TradeManagement_DAL
             return Query($"SELECT purPurchaseId, purVoucherNo FROM Purchases WHERE purSupplierId = '{purSupplierId}' AND purIsDelete = 0");
         }
 
-        public DataTable GetAllCustomers()
+        public DataTable GetAllActiveCustomers()
         {
             return Query("SELECT cstCustomerID, cstCustomerName FROM Customers WHERE cstIsActive = 1 AND cstIsDelete = 0 ORDER BY cstCustomerName");
         }
@@ -157,6 +188,11 @@ namespace TradeManagement_DAL
                         (SELECT ISNULL(SUM(slsNetTotal), 0) FROM vwSales WHERE slsSalesDate = CONVERT(VARCHAR, GETDATE(), 101)) AS TotalSaleAmount,
                         (SELECT ISNULL(SUM(slsNetTotal), 0) FROM vwSales WHERE slsSalesDate = CONVERT(VARCHAR, GETDATE(), 101) AND slsInvoiceNo = (SELECT MAX(slsInvoiceNo) FROM Sales)) AS LastSaleAmount,
                         (SELECT ISNULL(MAX(slsInvoiceNo), '-') FROM Sales WHERE slsIsDelete = 0 AND slsSalesDate = CONVERT(VARCHAR, GETDATE(), 101)) AS LastInvoiceNo");
+        }
+
+        public DataTable GetLowStockProducts()
+        {
+            return Query("SELECT pctProductCategoryName, bndBrandName, pdtProductName, pdtStockQuantity FROM vwProducts WHERE pdtIsDelete = 0 AND pdtIsActive = 1 AND pdtStockQuantity < pdtReorderLevel ORDER BY pdtStockQuantity");
         }
 
         private const string Salt = "Susmita";

@@ -83,7 +83,7 @@ namespace TradeManagement.Forms
                 bbtnDelete.Visibility = permission.Substring(permission.IndexOf("PurD", 0, StringComparison.Ordinal) + 4, 1) == "1" ? BarItemVisibility.Always : BarItemVisibility.Never;
             else
                 bbtnDelete.Visibility = BarItemVisibility.Never;
-            cmbSupplierName.Properties.DataSource = _purchases.GetAllSuppliers();
+            cmbSupplierName.Properties.DataSource = _purchases.GetAllActiveSuppliers();
             cmbProduct.Properties.DataSource = _purchases.GetAllProducts();
             cmbProduct.Properties.View.BestFitColumns();
             cmbSearchSupplier.Properties.DataSource = cmbSupplierName.Properties.DataSource;

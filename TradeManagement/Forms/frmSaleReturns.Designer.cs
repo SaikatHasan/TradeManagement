@@ -284,6 +284,7 @@
             this.sitmStatus.Id = 16;
             this.sitmStatus.Name = "sitmStatus";
             this.sitmStatus.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.sitmStatus.Size = new System.Drawing.Size(32, 0);
             this.sitmStatus.TextAlignment = System.Drawing.StringAlignment.Near;
             this.sitmStatus.Width = 32;
             // 
@@ -387,6 +388,7 @@
             this.gvwSalesReturn.OptionsCustomization.AllowColumnMoving = false;
             this.gvwSalesReturn.OptionsCustomization.AllowFilter = false;
             this.gvwSalesReturn.OptionsCustomization.AllowGroup = false;
+            this.gvwSalesReturn.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
             this.gvwSalesReturn.OptionsMenu.EnableColumnMenu = false;
             this.gvwSalesReturn.OptionsView.EnableAppearanceEvenRow = true;
             this.gvwSalesReturn.OptionsView.EnableAppearanceOddRow = true;
@@ -780,6 +782,7 @@
             this.gvwSearch.OptionsCustomization.AllowColumnMoving = false;
             this.gvwSearch.OptionsCustomization.AllowFilter = false;
             this.gvwSearch.OptionsCustomization.AllowGroup = false;
+            this.gvwSearch.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
             this.gvwSearch.OptionsMenu.EnableColumnMenu = false;
             this.gvwSearch.OptionsView.EnableAppearanceEvenRow = true;
             this.gvwSearch.OptionsView.EnableAppearanceOddRow = true;
@@ -893,6 +896,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvwSearch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemHyperLinkEdit1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

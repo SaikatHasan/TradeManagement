@@ -57,7 +57,7 @@ namespace TradeManagement.Forms
                 bbtnDelete.Visibility = permission.Substring(permission.IndexOf("AcrD", 0) + 4, 1) == "1" ? BarItemVisibility.Always : BarItemVisibility.Never;
             else
                 bbtnDelete.Visibility = BarItemVisibility.Never;
-            cmbCustomerName.Properties.DataSource = _sales.GetAllCustomers();
+            cmbCustomerName.Properties.DataSource = _sales.GetAllActiveCustomers();
             cmbSearchCustomer.Properties.DataSource = cmbCustomerName.Properties.DataSource;
             dtpStartDate.DateTime = DateTime.Today.AddMonths(-1);
             dtpEndDate.DateTime = DateTime.Today;

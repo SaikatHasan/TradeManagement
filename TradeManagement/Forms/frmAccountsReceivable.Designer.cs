@@ -365,6 +365,7 @@
             this.gvwSearch.OptionsCustomization.AllowColumnMoving = false;
             this.gvwSearch.OptionsCustomization.AllowFilter = false;
             this.gvwSearch.OptionsCustomization.AllowGroup = false;
+            this.gvwSearch.OptionsDetail.DetailMode = DevExpress.XtraGrid.Views.Grid.DetailMode.Default;
             this.gvwSearch.OptionsMenu.EnableColumnMenu = false;
             this.gvwSearch.OptionsView.EnableAppearanceEvenRow = true;
             this.gvwSearch.OptionsView.EnableAppearanceOddRow = true;
@@ -562,7 +563,7 @@
             // 
             this.txtRemarks.Location = new System.Drawing.Point(265, 57);
             this.txtRemarks.Name = "txtRemarks";
-            this.txtRemarks.Properties.MaxLength = 15;
+            this.txtRemarks.Properties.MaxLength = 100;
             this.txtRemarks.Size = new System.Drawing.Size(415, 20);
             this.txtRemarks.TabIndex = 17;
             // 

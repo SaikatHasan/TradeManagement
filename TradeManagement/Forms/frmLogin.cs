@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using SKGL;
 using TradeManagement_DAL;
 
 namespace TradeManagement.Forms
@@ -8,13 +9,15 @@ namespace TradeManagement.Forms
     public partial class frmLogin : XtraForm
     {
         private readonly clsCommon _common = new clsCommon();
+        readonly SerialKeyConfiguration _serialKeyConfiguration = new SerialKeyConfiguration();
 
         public frmLogin()
         {
             InitializeComponent();
             if (Program.ValidateLicense(DateTime.Today)) return;
+            var machineCode = new Generate(_serialKeyConfiguration).MachineCode;
             _common.BeginTran();
-            _common.UpdateLicenseInformation("0");
+            _common.UpdateLicenseInformation(machineCode.ToString(), "0");
             _common.CommitTran();
             frmRegistration.Instance().ShowDialog();
         }

@@ -2,18 +2,14 @@
 <ArrayOfArrayOfArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ArrayOfArrayOfString>
     <ArrayOfString>
-      <string>h:\localgit\trademanagement\trademanagement\forms\frmmain.cs</string>
-      <string>h:\localgit\trademanagement\trademanagement\forms\frmmain.cs</string>
+      <string>H:\LocalGit\TradeManagement\TradeManagement\Forms\frmProducts.cs</string>
+      <string>H:\LocalGit\TradeManagement\TradeManagement\Forms\frmProducts.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>h:\localgit\trademanagement\trademanagement\forms\frmspecificreports.cs</string>
+      <string>H:\LocalGit\TradeManagement\TradeManagement_DAL\clsCommon.cs</string>
     </ArrayOfString>
     <ArrayOfString>
-      <string>H:\LocalGit\TradeManagement\TradeManagement\Forms\frmReports.cs</string>
-      <string>H:\LocalGit\TradeManagement\TradeManagement\Forms\frmReports.cs</string>
-    </ArrayOfString>
-    <ArrayOfString>
-      <string>h:\localgit\trademanagement\trademanagement_dal\clsreports.cs</string>
+      <string>H:\LocalGit\TradeManagement\TradeManagement_DAL\clsProducts.cs</string>
     </ArrayOfString>
   </ArrayOfArrayOfString>
 </ArrayOfArrayOfArrayOfString>

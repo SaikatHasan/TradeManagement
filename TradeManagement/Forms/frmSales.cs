@@ -93,9 +93,9 @@ namespace TradeManagement.Forms
                 if (companyLogo != null && companyLogo.Length > 0)
                     picCompanyLogo.Image = Image.FromStream(new MemoryStream(companyLogo));
             }
-            cmbCustomerName.Properties.DataSource = _sales.GetAllCustomers();
+            cmbCustomerName.Properties.DataSource = _sales.GetAllActiveCustomers();
             //_vat = _sales.GetVATRegNo();
-            cmbSearchCustomer.Properties.DataSource = _sales.GetAllCustomers();
+            cmbSearchCustomer.Properties.DataSource = _sales.GetAllActiveCustomers();
             cmbBankAccount.Properties.DataSource = _sales.GetAllBankAccounts();
             dtpStartDate.DateTime = DateTime.Today.AddMonths(-1);
             dtpEndDate.DateTime = DateTime.Today;
@@ -173,8 +173,7 @@ namespace TradeManagement.Forms
                 if (XtraMessageBox.Show("Some amount is due. Do you want to continue?", ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                     return;
             if (_isNew)
-            {
-                _accountReceivableId = _sales.GetNextReceivableId();
+            {_accountReceivableId = _sales.GetNextReceivableId();
                 _sales.BeginTran();
                 if (_sales.InsertSales(txtInvoiceNo.EditValue.ToString(), dtpSalesDate.DateTime, cmbCustomerName.EditValue.ToString(), colTotal.SummaryItem.SummaryValue.ToString(),
                     (txtFinalDiscount.EditValue ?? 0).ToString(), rgpPaymentType.SelectedIndex.ToString(), rgpPaymentType.SelectedIndex == 1 ? txtChequeNo.EditValue.ToString() : "",
@@ -206,6 +205,7 @@ namespace TradeManagement.Forms
                             {
                                 report.Load(@"Reports\rptInvoice.frx");
                                 report.SetParameterValue("SalesPerson", _sales.GetSalesPersonName(txtInvoiceNo.EditValue.ToString()));
+                                report.SetParameterValue("VatNo", _sales.GetVATRegNo());
                                 report.RegisterData(_sales.GetCompanyInformation(), "CompanyInformation");
                                 report.RegisterData(_sales.GetSales(txtInvoiceNo.EditValue.ToString()), "vwSales");
                                 report.RegisterData(_sales.GetSaleDetails(txtInvoiceNo.EditValue.ToString()), "vwSaleDetails");
@@ -281,8 +281,8 @@ namespace TradeManagement.Forms
                             using (var report = new Report())
                             {
                                 report.Load(@"Reports\rptInvoice.frx");
-                                report.SetParameterValue("SalesPerson",
-                                    _sales.GetSalesPersonName(txtInvoiceNo.EditValue.ToString()));
+                                report.SetParameterValue("SalesPerson", _sales.GetSalesPersonName(txtInvoiceNo.EditValue.ToString()));
+                                report.SetParameterValue("VatNo", _sales.GetVATRegNo());
                                 report.RegisterData(_sales.GetCompanyInformation(), "CompanyInformation");
                                 report.RegisterData(_sales.GetSales(txtInvoiceNo.EditValue.ToString()), "vwSales");
                                 report.RegisterData(_sales.GetSaleDetails(txtInvoiceNo.EditValue.ToString()), "vwSaleDetails");
@@ -387,6 +387,7 @@ namespace TradeManagement.Forms
             {
                 report.Load(@"Reports\rptInvoice.frx");
                 report.SetParameterValue("SalesPerson", _sales.GetSalesPersonName(txtInvoiceNo.EditValue.ToString()));
+                report.SetParameterValue("VatNo", _sales.GetVATRegNo());
                 report.RegisterData(_sales.GetCompanyInformation(), "CompanyInformation");
                 report.RegisterData(_sales.GetSales(txtInvoiceNo.EditValue.ToString()), "vwSales");
                 report.RegisterData(_sales.GetSaleDetails(txtInvoiceNo.EditValue.ToString()), "vwSaleDetails");
@@ -610,7 +611,9 @@ namespace TradeManagement.Forms
             txtAmountPaid.EditValue = gvwSearch.GetRowCellValue(gvwSearch.FocusedRowHandle, "slsAmountPaid");
             txtDue.EditValue = gvwSearch.GetRowCellValue(gvwSearch.FocusedRowHandle, "slsDue");
             _accountReceivableId = _sales.GetReceivableId(cmbCustomerName.EditValue.ToString(), txtInvoiceNo.EditValue.ToString());
-            grdSales.DataSource = _sales.GetSaleDetails(txtInvoiceNo.EditValue.ToString());
+            var dtDetails = _sales.GetSaleDetails(txtInvoiceNo.EditValue.ToString());
+            dtDetails.Columns.Remove("sldInvoiceNo");
+            grdSales.DataSource = dtDetails;
             grpSearch.Visible = false;
             sitmStatus.Caption = string.Empty;
             sitmStatus.Glyph = null;
@@ -684,6 +687,7 @@ namespace TradeManagement.Forms
                     dtSale = new DataTable();
                     dtSale.Columns.Add("sldProductId");
                     dtSale.Columns.Add("pdtProductName");
+                    dtSale.Columns.Add("pctProductCategoryName");
                     dtSale.Columns.Add("bndBrandName");
                     dtSale.Columns.Add("pdtModel");
                     dtSale.Columns.Add("pdtPackageUnit");
@@ -699,6 +703,7 @@ namespace TradeManagement.Forms
                     {
                         gvwProducts.GetRowCellValue(gvwProducts.FocusedRowHandle, "pdtProductId"),
                         gvwProducts.GetRowCellValue(gvwProducts.FocusedRowHandle, "pdtProductName"),
+                        gvwProducts.GetRowCellValue(gvwProducts.FocusedRowHandle, "pctProductCategoryName"),
                         gvwProducts.GetRowCellValue(gvwProducts.FocusedRowHandle, "bndBrandName"),
                         gvwProducts.GetRowCellValue(gvwProducts.FocusedRowHandle, "pdtModel"),
                         gvwProducts.GetRowCellValue(gvwProducts.FocusedRowHandle, "pdtPackageUnit"),
@@ -714,6 +719,7 @@ namespace TradeManagement.Forms
                     {
                         gvwProducts.GetRowCellValue(gvwProducts.FocusedRowHandle, "pdtProductId"),
                         gvwProducts.GetRowCellValue(gvwProducts.FocusedRowHandle, "pdtProductName"),
+                        gvwProducts.GetRowCellValue(gvwProducts.FocusedRowHandle, "pctProductCategoryName"),
                         gvwProducts.GetRowCellValue(gvwProducts.FocusedRowHandle, "bndBrandName"),
                         gvwProducts.GetRowCellValue(gvwProducts.FocusedRowHandle, "pdtModel"),
                         gvwProducts.GetRowCellValue(gvwProducts.FocusedRowHandle, "pdtPackageUnit"),
